@@ -29,14 +29,25 @@ public class BlockCrashedBomb extends BlockContainer implements IBomb {
 		return new TileEntityCrashedBomb();
 	}
 
-	@Override public int getRenderType() { return -1; }
-	@Override public boolean isOpaqueCube() { return false; }
-	@Override public boolean renderAsNormalBlock() { return false; }
+	@Override
+	public int getRenderType() {
+		return -1;
+	}
+
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float fx, float fy, float fz) {
-		if(world.isRemote) return true;
+		if (world.isRemote) return true;
 
-		if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.defuser) {
+		if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.defuser) {
 
 			world.func_147480_a(x, y, z, false);
 			world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.egg_balefire_shard)));
@@ -51,21 +62,30 @@ public class BlockCrashedBomb extends BlockContainer implements IBomb {
 	@Override
 	public BombReturnCode explode(World world, int x, int y, int z) {
 
-		if(!world.isRemote) {
+		if (!world.isRemote) {
 
-			world.setBlockToAir(x, y, z);
-			EntityBalefire bf = new EntityBalefire(world);
-			bf.posX = x;
-			bf.posY = y;
-			bf.posZ = z;
-			bf.destructionRange = (int) (BombConfig.fatmanRadius * 1.25);
-			world.spawnEntityInWorld(bf);
 
-			NBTTagCompound data = new NBTTagCompound();
-			data.setString("type", "muke");
-			data.setBoolean("balefire", true);
-			PacketThreading.createAllAroundThreadedPacket(new AuxParticlePacketNT(data, x + 0.5, y + 0.5, z + 0.5), new TargetPoint(world.provider.dimensionId, x + 0.5, y + 0.5, z + 0.5, 250));
-			world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, "hbm:weapon.mukeExplosion", 15.0F, 1.0F);
+			if (world.rand.nextInt(15) == 0) {
+
+				world.setBlockToAir(x, y, z);
+				EntityBalefire bf = new EntityBalefire(world);
+				bf.posX = x;
+				bf.posY = y;
+				bf.posZ = z;
+				bf.destructionRange = (int) (BombConfig.fatmanRadius * 1.25);
+				world.spawnEntityInWorld(bf);
+
+				NBTTagCompound data = new NBTTagCompound();
+				data.setString("type", "muke");
+				data.setBoolean("balefire", true);
+				PacketThreading.createAllAroundThreadedPacket(new AuxParticlePacketNT(data, x + 0.5, y + 0.5, z + 0.5), new TargetPoint(world.provider.dimensionId, x + 0.5, y + 0.5, z + 0.5, 250));
+				world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, "hbm:weapon.mukeExplosion", 15.0F, 1.0F);
+
+				return BombReturnCode.DETONATED;
+
+			} else {
+				return BombReturnCode.FALSCH;
+			}
 		}
 
 		return BombReturnCode.DETONATED;

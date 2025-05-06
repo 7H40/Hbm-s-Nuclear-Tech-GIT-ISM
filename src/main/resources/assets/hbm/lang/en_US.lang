@@ -224,6 +224,8 @@ body.laythe=Laythe
 body.ike=Ike
 body.dres=Dres
 
+
+bomb.didnot=Bomb misfired.
 bomb.detonated=Detonated successfully!
 bomb.incompatible=Device can not be triggered!
 bomb.launched=Launched successfully!

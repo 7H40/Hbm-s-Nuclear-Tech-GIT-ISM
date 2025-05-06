@@ -1,31 +1,40 @@
 # eclipse
-/eclipse
-/bin
-/*.launch
-/.settings
-/.metadata
-/.classpath
-/.project
+eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
 # idea
+<<<<<<< Updated upstream
 /out
 /*.ipr
 /*.iws
 /*.iml
 /.idea
 .idea
+=======
+.out
+*.ipr
+*.iws
+*.iml
+.idea
+
+>>>>>>> Stashed changes
 # gradle
-/build
-/.gradle
+build
+.gradle
 
 # vscode
-/.vscode
+.vscode
 
 # other
-/run
+run
 
 # CurseForge configuration
-/curseforge.properties
+curseforge.properties
 
 # Changelog backup
-/changelog.bak
+changelog.bak

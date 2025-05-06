@@ -129,6 +129,7 @@ armorMod.type.leggings=Beinschienen
 armorMod.type.servo=Servos
 armorMod.type.special=Spezial
 
+bomb.didnot=Bomb misfired.
 bomb.detonated=Erfolgreich gezündet!
 bomb.incompatible=Gerät kann nicht ausgelöst werden!
 bomb.launched=Erfolgreich gestartet!

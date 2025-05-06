@@ -189,6 +189,7 @@ battery.priority.recommended=Raccomandato per:
 battery.redstone.off=Redstone OFF
 battery.redstone.on=Redstone ON
 
+bomb.didnot=Bomb misfired.
 bomb.detonated=Detonato con successo!
 bomb.incompatible=Il dispositivo non può essere attivato!
 bomb.launched=Lanciato con successo!

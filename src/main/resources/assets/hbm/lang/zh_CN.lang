@@ -221,6 +221,7 @@ battery.priority.normal.desc=较小的电网，其优先级无关紧要
 battery.priority.recommended=推荐用于：
 battery.redstone.off=红石 关
 battery.redstone.on=红石 开
+bomb.didnot=Bomb misfired.
 bomb.detonated=成功引爆！
 bomb.incompatible=设备无法触发！
 bomb.launched=发射成功！

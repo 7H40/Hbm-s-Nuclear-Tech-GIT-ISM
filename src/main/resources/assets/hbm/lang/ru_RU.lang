@@ -198,6 +198,7 @@ battery.priority.recommended=Рекомендуется для:
 battery.redstone.off=Редстоун выключен
 battery.redstone.on=Редстоун включен
 
+bomb.didnot=Что-то пошло не так..
 bomb.detonated=Успешно взорвано!
 bomb.incompatible=Устройство не может быть взорвано!
 bomb.launched=Успешно запущено!

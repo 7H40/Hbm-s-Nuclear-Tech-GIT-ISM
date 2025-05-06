@@ -4,6 +4,8 @@ itemGroup.tabBlocks=Blocs et machines NTM
 itemGroup.tabNuke=Bombes et engins NTM
 itemGroup.tabMachine=Patrons NTM
 
+
+
 achievement.sacrifice=Sororicide
 achievement.sacrifice.desc=Affrontez le feu et vivez.
 achievement.impossible=Littéralement impossible
@@ -203,7 +205,7 @@ tile.emp_bomb.name=Bombe IEM
 
 tile.crashed_bomb.name=Dud
 tile.boxcar.name=Wagon
-
+bomb.didnot=Bomb misfired.
 tile.turret_light.name=Tourelle à mitrailleuse légère
 tile.turret_heavy.name=Tourelle à mitrailleuse lourde
 tile.turret_rocket.name=Tourelle lance roquettes
