@@ -18,7 +18,7 @@ public class ItemPoolsSingle {
 	public static final String POOL_VAULT_REINFORCED = "POOL_VAULT_REINFORCED";
 	public static final String POOL_VAULT_UNBREAKABLE = "POOL_VAULT_UNBREAKABLE";
 	public static final String POOL_METEORITE_TREASURE = "POOL_METEORITE_TREASURE";
-	
+
 	public static void init() {
 
 		//powder boxes
@@ -38,7 +38,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.powder_cerium, 0, 1, 32, 1)
 			};
 		}};
-		
+
 		new ItemPool(POOL_VAULT_RUSTY) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(Items.gold_ingot, 0, 3, 14, 1),
@@ -56,7 +56,7 @@ public class ItemPoolsSingle {
 					weighted(Items.diamond, 0, 1, 2, 1)
 			};
 		}};
-		
+
 		new ItemPool(POOL_VAULT_STANDARD) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(ModItems.ingot_desh, 0, 2, 6, 1),
@@ -73,7 +73,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.circuit, EnumCircuitType.CHIP.ordinal(), 2, 6, 1)
 			};
 		}};
-		
+
 		new ItemPool(POOL_VAULT_REINFORCED) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(ModItems.ingot_desh, 0, 6, 16, 1),
@@ -91,7 +91,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.circuit, EnumCircuitType.BASIC.ordinal(), 6, 12, 1)
 			};
 		}};
-		
+
 		new ItemPool(POOL_VAULT_UNBREAKABLE) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(ModItems.ammo_container, 0, 3, 6, 1),
@@ -103,7 +103,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.circuit, EnumCircuitType.ADVANCED.ordinal(), 6, 12, 1)
 			};
 		}};
-		
+
 		new ItemPool(POOL_METEORITE_TREASURE) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(ModItems.cobalt_pickaxe, 0, 1, 1, 10),
@@ -123,7 +123,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.scrumpy, 0, 1, 1, 5),
 					weighted(ModItems.launch_code_piece, 0, 1, 1, 5),
 					weighted(ModItems.egg_glyphid, 0, 1, 1, 5),
-					weighted(ModItems.gem_alexandrite, 0, 1, 1, 1),
+					//weighted(ModItems.gem_alexandrite, 0, 1, 1, 1),
 			};
 		}};
 	}

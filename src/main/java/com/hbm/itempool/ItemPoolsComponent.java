@@ -85,7 +85,7 @@ public class ItemPoolsComponent {
 					weighted(ModItems.missile_incendiary, 0, 1, 1, 4),
 					weighted(ModItems.gas_mask_m65, 0, 1, 1, 5),
 					weighted(ModItems.battery_advanced, 0, 1, 1, 5),
-					weighted(ModItems.designator, 0, 1, 1, 5),
+					//weighted(ModItems.designator, 0, 1, 1, 5),
 					weighted(ModItems.thruster_small, 0, 1, 1, 5),
 					weighted(ModItems.thruster_medium, 0, 1, 1, 4),
 					weighted(ModItems.fuel_tank_small, 0, 1, 1, 5),
@@ -196,6 +196,7 @@ public class ItemPoolsComponent {
 		// Black Book safe in meteor dungeons
 		new ItemPool(POOL_METEOR_SAFE) {{
 			this.pool = new WeightedRandomChestContent[] {
+				weighted(ModItems.syringe_mkunicorn, 0, 1, 1, 5), //funniz
 					weighted(ModItems.book_of_, 0, 1, 1, 1),
 					weighted(ModItems.stamp_book, 0, 1, 1, 1),
 					weighted(ModItems.stamp_book, 1, 1, 1, 1),
@@ -245,14 +246,14 @@ public class ItemPoolsComponent {
 				weighted(ModItems.circuit, EnumCircuitType.CAPACITOR.ordinal(), 1, 1, 3),
 			};
 		}};
-    
+
 		new ItemPool(POOL_RTG) {{
 			this.pool = new WeightedRandomChestContent[] {
 				weighted(ModItems.pellet_rtg_depleted, ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD.ordinal(), 1, 1, 40),
 				weighted(ModItems.pellet_rtg_weak,0, 0, 1, 1),
 			};
 		}};
-        
+
 		new ItemPool(POOL_REPAIR_MATERIALS) {{
 			this.pool = new WeightedRandomChestContent[] {
 				weighted(ModItems.ingot_aluminium, 0, 2, 8, 3),

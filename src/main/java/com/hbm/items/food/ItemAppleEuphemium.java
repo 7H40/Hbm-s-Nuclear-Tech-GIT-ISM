@@ -32,10 +32,10 @@ public class ItemAppleEuphemium extends ItemFood {
         {
             p_77849_3_.addPotionEffect(new PotionEffect(Potion.resistance.id, 2147483647, 120));
             p_77849_3_.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 2147483647, 0));
-            p_77849_3_.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2147483647, 120));
+			// EAT ASS    p_77849_3_.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2147483647, 120));
         }
     }
-    
+
     @Override
 	public EnumRarity getRarity(ItemStack p_77613_1_)
     {
