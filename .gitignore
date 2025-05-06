@@ -13,7 +13,7 @@
 /*.iws
 /*.iml
 /.idea
-
+.idea
 # gradle
 /build
 /.gradle
