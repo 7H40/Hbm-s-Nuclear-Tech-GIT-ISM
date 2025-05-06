@@ -48,7 +48,7 @@ public class SatelliteHandler extends TemplateRecipeHandler implements ICompatNH
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if(outputId.equals("ntmSatellite")) {
-			for(Item satelliteItem : new Item[]{ModItems.sat_miner, ModItems.sat_lunar_miner}) {
+			for(Item satelliteItem : new Item[]{ModItems.sat_miner, ModItems.sat_lunar_miner, ModItems.sat_quartz}) {
 				String poolName = SatelliteMiner.getCargoForItem(satelliteItem);
 				if(poolName == null) {
 					continue;
@@ -62,7 +62,7 @@ public class SatelliteHandler extends TemplateRecipeHandler implements ICompatNH
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		for(Item satelliteItem : new Item[]{ModItems.sat_miner, ModItems.sat_lunar_miner}) {
+		for(Item satelliteItem : new Item[]{ModItems.sat_miner, ModItems.sat_lunar_miner, ModItems.sat_quartz}) {
 			String poolName = SatelliteMiner.getCargoForItem(satelliteItem);
 			if(poolName == null) {
 				continue;
@@ -92,6 +92,8 @@ public class SatelliteHandler extends TemplateRecipeHandler implements ICompatNH
 			this.addRecipeToList(ModItems.sat_miner, ItemPool.getPool(ItemPoolsSatellite.POOL_SAT_MINER));
 		} else if(ingredient.getItem() == ModItems.sat_lunar_miner) {
 			this.addRecipeToList(ModItems.sat_lunar_miner, ItemPool.getPool(ItemPoolsSatellite.POOL_SAT_LUNAR));
+		} else if(ingredient.getItem() == ModItems.sat_quartz) {
+			this.addRecipeToList(ModItems.sat_quartz, ItemPool.getPool(ItemPoolsSatellite.POOL_SAT_QUARTZ));
 		}
 	}
 

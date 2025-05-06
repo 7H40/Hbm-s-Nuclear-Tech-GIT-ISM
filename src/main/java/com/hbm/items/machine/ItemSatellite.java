@@ -54,6 +54,9 @@ public class ItemSatellite extends ItemCustomMissilePart implements ISatChip {
 		if(this == ModItems.sat_miner)
 			list.add("Will deliver ore powders to a cargo landing pad.");
 
+		if(this == ModItems.sat_quartz)
+			list.add("Will deliver quartz to a cargo landing pad.");
+
 		if(this == ModItems.sat_lunar_miner)
 			list.add("Mines moon turf to deliver it to a cargo landing pad.");
 

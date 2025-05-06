@@ -4235,6 +4235,7 @@ item.sat_head_scanner.name=M700测量扫描仪
 item.sat_interface.name=卫星操作接口
 item.sat_laser.name=轨道死光炮
 item.sat_lunar_miner.name=月球采矿飞船
+item.sat_quartz.name=tarkovcheats
 item.sat_mapper.name=地表测绘卫星
 item.sat_miner.name=小行星采矿飞船
 item.sat_radar.name=雷达探测卫星

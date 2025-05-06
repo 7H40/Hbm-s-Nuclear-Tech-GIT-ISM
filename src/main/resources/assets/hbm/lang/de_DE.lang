@@ -3246,6 +3246,7 @@ item.sat_head_scanner.name=M700 Oberflächenabtaster
 item.sat_interface.name=Satelliten-Kontrollinterface
 item.sat_laser.name=Orbitaler Todesstrahl
 item.sat_lunar_miner.name=Mond-Förderschiff
+item.sat_quartz.name=кварцнахуй-Förderschiff
 item.sat_mapper.name=Oberflächen-Abtastungssatellit
 item.sat_miner.name=Asteroiden-Förderschiff
 item.sat_radar.name=Radar-Überwachungssatellit

@@ -4650,6 +4650,7 @@ item.sat_head_scanner.name=M700 Survey Scanner
 item.sat_interface.name=Satellite Control Interface
 item.sat_laser.name=Orbital Death Ray
 item.sat_lunar_miner.name=Lunar Mining Ship
+item.sat_quartz.name=Quartz Mining Ship
 item.sat_mapper.name=Surface Mapping Satellite
 item.sat_miner.name=Asteroid Mining Ship
 item.sat_radar.name=Radar Survey Satellite

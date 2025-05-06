@@ -4521,6 +4521,7 @@ item.sat_head_scanner.name=Сканер M700
 item.sat_interface.name=Интерфейс спутникового управления
 item.sat_laser.name=Орбитальный Луч Смерти
 item.sat_lunar_miner.name=Модуль для добычи лунного грунта
+item.sat_quartz.name=Модуль для добычи кварца
 item.sat_mapper.name=Спутник для Картографирования Поверхности
 item.sat_miner.name=Модуль для добычи астероидов
 item.sat_radar.name=Спутник с Радиолокационным Зондированием
