@@ -63,13 +63,8 @@ public class ItemPoolsSatellite {
 
 		new ItemPool(POOL_SAT_QUARTZ) {{
 			this.pool = new WeightedRandomChestContent[] {
-				weighted(ModBlocks.moon_turf, 0, 48, 48, 5),
-				weighted(ModBlocks.moon_turf, 0, 32, 32, 7),
-				weighted(ModBlocks.moon_turf, 0, 16, 16, 5),
-				weighted(ModItems.powder_lithium, 0, 3, 3, 5),
-				weighted(ModItems.powder_iron, 0, 3, 3, 5),
-				weighted(ModItems.crystal_iron, 0, 1, 1, 1),
-				weighted(ModItems.crystal_lithium, 0, 1, 1, 1)
+				// WIP weighted(ModBlocks.moon_turf, 0, 48, 48, 5),
+
 			};
 		}};
 	}
