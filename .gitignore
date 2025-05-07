@@ -6,7 +6,10 @@ bin
 .metadata
 .classpath
 .project
-
+build.gradle
+gradle
+gradlew
+gradlew.bat
 # idea
 <<<<<<< Updated upstream
 /out
