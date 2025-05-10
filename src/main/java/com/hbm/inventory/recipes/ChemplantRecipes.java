@@ -210,13 +210,13 @@ public class ChemplantRecipes extends SerializableRecipe {
 						new OreDictStack(COAL.dust()))
 				.inputFluids(new FluidStack(Fluids.PETROLEUM, 100))
 				.outputItems(new ItemStack(ModItems.plate_kevlar, 4)));
-		recipes.add(new ChemRecipe(55, "CONCRETE", 100)
+		recipes.add(new ChemRecipe(55, "CONCRETE", 150)
 				.inputItems(
-						new ComparableStack(ModItems.powder_cement, 1),
-						new ComparableStack(Blocks.gravel, 8),
-						new OreDictStack(KEY_SAND, 8))
+						new ComparableStack(ModItems.powder_cement, 2),
+						new ComparableStack(Blocks.gravel, 16),
+						new OreDictStack(KEY_SAND, 16))
 				.inputFluids(new FluidStack(Fluids.WATER, 2000))
-				.outputItems(new ItemStack(ModBlocks.concrete_smooth, 16)));
+				.outputItems(new ItemStack(ModBlocks.concrete_smooth, 32)));
 		recipes.add(new ChemRecipe(56, "CONCRETE_ASBESTOS", 100)
 				.inputItems(
 						new ComparableStack(ModItems.powder_cement, 1),
