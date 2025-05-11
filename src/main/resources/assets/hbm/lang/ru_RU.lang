@@ -1,6 +1,6 @@
 achievement.acidizer.desc=уфф ай моя кожа
 achievement.acidizer=Кислюка
-achievement.assembly.desc=Подожди-ка, уже час утра?
+achievement.assembly.desc=Подожди-ка, уже час ночи?
 achievement.assembly=Завод расширяется
 achievement.FOEQ.desc=Отправь передатчик на орбиту Марса... в смысле Дюны.
 achievement.FOEQ=Бункеры с пегасами и ракетами
@@ -913,12 +913,12 @@ damage.exact.LASER=Лазерам
 damage.exact.onFire=Горению
 damage.other=Прочему
 
-death.attack.acid=%1$s упал в кислоту
+death.attack.acid=%1$s упал в кислоту.
 death.attack.acidPlayer=%1$s был растворён %2$s.
-death.attack.ams=%1$s искупался в смертельных частицах, ещё неизвестных науке
-death.attack.amsCore=%1$s испарился в огне сингулярности
+death.attack.ams=%1$s искупался в смертельных частицах, ещё неизвестных науке.
+death.attack.amsCore=%1$s испарился в огне сингулярности.
 death.attack.asbestos=%1$s теперь имеет право на финансовую компенсацию.
-death.attack.bang=%1$s превратился в рагу
+death.attack.bang=%1$s превратился в рагу.
 death.attack.blackhole=%1$s превратился в спагетти
 death.attack.blacklung=%1$s умер от болезни черных лёгких
 death.attack.blender=%1$s стал фаршем
