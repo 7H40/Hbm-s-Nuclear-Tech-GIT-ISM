@@ -256,7 +256,7 @@ public class EntityEffectHandler {
 		if(eRad > 2500) HbmLivingProps.setRadiation(entity, 2500);
 
 		/// EFFECTS ///
-		if(eRad >= 1000) {
+		if(eRad >= 1100) {
 
 			entity.attackEntityFrom(ModDamageSource.radiation, 1000F);
 			HbmLivingProps.setRadiation(entity, 0);
@@ -268,14 +268,14 @@ public class EntityEffectHandler {
 
 			if(entity instanceof EntityPlayer) ((EntityPlayer) entity).triggerAchievement(MainRegistry.achRadDeath);
 
-		} else if(eRad >= 800) {
+		} else if(eRad >= 700) {
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 5 * 30, 0));
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 10 * 20, 2));
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 10 * 20, 2));
 			if(world.rand.nextInt(500) == 0) entity.addPotionEffect(new PotionEffect(Potion.poison.id, 3 * 20, 2));
 			if(world.rand.nextInt(700) == 0) entity.addPotionEffect(new PotionEffect(Potion.wither.id, 3 * 20, 1));
 
-		} else if(eRad >= 600) {
+		} else if(eRad >= 500) {
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 5 * 30, 0));
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 10 * 20, 2));
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 10 * 20, 2));
@@ -286,10 +286,9 @@ public class EntityEffectHandler {
 			if(world.rand.nextInt(500) == 0) entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 5 * 20, 0));
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 5 * 20, 1));
 
-		} else if(eRad >= 200) {
+		} else if(eRad >= 100) {
 			if(world.rand.nextInt(300) == 0) entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 5 * 20, 0));
 			if(world.rand.nextInt(500) == 0) entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 5 * 20, 0));
-
 			if(entity instanceof EntityPlayer) ((EntityPlayer) entity).triggerAchievement(MainRegistry.achRadPoison);
 		}
 	}
