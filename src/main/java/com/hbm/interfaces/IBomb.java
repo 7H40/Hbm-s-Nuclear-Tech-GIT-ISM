@@ -23,34 +23,27 @@ public interface IBomb {
 	public BombReturnCode explode(World world, int x, int y, int z);
 
 	public static enum BombReturnCode {
-		UNDEFINED(false, "", false),										//non-null type for passing to clients that don't process the return code
-		FALSCH(false, "bomb.didnot",false),							//error detonating a bomb
-		DETONATED(true, "bomb.detonated",false),							//success for blowing up bombs
-		TRIGGERED(true, "bomb.triggered",false),							//success for triggering other things
-		LAUNCHED(true, "bomb.launched",false),							//success for launching missiles
-		ERROR_MISSING_COMPONENT(false, "bomb.missingComponent",false),	//error for bomb parts missing
-		ERROR_INCOMPATIBLE(false, "bomb.incompatible",false),				//error for target being incompatible (but still implements IBomb for some reason), like locked blast doors
-		ERROR_NO_BOMB(false, "bomb.nobomb",false);						//not to be used by the bombs themselves, this is the generic error when trying to trigger no-bomb blocks
+		UNDEFINED(false, ""),										//non-null type for passing to clients that don't process the return code
+		FALSCH(false, "bomb.didnot"),							//error detonating a bomb
+		DETONATED(true, "bomb.detonated"),							//success for blowing up bombs
+		TRIGGERED(true, "bomb.triggered"),							//success for triggering other things
+		LAUNCHED(true, "bomb.launched"),							//success for launching missiles
+		ERROR_MISSING_COMPONENT(false, "bomb.missingComponent"),	//error for bomb parts missing
+		ERROR_INCOMPATIBLE(false, "bomb.incompatible"),				//error for target being incompatible (but still implements IBomb for some reason), like locked blast doors
+		ERROR_NO_BOMB(false, "bomb.nobomb");						//not to be used by the bombs themselves, this is the generic error when trying to trigger no-bomb blocks
 
 		private String unloc;
 		private boolean success;
-		private boolean falsch;
 
-		private BombReturnCode(boolean success, String unloc, boolean Falsch) {
+		private BombReturnCode(boolean success, String unloc) {
 			this.unloc = unloc;
 			this.success = success;
-			this.falsch = falsch;
 
 		}
 
 		public String getUnlocalizedMessage() {
 			return this.unloc;
 		}
-
-		public boolean wasFalsch() {
-			return this.falsch;
-		}
-
 
 
 		public boolean wasSuccessful() {
