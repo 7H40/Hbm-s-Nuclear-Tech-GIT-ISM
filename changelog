@@ -1,17 +1,9 @@
-Includes all changes and bugfixes from the two latest upstream NTMain updates - [X5335 - d](https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT/releases/tag/1.0.27_X5335) and [X5336 - cratecratecra...](https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT/releases/tag/1.0.27_X5336)
+Includes all changes and bugfixes from the latest upstream NTMain update - [X5356 - what did i do these past 3 weeks?](https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT/releases/tag/1.0.27_X5356)
 
 ## Added
-* Duna cobblestone
-    * Works like regular cobblestone
-    * Found in ancient basins where water once was
+* Fully simulated orbital elements, including inclination and eccentricity
+    * Now the moon may only partially eclipse the sun at times, rather than always fully eclipsing
+* New nickel + copper production chains for Mun and Minmus
 
 ## Changed
-* Removed oxygen-less oxyhydrogen recipe (support for not needing an atmosphere to burn this coming soon)
-
-## Fixed
-* Missing resistances on various planetary stone, causing nuke craters to be far larger than they should be
-* Many BRO products could not be processed in an electrolyser due to them not being castable, including:
-    * Glowstone
-    * Quartz
-    * Iodine
-    * Bromine
+* Removed BoP crash, some idiot (read: me) figured the wrong limit months ago and didn't think to double check.
