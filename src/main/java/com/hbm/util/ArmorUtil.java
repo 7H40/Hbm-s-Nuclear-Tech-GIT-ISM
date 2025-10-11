@@ -1,5 +1,8 @@
 package com.hbm.util;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +24,7 @@ import com.hbm.potion.HbmPotion;
 import com.hbm.util.ArmorRegistry.HazardClass;
 
 import api.hbm.item.IGasMask;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,7 +65,8 @@ public class ArmorUtil {
 		ArmorRegistry.registerHazard(ModItems.hazmat_helmet_grey, HazardClass.SAND);
 		ArmorRegistry.registerHazard(ModItems.hazmat_paa_helmet, HazardClass.LIGHT, HazardClass.SAND);
 		ArmorRegistry.registerHazard(ModItems.liquidator_helmet, HazardClass.LIGHT, HazardClass.SAND);
-		ArmorRegistry.registerHazard(ModItems.t45_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.LIGHT, HazardClass.SAND);
+		ArmorRegistry.registerHazard(ModItems.t45_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.SAND);
+		ArmorRegistry.registerHazard(ModItems.t51_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.SAND);
 		ArmorRegistry.registerHazard(ModItems.ajr_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.LIGHT, HazardClass.SAND);
 		ArmorRegistry.registerHazard(ModItems.ajro_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.LIGHT, HazardClass.SAND);
 		ArmorRegistry.registerHazard(ModItems.steamsuit_helmet, HazardClass.PARTICLE_COARSE, HazardClass.PARTICLE_FINE, HazardClass.GAS_LUNG, HazardClass.BACTERIA, HazardClass.GAS_BLISTERING, HazardClass.GAS_MONOXIDE, HazardClass.LIGHT, HazardClass.SAND);
@@ -173,14 +178,20 @@ public class ArmorUtil {
 		EntityPlayer player = (EntityPlayer) entity;
 
 		if(player.capabilities.isCreativeMode) return true;
+		if(checkModBreathing(player)) return true;
 
 		ItemStack tank = getOxygenTank(player);
 		if(tank == null) return ChunkAtmosphereManager.proxy.canBreathe(atmosphere);
 
 		// If we have an oxygen tank, block drowning
-		entity.setAir(300);
+		boolean isInWater = entity.getAir() < 300;
+		boolean canBreatheTank = ((ItemModOxy)tank.getItem()).attemptBreathing(entity, tank, atmosphere, isInWater);
 
-		return ((ItemModOxy)tank.getItem()).attemptBreathing(entity, tank, atmosphere);
+		if(isInWater && canBreatheTank) {
+			entity.setAir(300);
+		}
+
+		return canBreatheTank;
 	}
 
 	public static ItemStack getOxygenTank(EntityPlayer player) {
@@ -204,6 +215,57 @@ public class ArmorUtil {
 
 		return null;
 	}
+
+	/**
+	 * Support for:
+	 *  - Fisk's Superheroes
+	 */
+
+	private static final MethodHandle canBreatheInSpaceFiskHandle;
+	private static final MethodHandle getHeroIterationHandle;
+	private static final Class<?> heroIteration;
+
+	static {
+		if(Loader.isModLoaded("fiskheroes")) {
+			try {
+				Class<?> worldHelper = Class.forName("com.fiskmods.heroes.util.WorldHelper");
+				Class<?> heroTracker = Class.forName("com.fiskmods.heroes.common.hero.HeroTracker");
+				heroIteration = Class.forName("com.fiskmods.heroes.common.hero.HeroIteration");
+
+				MethodHandles.Lookup lookup = MethodHandles.publicLookup();
+
+				MethodType canBreatheType = MethodType.methodType(boolean.class, EntityLivingBase.class, heroIteration);
+				canBreatheInSpaceFiskHandle = lookup.findStatic(worldHelper, "canBreatheInSpace", canBreatheType);
+
+				MethodType herpesIterationType = MethodType.methodType(heroIteration, EntityPlayer.class);
+				getHeroIterationHandle = lookup.findStatic(heroTracker, "iter", herpesIterationType);
+			} catch(Exception e) {
+				throw new AssertionError();
+			}
+		} else {
+			canBreatheInSpaceFiskHandle = null;
+			getHeroIterationHandle = null;
+			heroIteration = null;
+		}
+	}
+
+	private static boolean checkModBreathing(EntityPlayer player) {
+		if(canBreatheInSpaceFiskHandle != null) {
+			try {
+				// this could have been `invokeExact` but the damn canBreatheInSpace method
+				// expects some internal armor representation ugh
+				Object iter = getHeroIterationHandle.invoke(player);
+				if((boolean)canBreatheInSpaceFiskHandle.invoke((EntityLivingBase) player, iter)) return true;
+			} catch (Throwable e) {
+				e.printStackTrace();
+				// halt and catch herpes
+			}
+		}
+
+		return false;
+	}
+
+
 
 	public static boolean checkForCorrosion(EntityLivingBase entity, CBT_Atmosphere atmosphere) {
 		if(!ChunkAtmosphereManager.proxy.willCorrode(atmosphere)) return false;

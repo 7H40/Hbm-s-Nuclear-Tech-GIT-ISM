@@ -1,5 +1,7 @@
 package com.hbm.items;
 
+import java.util.HashSet;
+
 import com.hbm.blocks.ModBlocks;
 import com.hbm.config.VersatileConfig;
 import com.hbm.handler.BucketHandler;
@@ -65,6 +67,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class ModItems {
 
+	public static HashSet<Item> excludeNEI = new HashSet();
+
 	public static void mainRegistry() {
 		initializeItem();
 		registerItem();
@@ -119,7 +123,6 @@ public class ModItems {
 	public static Item ingot_cobalt;
 	public static Item ingot_gallium;
 	public static Item ingot_zinc;
-	public static Item ingot_platnium;
 	public static Item ingot_gaas;
 	public static Item ingot_iridium;
 	public static Item sulfur;
@@ -224,7 +227,6 @@ public class ModItems {
 	public static Item nugget_nickel;
 	public static Item nugget_zinc;
 	public static Item nugget_gallium;
-	public static Item nugget_platnium;
 	public static Item nugget_gaas;
 	public static Item nugget_mercury;
 	public static Item ingot_mercury; //It's to prevent any ambiguity, as it was treated as a full ingot in the past anyway
@@ -409,7 +411,7 @@ public class ModItems {
 	public static Item plate_combine_steel;
 	public static Item plate_mixed;
 	public static Item plate_paa;
-	public static Item pipes_steel;
+	@Deprecated public static Item pipes_steel;
 	public static Item drill_titanium;
 	public static Item plate_dalekanium;
 	public static Item plate_euphemium;
@@ -426,13 +428,17 @@ public class ModItems {
 	public static Item thruster_nuclear;
 	public static Item safety_fuse;
 	public static Item part_generic;
+	public static Item item_expensive;
 	public static Item item_secret;
 	public static Item ingot_metal;
 	public static Item chemical_dye;
 	public static Item crayon;
+	public static Item divine_shard;
 
 	public static Item scuttertail;
 	public static Item saltleaf;
+	public static Item leaf_rubber;
+	public static Item leaf_pet;
 
 	public static Item undefined;
 
@@ -445,6 +451,8 @@ public class ModItems {
 	public static Item ingot_pet;
 	public static Item ingot_pc;
 	public static Item ingot_pvc;
+	public static Item stick_pvc;
+	public static Item stick_vinyl;
 
 	public static Item ingot_fiberglass;
 	public static Item ingot_asbestos;
@@ -559,7 +567,6 @@ public class ModItems {
 	public static Item powder_gallium;
 	public static Item powder_zinc;
 	public static Item powder_tungsten;
-	public static Item powder_platnium;
 	public static Item powder_uranium;
 	public static Item powder_plutonium;
 	public static Item dust;
@@ -602,6 +609,8 @@ public class ModItems {
 	public static Item powder_dura_steel;
 	public static Item powder_polymer;
 	public static Item powder_bakelite;
+	public static Item powder_rubber;
+	public static Item powder_pvc;
 	public static Item powder_euphemium;
 	public static Item powder_meteorite;
 
@@ -668,22 +677,19 @@ public class ModItems {
 	public static Item coil_copper;
 	public static Item coil_copper_torus;
 	public static Item coil_tungsten;
-	public static Item tank_steel;
+	@Deprecated public static Item tank_steel;
 	public static Item motor;
 	public static Item motor_desh;
 	public static Item motor_bismuth;
 	public static Item centrifuge_element;
 	public static Item reactor_core;
 	public static Item rtg_unit;
-	public static Item levitation_unit;
 
 	public static Item coil_advanced_alloy;
 	public static Item coil_advanced_torus;
 	public static Item coil_magnetized_tungsten;
 	public static Item coil_gold;
 	public static Item coil_gold_torus;
-	public static Item component_limiter;
-	public static Item component_emitter;
 	public static Item chlorine_pinwheel;
 	public static Item oxy_pinwheel;
 	public static Item deuterium_filter;
@@ -762,12 +768,6 @@ public class ModItems {
 	public static Item seg_15;
 	public static Item seg_20;
 
-	public static Item chopper_head;
-	public static Item chopper_gun;
-	public static Item chopper_torso;
-	public static Item chopper_tail;
-	public static Item chopper_wing;
-	public static Item chopper_blades;
 	public static Item combine_scrap;
 
 	public static Item shimmer_head;
@@ -824,7 +824,6 @@ public class ModItems {
 	public static Item ingot_raw;
 	public static Item plate_cast;
 	public static Item plate_welded;
-	public static Item heavy_component;
 	public static Item wire_fine;
 	public static Item wire_dense;
 	public static Item part_barrel_light;
@@ -869,14 +868,11 @@ public class ModItems {
 	public static Item pellet_rtg_cf251;
 	public static Item pellet_rtg_cf252;
 
-	public static Item tritium_deuterium_cake;
+	@Deprecated public static Item tritium_deuterium_cake;
 
 	public static Item piston_selenium;
 	public static Item piston_set;
 	public static Item drillbit;
-
-	//public static Item crystal_energy;
-	//public static Item pellet_coolant;
 
 	public static Item rune_blank;
 	public static Item rune_isa;
@@ -978,6 +974,8 @@ public class ModItems {
 	public static Item fluid_barrel_full;
 	public static Item fluid_barrel_empty;
 	public static Item fluid_barrel_infinite;
+	public static Item fluid_pack_full;
+	public static Item fluid_pack_empty;
 	public static Item pipette;
 	public static Item pipette_boron;
 	public static Item pipette_laboratory;
@@ -1051,8 +1049,6 @@ public class ModItems {
 	public static Item bottle2_empty;
 	public static Item bottle2_korl;
 	public static Item bottle2_fritz;
-	public static Item bottle2_korl_special;
-	public static Item bottle2_fritz_special;
 	public static Item flask_empty;
 	public static Item flask_infusion;
 	public static Item chocolate_milk;
@@ -1109,6 +1105,8 @@ public class ModItems {
 	public static Item teacup;
 	public static Item teacup_empty;
 	public static Item bottle_honey;
+	public static Item paraffin_seeds;
+
 
 	public static Item boat_rubber;
 	public static Item cart;
@@ -1185,6 +1183,7 @@ public class ModItems {
 	public static Item pwr_fuel;
 	public static Item pwr_fuel_hot;
 	public static Item pwr_fuel_depleted;
+	public static Item pwr_printer;
 
 	public static Item rbmk_lid;
 	public static Item rbmk_lid_glass;
@@ -1323,6 +1322,7 @@ public class ModItems {
 	public static Item pellet_buckshot;
 	public static Item pellet_charged;
 
+	public static Item rangefinder;
 	public static Item designator;
 	public static Item designator_range;
 	public static Item designator_manual;
@@ -1347,13 +1347,12 @@ public class ModItems {
 	public static Item settings_tool;
 	public static Item atmosphere_scanner;
 
+	public static Item blueprints;
+	public static Item blueprint_folder;
 	public static Item template_folder;
-	public static Item journal_pip;
-	public static Item journal_bj;
-	public static Item journal_silver;
-	public static Item assembly_template;
-	public static Item chemistry_template;
-	public static Item chemistry_icon;
+	@Deprecated public static Item assembly_template;
+	@Deprecated public static Item chemistry_template;
+	@Deprecated public static Item chemistry_icon;
 	public static Item crucible_template;
 	public static Item fluid_identifier;
 	public static Item fluid_identifier_multi;
@@ -1401,12 +1400,10 @@ public class ModItems {
 	public static Item missile_test;
 
 	public static Item mp_thruster_10_kerosene;
-	public static Item mp_thruster_10_kerosene_tec;
 	public static Item mp_thruster_10_solid;
 	public static Item mp_thruster_10_hydrazine;
 	public static Item mp_thruster_10_xenon;
 	public static Item mp_thruster_15_kerosene;
-	public static Item mp_thruster_15_kerosene_tec;
 	public static Item mp_thruster_15_kerosene_dual;
 	public static Item mp_thruster_15_kerosene_triple;
 	public static Item mp_thruster_15_solid;
@@ -1526,8 +1523,6 @@ public class ModItems {
 	public static Item mp_fuselage_15_20_kerosene_magnusson;
 	public static Item mp_fuselage_15_20_solid;
 
-	public static Item mp_fuselage_20_kerosene;
-
 	public static Item mp_warhead_10_he;
 	public static Item mp_warhead_10_incendiary;
 	public static Item mp_warhead_10_buster;
@@ -1544,7 +1539,6 @@ public class ModItems {
 	public static Item mp_warhead_15_n2;
 	public static Item mp_warhead_15_balefire;
 	public static Item mp_warhead_15_turbine;
-	public static Item mp_warhead_20_he;
 
 	public static Item mp_chip_1;
 	public static Item mp_chip_2;
@@ -1590,6 +1584,7 @@ public class ModItems {
 	public static Item sat_gerald;
 	public static Item sat_dyson_relay;
 	public static Item sat_chip;
+	public static Item sat_war;
 	//OTTDELNO...
 	public static Item sat_quartz;
 
@@ -1649,6 +1644,7 @@ public class ModItems {
 	public static Item gun_autoshotgun;
 	public static Item gun_autoshotgun_shredder;
 	public static Item gun_autoshotgun_sexy;
+	public static Item gun_autoshotgun_heretic;
 	public static Item gun_quadro;
 	public static Item gun_lag;
 	public static Item gun_minigun;
@@ -1672,7 +1668,7 @@ public class ModItems {
 	public static Item gun_aberrator_eott;
 	public static Item gun_double_barrel;
 	public static Item gun_double_barrel_sacred_dragon;
-
+	public static Item gun_n_i_4_n_i;
 	public static Item gun_charge_thrower;
 
 	public static Item ammo_standard;
@@ -1862,7 +1858,6 @@ public class ModItems {
 	public static Item battery_potatos;
 	public static Item hev_battery;
 	public static Item fusion_core;
-	public static Item fusion_core_infinite;
 	public static Item energy_core;
 	public static Item fuse;
 	public static Item redcoil_capacitor;
@@ -1938,10 +1933,14 @@ public class ModItems {
 	public static Item beta;
 	public static Item no9;
 
-	public static Item t45_helmet;
-	public static Item t45_plate;
-	public static Item t45_legs;
-	public static Item t45_boots;
+	@Deprecated public static Item t45_helmet;
+	@Deprecated public static Item t45_plate;
+	@Deprecated public static Item t45_legs;
+	@Deprecated public static Item t45_boots;
+	public static Item t51_helmet;
+	public static Item t51_plate;
+	public static Item t51_legs;
+	public static Item t51_boots;
 	public static Item steamsuit_helmet;
 	public static Item steamsuit_plate;
 	public static Item steamsuit_legs;
@@ -2248,6 +2247,7 @@ public class ModItems {
 	public static Item armor_battery_mk2;
 	public static Item armor_battery_mk3;
 	public static Item flippers;
+	public static Item heavy_boots;
 
 	public static Item hazmat_helmet;
 	public static Item hazmat_plate;
@@ -2271,9 +2271,12 @@ public class ModItems {
 	public static Item hazmat_paa_legs;
 	public static Item hazmat_paa_boots;
 
+	public static Item rebar_placer;
+
 	public static Item wand;
 	public static Item wand_s;
 	public static Item wand_d;
+	public static Item wand_time;
 
 	public static Item structure_single;
 	public static Item structure_solid;
@@ -2311,7 +2314,6 @@ public class ModItems {
 	public static Item fleija_kit;
 	public static Item prototype_kit;
 	public static Item missile_kit;
-	public static Item t45_kit;
 	public static Item euphemium_kit;
 	public static Item solinium_kit;
 	public static Item hazmat_kit;
@@ -2367,6 +2369,7 @@ public class ModItems {
 	public static Item bucket_sulfuric_acid;
 	public static Item bucket_mercury;
 	public static Item bucket_bromine;
+	public static Item bucket_ccl;
 
 	public static Item door_metal;
 	public static Item door_office;
@@ -2393,7 +2396,6 @@ public class ModItems {
 
 	public static Item polaroid;
 	public static Item glitch;
-	public static Item letter;
 	public static Item book_secret;
 	public static Item book_of_;
 	public static Item page_of_;
@@ -2549,8 +2551,8 @@ public class ModItems {
 		plate_advanced_alloy = new Item().setUnlocalizedName("plate_advanced_alloy").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":plate_advanced_alloy");
 		lithium = new Item().setUnlocalizedName("lithium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":lithium");
 		ingot_zirconium = new Item().setUnlocalizedName("ingot_zirconium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_zirconium");
-		ingot_semtex = new ItemLemon(4, 0.4F, true).setUnlocalizedName("ingot_semtex").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_semtex");
-		ingot_c4 = new Item().setUnlocalizedName("ingot_c4").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_c4");
+		ingot_semtex = new ItemLemon(4, 5, true).setUnlocalizedName("ingot_semtex").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_semtex");
+		ingot_c4 = new ItemLemon(4, 5, true).setUnlocalizedName("ingot_c4").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_c4");
 		ingot_phosphorus = new Item().setUnlocalizedName("ingot_phosphorus").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_phosphorus");
 		coil_advanced_alloy = new Item().setUnlocalizedName("coil_advanced_alloy").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":coil_advanced_alloy");
 		coil_advanced_torus = new Item().setUnlocalizedName("coil_advanced_torus").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":coil_advanced_torus");
@@ -2577,10 +2579,12 @@ public class ModItems {
 		thruster_nuclear = new Item().setUnlocalizedName("thruster_nuclear").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":thruster_nuclear");
 		safety_fuse = new Item().setUnlocalizedName("safety_fuse").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":safety_fuse");
 		part_generic = new ItemGenericPart().setUnlocalizedName("part_generic").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":part_generic");
+		item_expensive = new ItemExpensive().setUnlocalizedName("item_expensive").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":item_expensive");
 		item_secret = new ItemEnumMulti(EnumSecretType.class, true, true).setUnlocalizedName("item_secret").setCreativeTab(null).setTextureName(RefStrings.MODID + ":item_secret");
 		ingot_metal = new ItemEnumMulti(EnumIngotMetal.class, true, true).setUnlocalizedName("ingot_metal").setCreativeTab(null).setTextureName(RefStrings.MODID + ":ingot_metal");
 		chemical_dye = new ItemChemicalDye().setUnlocalizedName("chemical_dye").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chemical_dye");
 		crayon = new ItemCrayon().setUnlocalizedName("crayon").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":crayon");
+		divine_shard = new Item().setUnlocalizedName("divine_shard").setCreativeTab(null).setTextureName(RefStrings.MODID + ":divine_shard");
 
 		undefined = new ItemCustomLore().setUnlocalizedName("undefined").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":undefined");
 
@@ -2689,6 +2693,8 @@ public class ModItems {
 		ingot_mud = new Item().setUnlocalizedName("ingot_mud").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_mud");
 		ingot_magma = new Item().setUnlocalizedName("ingot_magma").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_magma");
 		ingot_cft = new Item().setUnlocalizedName("ingot_cft").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_cft");
+		stick_pvc = new ItemCustomLore().setUnlocalizedName("stick_pvc").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":stick_pvc");
+		stick_vinyl = new ItemCustomLore().setUnlocalizedName("stick_vinyl").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":stick_vinyl");
 
 		ore_byproduct = new ItemByproduct().setUnlocalizedName("ore_byproduct").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":byproduct");
 
@@ -2828,9 +2834,6 @@ public class ModItems {
 		nugget_zinc = new Item().setUnlocalizedName("nugget_zinc").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":nugget_zinc");
 		ingot_zinc = new Item().setUnlocalizedName("ingot_zinc").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_zinc");
 		powder_zinc = new Item().setUnlocalizedName("powder_zinc").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_zinc");
-		nugget_platnium = new Item().setUnlocalizedName("nugget_platnium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":nugget_platnium");
-		ingot_platnium = new Item().setUnlocalizedName("ingot_platnium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_platnium");
-		powder_platnium = new Item().setUnlocalizedName("powder_platnium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_platnium");
 		nugget_niobium = new Item().setUnlocalizedName("nugget_niobium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":nugget_niobium");
 		ingot_osmiridium = new ItemCustomLore().setRarity(EnumRarity.rare).setUnlocalizedName("ingot_osmiridium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_osmiridium");
 		nugget_osmiridium = new ItemCustomLore().setRarity(EnumRarity.rare).setUnlocalizedName("nugget_osmiridium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":nugget_osmiridium");
@@ -2856,6 +2859,8 @@ public class ModItems {
 		ingot_palladium = new ItemCustomLore().setUnlocalizedName("ingot_palladium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_palladium");
 		scuttertail = new Item().setUnlocalizedName("scuttertail").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":scuttertail");
 		saltleaf = new Item().setUnlocalizedName("saltleaf").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":salt_leaf");
+		leaf_rubber = new Item().setUnlocalizedName("rubber_leaves").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":rubber_leaves");
+		leaf_pet = new Item().setUnlocalizedName("pet_leaves").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":pet_leaves");
 
 		crystal_coal = new Item().setUnlocalizedName("crystal_coal").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":crystal_coal");
 		crystal_iron = new Item().setUnlocalizedName("crystal_iron").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":crystal_iron");
@@ -2959,6 +2964,8 @@ public class ModItems {
 		powder_dura_steel = new ItemCustomLore().setUnlocalizedName("powder_dura_steel").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_dura_steel");
 		powder_polymer = new ItemCustomLore().setUnlocalizedName("powder_polymer").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_polymer");
 		powder_bakelite = new ItemCustomLore().setUnlocalizedName("powder_bakelite").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_bakelite");
+		powder_rubber = new ItemCustomLore().setUnlocalizedName("powder_rubber").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_rubber");
+		powder_pvc = new ItemCustomLore().setUnlocalizedName("powder_pvc").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_pvc");
 		powder_euphemium = new ItemCustomLore().setRarity(EnumRarity.epic).setUnlocalizedName("powder_euphemium").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_euphemium");
 		powder_wd2004_tiny = new ItemCustomLore().setRarity(EnumRarity.epic).setUnlocalizedName("powder_wd2004_tiny").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_wd2004_tiny");
 		powder_wd2004 = new ItemCustomLore().setRarity(EnumRarity.epic).setUnlocalizedName("powder_wd2004").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":powder_wd2004");
@@ -3030,12 +3037,9 @@ public class ModItems {
 		centrifuge_element = new Item().setUnlocalizedName("centrifuge_element").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":centrifuge_element");
 		reactor_core = new Item().setUnlocalizedName("reactor_core").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":reactor_core");
 		rtg_unit = new Item().setUnlocalizedName("rtg_unit").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":rtg_unit");
-		levitation_unit = new Item().setUnlocalizedName("levitation_unit").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":levitation_unit");
 		coil_magnetized_tungsten = new Item().setUnlocalizedName("coil_magnetized_tungsten").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":coil_magnetized_tungsten");
 		coil_gold = new Item().setUnlocalizedName("coil_gold").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":coil_gold");
 		coil_gold_torus = new Item().setUnlocalizedName("coil_gold_torus").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":coil_gold_torus");
-		component_limiter = new Item().setUnlocalizedName("component_limiter").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":component_limiter");
-		component_emitter = new Item().setUnlocalizedName("component_emitter").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":component_emitter");
 		chlorine_pinwheel = new ItemInfiniteFluid(Fluids.CHLORINE, 1, 2).setUnlocalizedName("chlorine_pinwheel").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chlorine_pinwheel");
 		FluidTank.noDualUnload.add(chlorine_pinwheel);
 		oxy_pinwheel = new ItemInfiniteFluid(Fluids.OXYGEN, 1).setUnlocalizedName("oxy_pinwheel").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":oxy_pinwheel");
@@ -3103,12 +3107,6 @@ public class ModItems {
 		seg_15 = new Item().setUnlocalizedName("seg_15").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":seg_15");
 		seg_20 = new Item().setUnlocalizedName("seg_20").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":seg_20");
 
-		chopper_head = new Item().setUnlocalizedName("chopper_head").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_head");
-		chopper_gun = new Item().setUnlocalizedName("chopper_gun").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_gun");
-		chopper_torso = new Item().setUnlocalizedName("chopper_torso").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_torso");
-		chopper_tail = new Item().setUnlocalizedName("chopper_tail").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_tail");
-		chopper_wing = new Item().setUnlocalizedName("chopper_wing").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_wing");
-		chopper_blades = new Item().setUnlocalizedName("chopper_blades").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":chopper_blades");
 		combine_scrap = new Item().setUnlocalizedName("combine_scrap").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":combine_scrap");
 
 		shimmer_head = new Item().setUnlocalizedName("shimmer_head").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":shimmer_head_original");
@@ -3136,7 +3134,7 @@ public class ModItems {
 		pellet_rtg_cobalt = new ItemRTGPellet(15).setDecays(DepletedRTGMaterial.NICKEL, (long) (RTGUtil.getLifespan(5.3F, HalfLifeType.MEDIUM, false) * 1.5)).setUnlocalizedName("pellet_rtg_cobalt").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pellet_rtg_cobalt");
 		pellet_rtg_actinium = new ItemRTGPellet(20).setDecays(DepletedRTGMaterial.LEAD, (long) (RTGUtil.getLifespan(21.8F, HalfLifeType.MEDIUM, false) * 1.5)).setUnlocalizedName("pellet_rtg_actinium").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pellet_rtg_actinium");
 		pellet_rtg_americium = new ItemRTGPellet(20).setDecays(DepletedRTGMaterial.NEPTUNIUM, (long) (RTGUtil.getLifespan(4.7F, HalfLifeType.LONG, false) * 1.5)).setUnlocalizedName("pellet_rtg_americium").setCreativeTab(MainRegistry.controlTab).setMaxStackSize(1).setTextureName(RefStrings.MODID + ":pellet_rtg_americium");
-		pellet_rtg_berkelium = new ItemRTGPellet(20).setUnlocalizedName("pellet_rtg_berkelium").setCreativeTab(MainRegistry.controlTab).setMaxStackSize(1).setTextureName(RefStrings.MODID + ":pellet_rtg_berkelium");
+		pellet_rtg_berkelium = new ItemRTGPellet(20).setDecays(DepletedRTGMaterial.AMERICIUM, (long) (RTGUtil.getLifespan(13.8F, HalfLifeType.LONG, false) * 1.5)).setUnlocalizedName("pellet_rtg_berkelium").setCreativeTab(MainRegistry.controlTab).setMaxStackSize(1).setTextureName(RefStrings.MODID + ":pellet_rtg_berkelium");
 		pellet_rtg_polonium = new ItemRTGPellet(50).setDecays(DepletedRTGMaterial.LEAD, (long) (RTGUtil.getLifespan(138.0F, HalfLifeType.SHORT, false) * 1.5)).setUnlocalizedName("pellet_rtg_polonium").setCreativeTab(MainRegistry.controlTab).setMaxStackSize(1).setTextureName(RefStrings.MODID + ":pellet_rtg_polonium");
 		pellet_rtg_gold = new ItemRTGPellet(VersatileConfig.rtgDecay() ? 200 : 100).setDecays(DepletedRTGMaterial.MERCURY, (long) (RTGUtil.getLifespan(2.7F, HalfLifeType.SHORT, false) * 1.5)).setUnlocalizedName("pellet_rtg_gold").setCreativeTab(MainRegistry.controlTab).setMaxStackSize(1).setTextureName(RefStrings.MODID + ":pellet_rtg_gold");
 		pellet_rtg_lead = new ItemRTGPellet(VersatileConfig.rtgDecay() ? 600 : 200).setDecays(DepletedRTGMaterial.BISMUTH, (long) (RTGUtil.getLifespan(0.3F, HalfLifeType.SHORT, false) * 1.5)).setUnlocalizedName("pellet_rtg_lead").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pellet_rtg_lead");
@@ -3259,7 +3257,6 @@ public class ModItems {
 		ingot_raw = new ItemAutogen(MaterialShapes.INGOT).setUnlocalizedName("ingot_raw").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":ingot_raw");
 		plate_cast = new ItemAutogen(MaterialShapes.CASTPLATE).aot(Mats.MAT_BISMUTH, "plate_cast_bismuth").setUnlocalizedName("plate_cast").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":plate_cast");
 		plate_welded = new ItemAutogen(MaterialShapes.WELDEDPLATE).setUnlocalizedName("plate_welded").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":plate_welded");
-		heavy_component = new ItemAutogen(MaterialShapes.HEAVY_COMPONENT).setUnlocalizedName("heavy_component").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":heavy_component");
 		wire_fine = new ItemAutogen(MaterialShapes.WIRE)
 				.aot(Mats.MAT_ALUMINIUM, "wire_aluminium").aot(Mats.MAT_COPPER, "wire_copper")
 				.aot(Mats.MAT_MINGRADE, "wire_red_copper").aot(Mats.MAT_GOLD, "wire_gold")
@@ -3408,6 +3405,7 @@ public class ModItems {
 		armor_battery_mk2 = new ItemModBattery(1.5D).setUnlocalizedName("armor_battery_mk2").setTextureName(RefStrings.MODID + ":armor_battery_mk2");
 		armor_battery_mk3 = new ItemModBattery(2D).setUnlocalizedName("armor_battery_mk3").setTextureName(RefStrings.MODID + ":armor_battery_mk3");
 		flippers = new ItemModFlippers().setUnlocalizedName("flippers").setTextureName(RefStrings.MODID + ":flippers");
+		heavy_boots = new ItemModHeavyBoots().setUnlocalizedName("heavy_boots").setTextureName(RefStrings.MODID + ":heavy_boots");
 
 		cap_nuka = new Item().setUnlocalizedName("cap_nuka").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":cap_nuka");
 		cap_quantum = new Item().setUnlocalizedName("cap_quantum").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":cap_quantum");
@@ -3437,8 +3435,6 @@ public class ModItems {
 		bottle2_empty = new Item().setUnlocalizedName("bottle2_empty").setTextureName(RefStrings.MODID + ":bottle2_empty");
 		bottle2_korl = new ItemEnergy().makeBottle(bottle2_empty, cap_korl).setUnlocalizedName("bottle2_korl").setContainerItem(ModItems.bottle2_empty).setTextureName(RefStrings.MODID + ":bottle2_korl");
 		bottle2_fritz = new ItemEnergy().makeBottle(bottle2_empty, cap_fritz).setUnlocalizedName("bottle2_fritz").setContainerItem(ModItems.bottle2_empty).setTextureName(RefStrings.MODID + ":bottle2_fritz");
-		bottle2_korl_special = new ItemEnergy().makeBottle(bottle2_empty, cap_korl).setUnlocalizedName("bottle2_korl_special").setContainerItem(ModItems.bottle2_empty).setTextureName(RefStrings.MODID + ":bottle2_korl");
-		bottle2_fritz_special = new ItemEnergy().makeBottle(bottle2_empty, cap_fritz).setUnlocalizedName("bottle2_fritz_special").setContainerItem(ModItems.bottle2_empty).setTextureName(RefStrings.MODID + ":bottle2_fritz");
 		flask_infusion = new ItemFlask().setUnlocalizedName("flask_infusion").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":flask");
 		chocolate_milk = new ItemEnergy().setUnlocalizedName("chocolate_milk").setTextureName(RefStrings.MODID + ":chocolate_milk");
 		coffee = new ItemEnergy().setUnlocalizedName("coffee").setTextureName(RefStrings.MODID + ":coffee");
@@ -3457,7 +3453,7 @@ public class ModItems {
 		teacup_empty = new Item().setUnlocalizedName("teacup_empty").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":teacup");
 		teacup = new ItemEnergy().makeGlass().setUnlocalizedName("teacup").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":teacup_full");
 		bottle_honey = new ItemEnergy().makeGlass().setUnlocalizedName("bottle_honey").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":bottle_honey");
-
+		paraffin_seeds = new ItemSeedFood(1, 0.2F, ModBlocks.crop_paraffin, ModBlocks.rubber_farmland).setUnlocalizedName("paraffin_seeds").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":paraffin_seeds");
 		canned_conserve = (ItemEnumMulti) new ItemConserve().setUnlocalizedName("canned_conserve").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":canned");
 		can_key = new Item().setUnlocalizedName("can_key").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":can_key");
 
@@ -3544,6 +3540,7 @@ public class ModItems {
 		pwr_fuel = new ItemPWRFuel().setUnlocalizedName("pwr_fuel").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pwr_fuel");
 		pwr_fuel_hot = new ItemEnumMulti(EnumPWRFuel.class, true, false).setUnlocalizedName("pwr_fuel_hot").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pwr_fuel_hot");
 		pwr_fuel_depleted = new ItemEnumMulti(EnumPWRFuel.class, true, false).setUnlocalizedName("pwr_fuel_depleted").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pwr_fuel_depleted");
+		pwr_printer = new ItemPWRPrinter().setUnlocalizedName("pwr_printer").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pwr_printer");
 
 		rbmk_lid = new ItemRBMKLid().setUnlocalizedName("rbmk_lid").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":rbmk_lid");
 		rbmk_lid_glass = new ItemRBMKLid().setUnlocalizedName("rbmk_lid_glass").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":rbmk_lid_glass");
@@ -3925,6 +3922,7 @@ public class ModItems {
 		pellet_buckshot = new Item().setUnlocalizedName("pellet_buckshot").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":pellets_lead");
 		pellet_charged = new Item().setUnlocalizedName("pellet_charged").setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":pellets_charged");
 
+		rangefinder = new ItemRangefinder().setUnlocalizedName("rangefinder").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":rangefinder");
 		designator = new ItemDesingator().setUnlocalizedName("designator").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":designator");
 		designator_range = new ItemDesingatorRange().setUnlocalizedName("designator_range").setFull3D().setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":designator_range_alt");
 		designator_manual = new ItemDesingatorManual().setUnlocalizedName("designator_manual").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":designator_manual");
@@ -3979,42 +3977,41 @@ public class ModItems {
 		sat_gerald = new ItemSatellite(128_000).setUnlocalizedName("sat_gerald").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_gerald");
 		sat_dyson_relay = new ItemSatellite(32_000).setUnlocalizedName("sat_dyson_relay").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_dyson_relay");
 		sat_chip = new ItemSatChip().setUnlocalizedName("sat_chip").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_chip");
+		sat_war = new ItemSatellite(128_000).setUnlocalizedName("sat_war").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":sat_gerald");
 
 		sat_interface = new ItemSatInterface().setUnlocalizedName("sat_interface").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_interface");
 		sat_coord = new ItemSatInterface().setUnlocalizedName("sat_coord").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_coord");
 		sat_designator = new ItemSatDesignator().setUnlocalizedName("sat_designator").setFull3D().setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_designator");
 		sat_relay = new ItemSatInterface().setUnlocalizedName("sat_relay").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":sat_relay");
 																														//in kg
-		mp_thruster_10_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 1.5F, PartSize.SIZE_10, 16_000, 180, 308).setHealth(10F)					.setUnlocalizedName("mp_thruster_10_kerosene");
-		mp_thruster_10_kerosene_tec = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 1.5F, PartSize.SIZE_10, 20_000, 200, 308).setHealth(15F).setRarity(Rarity.COMMON).setUnlocalizedName("mp_thruster_10_kerosene_tec");
-		mp_thruster_10_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 1.5F, PartSize.SIZE_10, 60_000, 400, 195).setHealth(15F)						.setUnlocalizedName("mp_thruster_10_solid");
-		mp_thruster_10_xenon = new ItemCustomMissilePart().makeThruster(FuelType.XENON, 1F, 1.5F, PartSize.SIZE_10, 2_000, 200, 4200).setHealth(5F)							.setUnlocalizedName("mp_thruster_10_xenon");
-		mp_thruster_15_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 7.5F, PartSize.SIZE_15, 120_000, 900, 308).setHealth(15F)					.setUnlocalizedName("mp_thruster_15_kerosene");
-		mp_thruster_15_kerosene_tec = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 7.5F, PartSize.SIZE_15, 140_000, 1000, 308).setHealth(20F).setRarity(Rarity.COMMON).setUnlocalizedName("mp_thruster_15_kerosene_tec");
-		mp_thruster_15_kerosene_dual = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 2.5F, PartSize.SIZE_15, 200_000, 1600, 308).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_kerosene_dual");
-		mp_thruster_15_kerosene_triple = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 5F, PartSize.SIZE_15, 280_000, 2200, 308).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_kerosene_triple");
-		mp_thruster_15_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 5F, PartSize.SIZE_15, 220_000, 1000, 195).setHealth(20F)							.setUnlocalizedName("mp_thruster_15_solid");
-		mp_thruster_15_solid_hexdecuple = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 5F, PartSize.SIZE_15, 260_000, 1200, 195).setHealth(25F).setRarity(Rarity.UNCOMMON).setUnlocalizedName("mp_thruster_15_solid_hexdecuple");
-		mp_thruster_15_hydrogen = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 7.5F, PartSize.SIZE_15, 100_000, 800, 380).setHealth(20F)					.setUnlocalizedName("mp_thruster_15_hydrogen");
-		mp_thruster_15_hydrogen_dual = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 2.5F, PartSize.SIZE_15, 200_000, 1400, 380).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_hydrogen_dual");
-		mp_thruster_15_balefire_short = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 5F, PartSize.SIZE_15, 800_000, 1600, 666).setHealth(25F)				.setUnlocalizedName("mp_thruster_15_balefire_short");
-		mp_thruster_15_balefire = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 5F, PartSize.SIZE_15, 1_000_000, 2000, 666).setHealth(25F)					.setUnlocalizedName("mp_thruster_15_balefire");
-		mp_thruster_15_balefire_large = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 7.5F, PartSize.SIZE_15, 1_200_000, 2400, 666).setHealth(35F)			.setUnlocalizedName("mp_thruster_15_balefire_large");
-		mp_thruster_15_balefire_large_rad = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 7.5F, PartSize.SIZE_15, 1_200_000, 2400, 666).setAuthor("The Master").setHealth(35F).setRarity(Rarity.UNCOMMON).setUnlocalizedName("mp_thruster_15_balefire_large_rad");
-		mp_thruster_20_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100F, PartSize.SIZE_20, 1_536_000, 2400, 308).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_kerosene");
-		mp_thruster_20_kerosene_dual = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100F, PartSize.SIZE_20, 1_934_000, 3200, 308).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_kerosene_dual");
-		mp_thruster_20_kerosene_triple = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100F, PartSize.SIZE_20, 2_542_000, 4400, 308).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_kerosene_triple");
-		mp_thruster_20_methalox = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100F, PartSize.SIZE_20, 890_000, 2400, 320).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_methalox");
-		mp_thruster_20_methalox_dual = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100F, PartSize.SIZE_20, 1_184_000, 3200, 320).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_methalox_dual");
-		mp_thruster_20_methalox_triple = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100F, PartSize.SIZE_20, 1_456_000, 4400, 320).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_methalox_triple");
-		mp_thruster_20_hydrogen = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100F, PartSize.SIZE_20, 480_000, 2600, 380).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_hydrogen");
-		mp_thruster_20_hydrogen_dual = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100F, PartSize.SIZE_20, 640_000, 3400, 380).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_hydrogen_dual");
-		mp_thruster_20_hydrogen_triple = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100F, PartSize.SIZE_20, 938_000, 4500, 380).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_hydrogen_triple");
-		mp_thruster_20_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100F, PartSize.SIZE_20, 1_400_000, 2400, 195).setHealth(35F).setWittyText("It's basically just a big hole at the end of the fuel tank.").setUnlocalizedName("mp_thruster_20_solid");
-		mp_thruster_20_solid_multi = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100F, PartSize.SIZE_20, 1_830_000, 3200, 195).setHealth(35F)					.setUnlocalizedName("mp_thruster_20_solid_multi");
-		mp_thruster_20_solid_multier = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100F, PartSize.SIZE_20, 2_320_000, 4000, 195).setHealth(35F).setWittyText("Did I miscount? Hope not.").setUnlocalizedName("mp_thruster_20_solid_multier");
-		mp_thruster_20_hydrazine = new ItemCustomMissilePart().makeThruster(FuelType.HYDRAZINE, 1F, 100F, PartSize.SIZE_20, 600_000, 1200, 220).setHealth(35F).setUnlocalizedName("mp_thruster_20_hydrazine");
-		mp_thruster_10_hydrazine = new ItemCustomMissilePart().makeThruster(FuelType.HYDRAZINE, 1F, 1.5F, PartSize.SIZE_10, 14_000, 120, 220).setHealth(15F)						.setUnlocalizedName("mp_thruster_10_hydrazine");
+		mp_thruster_10_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 1_500, PartSize.SIZE_10, 16_000, 180, 308).setHealth(10F)					.setUnlocalizedName("mp_thruster_10_kerosene");
+		mp_thruster_10_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 1_500, PartSize.SIZE_10, 60_000, 400, 195).setHealth(15F)						.setUnlocalizedName("mp_thruster_10_solid");
+		mp_thruster_10_xenon = new ItemCustomMissilePart().makeThruster(FuelType.XENON, 1F, 1_500, PartSize.SIZE_10, 2_000, 200, 4200).setHealth(5F)							.setUnlocalizedName("mp_thruster_10_xenon");
+		mp_thruster_15_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 7_500, PartSize.SIZE_15, 120_000, 900, 308).setHealth(15F)					.setUnlocalizedName("mp_thruster_15_kerosene");
+		mp_thruster_15_kerosene_dual = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 2_500, PartSize.SIZE_15, 200_000, 1600, 308).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_kerosene_dual");
+		mp_thruster_15_kerosene_triple = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 5_000, PartSize.SIZE_15, 280_000, 2200, 308).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_kerosene_triple");
+		mp_thruster_15_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 5_000, PartSize.SIZE_15, 220_000, 1000, 195).setHealth(20F)							.setUnlocalizedName("mp_thruster_15_solid");
+		mp_thruster_15_solid_hexdecuple = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 5_000, PartSize.SIZE_15, 260_000, 1200, 195).setHealth(25F).setRarity(Rarity.UNCOMMON).setUnlocalizedName("mp_thruster_15_solid_hexdecuple");
+		mp_thruster_15_hydrogen = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 7_500, PartSize.SIZE_15, 100_000, 800, 380).setHealth(20F)					.setUnlocalizedName("mp_thruster_15_hydrogen");
+		mp_thruster_15_hydrogen_dual = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 2_500, PartSize.SIZE_15, 200_000, 1400, 380).setHealth(15F)				.setUnlocalizedName("mp_thruster_15_hydrogen_dual");
+		mp_thruster_15_balefire_short = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 5_000, PartSize.SIZE_15, 800_000, 1600, 666).setHealth(25F)				.setUnlocalizedName("mp_thruster_15_balefire_short");
+		mp_thruster_15_balefire = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 5_000, PartSize.SIZE_15, 1_000_000, 2000, 666).setHealth(25F)					.setUnlocalizedName("mp_thruster_15_balefire");
+		mp_thruster_15_balefire_large = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 7_500, PartSize.SIZE_15, 1_200_000, 2400, 666).setHealth(35F)			.setUnlocalizedName("mp_thruster_15_balefire_large");
+		mp_thruster_15_balefire_large_rad = new ItemCustomMissilePart().makeThruster(FuelType.BALEFIRE, 1F, 7_500, PartSize.SIZE_15, 1_200_000, 2400, 666).setAuthor("The Master").setHealth(35F).setRarity(Rarity.UNCOMMON).setUnlocalizedName("mp_thruster_15_balefire_large_rad");
+		mp_thruster_20_kerosene = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100_000, PartSize.SIZE_20, 1_536_000, 2400, 308).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_kerosene");
+		mp_thruster_20_kerosene_dual = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100_000, PartSize.SIZE_20, 1_934_000, 3200, 308).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_kerosene_dual");
+		mp_thruster_20_kerosene_triple = new ItemCustomMissilePart().makeThruster(FuelType.KEROSENE, 1F, 100_000, PartSize.SIZE_20, 2_542_000, 4400, 308).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_kerosene_triple");
+		mp_thruster_20_methalox = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100_000, PartSize.SIZE_20, 890_000, 2400, 320).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_methalox");
+		mp_thruster_20_methalox_dual = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100_000, PartSize.SIZE_20, 1_184_000, 3200, 320).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_methalox_dual");
+		mp_thruster_20_methalox_triple = new ItemCustomMissilePart().makeThruster(FuelType.METHALOX, 1F, 100_000, PartSize.SIZE_20, 1_456_000, 4400, 320).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_methalox_triple");
+		mp_thruster_20_hydrogen = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100_000, PartSize.SIZE_20, 480_000, 2600, 380).setHealth(30F)					.setUnlocalizedName("mp_thruster_20_hydrogen");
+		mp_thruster_20_hydrogen_dual = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100_000, PartSize.SIZE_20, 640_000, 3400, 380).setHealth(30F)				.setUnlocalizedName("mp_thruster_20_hydrogen_dual");
+		mp_thruster_20_hydrogen_triple = new ItemCustomMissilePart().makeThruster(FuelType.HYDROGEN, 1F, 100_000, PartSize.SIZE_20, 938_000, 4500, 380).setHealth(30F)			.setUnlocalizedName("mp_thruster_20_hydrogen_triple");
+		mp_thruster_20_solid = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100_000, PartSize.SIZE_20, 1_400_000, 2400, 195).setHealth(35F).setWittyText("It's basically just a big hole at the end of the fuel tank.").setUnlocalizedName("mp_thruster_20_solid");
+		mp_thruster_20_solid_multi = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100_000, PartSize.SIZE_20, 1_830_000, 3200, 195).setHealth(35F)					.setUnlocalizedName("mp_thruster_20_solid_multi");
+		mp_thruster_20_solid_multier = new ItemCustomMissilePart().makeThruster(FuelType.SOLID, 1F, 100_000, PartSize.SIZE_20, 2_320_000, 4000, 195).setHealth(35F).setWittyText("Did I miscount? Hope not.").setUnlocalizedName("mp_thruster_20_solid_multier");
+		mp_thruster_20_hydrazine = new ItemCustomMissilePart().makeThruster(FuelType.HYDRAZINE, 1F, 100_000, PartSize.SIZE_20, 600_000, 1200, 220).setHealth(35F).setUnlocalizedName("mp_thruster_20_hydrazine");
+		mp_thruster_10_hydrazine = new ItemCustomMissilePart().makeThruster(FuelType.HYDRAZINE, 1F, 1_500, PartSize.SIZE_10, 14_000, 120, 220).setHealth(15F)						.setUnlocalizedName("mp_thruster_10_hydrazine");
 
 		mp_stability_10_flat = new ItemCustomMissilePart().makeStability(0.5F, PartSize.SIZE_10).setHealth(10F).setMaxStackSize(1).setUnlocalizedName("mp_stability_10_flat");
 		mp_stability_10_cruise = new ItemCustomMissilePart().makeStability(0.25F, PartSize.SIZE_10).setHealth(5F).setMaxStackSize(1).setUnlocalizedName("mp_stability_10_cruise");
@@ -4127,7 +4124,6 @@ public class ModItems {
 		mp_warhead_15_n2 = new ItemCustomMissilePart().makeWarhead(WarheadType.N2, 100F, 5000, PartSize.SIZE_15).setWittyText("[screams geometrically]").setHealth(20F).setRarity(Rarity.RARE).setUnlocalizedName("mp_warhead_15_n2").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_warhead");
 		mp_warhead_15_balefire = new ItemCustomMissilePart().makeWarhead(WarheadType.BALEFIRE, 100F, 7500, PartSize.SIZE_15).setRarity(Rarity.LEGENDARY).setAuthor("VT-6/24").setHealth(15F).setWittyText("Hightower, never forgetti.").setUnlocalizedName("mp_warhead_15_balefire").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_warhead");
 		mp_warhead_15_turbine = new ItemCustomMissilePart().makeWarhead(WarheadType.TURBINE, 200F, 5000, PartSize.SIZE_15).setRarity(Rarity.SEWS_CLOTHES_AND_SUCKS_HORSE_COCK).setHealth(250F).setUnlocalizedName("mp_warhead_15_turbine").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_warhead");
-		mp_warhead_20_he = new ItemCustomMissilePart().makeWarhead(WarheadType.HE, 15F, 5000, PartSize.SIZE_20)												.setUnlocalizedName("mp_w_20").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_warhead");
 
 		mp_chip_1 = new ItemCustomMissilePart().makeChip(0.1F)	.setUnlocalizedName("mp_c_1").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_c_1");
 		mp_chip_2 = new ItemCustomMissilePart().makeChip(0.05F)	.setUnlocalizedName("mp_c_2").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":mp_c_2");
@@ -4352,7 +4348,6 @@ public class ModItems {
 		battery_potatos = new ItemPotatos(500000, 0, 100).setUnlocalizedName("battery_potatos").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":battery_potatos");
 		hev_battery = new ItemFusionCore(150000).setUnlocalizedName("hev_battery").setMaxStackSize(4).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":hev_battery");
 		fusion_core = new ItemFusionCore(2500000).setUnlocalizedName("fusion_core").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fusion_core");
-		fusion_core_infinite = new Item().setUnlocalizedName("fusion_core_infinite").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fusion_core_infinite");
 		energy_core = new ItemBattery(10000000, 0, 1000).setUnlocalizedName("energy_core").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":energy_core");
 		fuse = new ItemCustomLore().setUnlocalizedName("fuse").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fuse");
 		redcoil_capacitor = new ItemCapacitor(10).setUnlocalizedName("redcoil_capacitor").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":redcoil_capacitor");
@@ -4420,9 +4415,11 @@ public class ModItems {
 		upgrade_stack = new ItemMetaUpgrade(3).setUnlocalizedName("upgrade_stack").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":upgrade_stack");
 		upgrade_ejector = new ItemMetaUpgrade(3).setUnlocalizedName("upgrade_ejector").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":upgrade_ejector");
 
+		rebar_placer = new ItemRebarPlacer().setUnlocalizedName("rebar_placer").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":rebar_placer");
 		wand = new ItemWand().setUnlocalizedName("wand_k").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setFull3D().setTextureName(RefStrings.MODID + ":wand");
 		wand_s = new ItemWandS().setUnlocalizedName("wand_s").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setFull3D().setTextureName(RefStrings.MODID + ":wand_s");
 		wand_d = new ItemWandD().setUnlocalizedName("wand_d").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setFull3D().setTextureName(RefStrings.MODID + ":wand_d");
+		wand_time = new ItemWandTime().setUnlocalizedName("wand_time").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setFull3D().setTextureName(RefStrings.MODID + ":wand_time");
 
 		structure_single = new ItemStructureSingle().setUnlocalizedName("structure_single").setMaxStackSize(1).setCreativeTab(null).setFull3D().setTextureName(RefStrings.MODID + ":structure_single");
 		structure_solid = new ItemStructureSolid().setUnlocalizedName("structure_solid").setMaxStackSize(1).setCreativeTab(null).setFull3D().setTextureName(RefStrings.MODID + ":structure_solid");
@@ -4448,7 +4445,6 @@ public class ModItems {
 		fleija_kit = new ItemStarterKit().setUnlocalizedName("fleija_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.nukeTab).setTextureName(RefStrings.MODID + ":fleija_kit");
 		prototype_kit = new ItemStarterKit().setUnlocalizedName("prototype_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.nukeTab).setTextureName(RefStrings.MODID + ":prototype_kit");
 		missile_kit = new ItemStarterKit().setUnlocalizedName("missile_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":missile_kit");
-		t45_kit = new ItemStarterKit().setUnlocalizedName("t45_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":t45_kit");
 		euphemium_kit = new ItemStarterKit().setUnlocalizedName("euphemium_kit").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":code");
 		solinium_kit = new ItemStarterKit().setUnlocalizedName("solinium_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.nukeTab).setTextureName(RefStrings.MODID + ":solinium_kit");
 		hazmat_kit = new ItemStarterKit().setUnlocalizedName("hazmat_kit").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":hazmat_kit");
@@ -4518,10 +4514,9 @@ public class ModItems {
 
 		mech_key = new ItemCustomLore().setUnlocalizedName("mech_key").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":mech_key");
 
+		blueprints = new ItemBlueprints().setUnlocalizedName("blueprints").setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":blueprints");
+		blueprint_folder = new ItemBlueprintFolder().setUnlocalizedName("blueprint_folder").setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":blueprint_folder");
 		template_folder = new ItemTemplateFolder().setUnlocalizedName("template_folder").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":template_folder");
-		journal_pip = new ItemTemplateFolder().setUnlocalizedName("journal_pip").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":journal_pip");
-		journal_bj = new ItemTemplateFolder().setUnlocalizedName("journal_bj").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":journal_bj");
-		journal_silver = new ItemTemplateFolder().setUnlocalizedName("journal_silver").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":journal_silver");
 		assembly_template = new ItemAssemblyTemplate().setUnlocalizedName("assembly_template").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":assembly_template");
 		chemistry_template = new ItemChemistryTemplate().setUnlocalizedName("chemistry_template").setMaxStackSize(1).setCreativeTab(MainRegistry.templateTab).setTextureName(RefStrings.MODID + ":chemistry_template");
 		chemistry_icon = new ItemChemistryIcon().setUnlocalizedName("chemistry_icon").setMaxStackSize(1).setCreativeTab(null);
@@ -4536,6 +4531,8 @@ public class ModItems {
 		fluid_barrel_empty = new Item().setUnlocalizedName("fluid_barrel_empty").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fluid_barrel");
 		fluid_barrel_full = new ItemFluidTank().setUnlocalizedName("fluid_barrel_full").setContainerItem(ModItems.fluid_barrel_empty).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fluid_barrel");
 		fluid_barrel_infinite = new ItemInfiniteFluid(null, 1_000_000_000).setUnlocalizedName("fluid_barrel_infinite").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fluid_barrel_infinite");
+		fluid_pack_empty = new Item().setUnlocalizedName("fluid_pack_empty").setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fluid_pack");
+		fluid_pack_full = new ItemFluidTank().setUnlocalizedName("fluid_pack_full").setContainerItem(ModItems.fluid_pack_empty).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":fluid_pack");
 		pipette = new ItemPipette().setUnlocalizedName("pipette").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pipette");
 		pipette_boron = new ItemPipette().setUnlocalizedName("pipette_boron").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pipette_boron");
 		pipette_laboratory = new ItemPipette().setUnlocalizedName("pipette_laboratory").setMaxStackSize(1).setCreativeTab(MainRegistry.controlTab).setTextureName(RefStrings.MODID + ":pipette_laboratory");
@@ -4716,6 +4713,21 @@ public class ModItems {
 		t45_plate = new ArmorT45(aMatT45, 1, 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t45_helmet).setUnlocalizedName("t45_plate").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":t45_plate");
 		t45_legs = new ArmorT45(aMatT45, 2, 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t45_helmet).setUnlocalizedName("t45_legs").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":t45_legs");
 		t45_boots = new ArmorT45(aMatT45, 3, 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t45_helmet).setUnlocalizedName("t45_boots").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":t45_boots");
+
+		ArmorMaterial aMatT51 = EnumHelper.addArmorMaterial("HBM_T51", 150, new int[] { 3, 8, 6, 3 }, 0);
+		aMatT51.customCraftingMaterial = ModItems.plate_armor_titanium;
+		t51_helmet = new ArmorT51(aMatT51, 0, RefStrings.MODID + ":textures/armor/starmetal_1.png", 1000000, 10000, 1000, 5)
+				.enableVATS(true)
+				.setHasGeigerSound(true)
+				.setHasHardLanding(true)
+				.addEffect(new PotionEffect(Potion.damageBoost.id, 20, 0))
+				.setStep("hbm:step.metal").setJump("hbm:step.iron_jump").setFall("hbm:step.iron_land")
+				.setSealed(true)
+				.hides(EnumPlayerPart.HAT)
+				.setUnlocalizedName("t51_helmet").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":armor");
+		t51_plate = new ArmorT51(aMatT51, 1, RefStrings.MODID + ":textures/armor/starmetal_1.png", 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t51_helmet).setUnlocalizedName("t51_plate").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":armor");
+		t51_legs = new ArmorT51(aMatT51, 2, RefStrings.MODID + ":textures/armor/starmetal_1.png", 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t51_helmet).setUnlocalizedName("t51_legs").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":armor");
+		t51_boots = new ArmorT51(aMatT51, 3, RefStrings.MODID + ":textures/armor/starmetal_1.png", 1000000, 10000, 1000, 5).cloneStats((ArmorFSB) t51_helmet).setUnlocalizedName("t51_boots").setMaxStackSize(1).setTextureName(RefStrings.MODID + ":armor");
 
 		ArmorMaterial aMatDesh = EnumHelper.addArmorMaterial("HBM_DESH", 150, new int[] { 3, 8, 6, 3 }, 0);
 		aMatDesh.customCraftingMaterial = ModItems.ingot_desh;
@@ -4915,6 +4927,7 @@ public class ModItems {
 		schrabidium_pickaxe = new ItemToolAbility(20, 0, MainRegistry.tMatSchrab, EnumToolType.PICKAXE)
 				.addAbility(IWeaponAbility.RADIATION, 0)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 6)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
@@ -4925,6 +4938,7 @@ public class ModItems {
 		schrabidium_axe = new ItemToolAbility(25, 0, MainRegistry.tMatSchrab, EnumToolType.AXE)
 				.addAbility(IWeaponAbility.RADIATION, 0)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 6)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
@@ -4936,6 +4950,7 @@ public class ModItems {
 		schrabidium_shovel = new ItemToolAbility(15, 0, MainRegistry.tMatSchrab, EnumToolType.SHOVEL)
 				.addAbility(IWeaponAbility.RADIATION, 0)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 6)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
@@ -5003,12 +5018,14 @@ public class ModItems {
 
 		elec_pickaxe = new ItemToolAbilityPower(6F, 0, MainRegistry.tMatElec, EnumToolType.PICKAXE, 500000, 1000, 100)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 2)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1).setUnlocalizedName("elec_pickaxe").setTextureName(RefStrings.MODID + ":elec_drill_anim");
 
 		elec_axe = new ItemToolAbilityPower(10F, 0, MainRegistry.tMatElec, EnumToolType.AXE, 500000, 1000, 100)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 2)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1)
@@ -5017,6 +5034,7 @@ public class ModItems {
 
 		elec_shovel = new ItemToolAbilityPower(5F, 0, MainRegistry.tMatElec, EnumToolType.SHOVEL, 500000, 1000, 100)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 2)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1).setUnlocalizedName("elec_shovel").setTextureName(RefStrings.MODID + ":elec_shovel_anim");
@@ -5026,12 +5044,14 @@ public class ModItems {
 
 		desh_pickaxe = new ItemToolAbility(5F, -0.05, MainRegistry.tMatDesh, EnumToolType.PICKAXE)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolAreaAbility.RECURSION, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1).setUnlocalizedName("desh_pickaxe").setTextureName(RefStrings.MODID + ":desh_pickaxe");
 
 		desh_axe = new ItemToolAbility(7.5F, -0.05, MainRegistry.tMatDesh, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolAreaAbility.RECURSION, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1)
@@ -5039,6 +5059,7 @@ public class ModItems {
 
 		desh_shovel = new ItemToolAbility(4F, -0.05, MainRegistry.tMatDesh, EnumToolType.SHOVEL)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolAreaAbility.RECURSION, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1).setUnlocalizedName("desh_shovel").setTextureName(RefStrings.MODID + ":desh_shovel");
@@ -5067,17 +5088,20 @@ public class ModItems {
 		cobalt_decorated_pickaxe = new ItemToolAbility(6F, 0, matDecCobalt, EnumToolType.PICKAXE)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2).setUnlocalizedName("cobalt_decorated_pickaxe").setTextureName(RefStrings.MODID + ":cobalt_decorated_pickaxe");
 		cobalt_decorated_axe = new ItemToolAbility(8F, 0, matDecCobalt, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2)
 				.addAbility(IWeaponAbility.BEHEADER, 0).setUnlocalizedName("cobalt_decorated_axe").setTextureName(RefStrings.MODID + ":cobalt_decorated_axe");
 		cobalt_decorated_shovel = new ItemToolAbility(5F, 0, matDecCobalt, EnumToolType.SHOVEL)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2).setUnlocalizedName("cobalt_decorated_shovel").setTextureName(RefStrings.MODID + ":cobalt_decorated_shovel");
 		cobalt_decorated_hoe = new ModHoe(matDecCobalt).setUnlocalizedName("cobalt_decorated_hoe").setTextureName(RefStrings.MODID + ":cobalt_decorated_hoe");
@@ -5090,12 +5114,14 @@ public class ModItems {
 		starmetal_pickaxe = new ItemToolAbility(8F, 0, matStarmetal, EnumToolType.PICKAXE)
 				.addAbility(IToolAreaAbility.RECURSION, 3)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
 				.addAbility(IWeaponAbility.STUN, 1).setUnlocalizedName("starmetal_pickaxe").setTextureName(RefStrings.MODID + ":starmetal_pickaxe");
 		starmetal_axe = new ItemToolAbility(12F, 0, matStarmetal, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.RECURSION, 3)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
 				.addAbility(IWeaponAbility.BEHEADER, 0)
@@ -5103,6 +5129,7 @@ public class ModItems {
 		starmetal_shovel = new ItemToolAbility(7F, 0, matStarmetal, EnumToolType.SHOVEL)
 				.addAbility(IToolAreaAbility.RECURSION, 3)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 4)
 				.addAbility(IWeaponAbility.STUN, 1).setUnlocalizedName("starmetal_shovel").setTextureName(RefStrings.MODID + ":starmetal_shovel");
@@ -5117,6 +5144,7 @@ public class ModItems {
 				.addAbility(IToolHarvestAbility.SHREDDER, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 2).setUnlocalizedName("drax").setTextureName(RefStrings.MODID + ":drax");
 		drax_mk2 = new ItemToolAbilityPower(15F, -0.05, MainRegistry.tMatElec, EnumToolType.MINER, 1000000000, 250000, 7500)
 				.addAbility(IToolHarvestAbility.SMELTER, 0)
@@ -5124,6 +5152,7 @@ public class ModItems {
 				.addAbility(IToolHarvestAbility.CENTRIFUGE, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2)
 				.addAbility(IToolAreaAbility.HAMMER, 2)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 2)
 				.addAbility(IToolAreaAbility.RECURSION, 4).setUnlocalizedName("drax_mk2").setTextureName(RefStrings.MODID + ":drax_mk2");
 		drax_mk3 = new ItemToolAbilityPower(20F, -0.05, MainRegistry.tMatElec, EnumToolType.MINER, 2500000000L, 500000, 10000)
 				.addAbility(IToolHarvestAbility.SMELTER, 0)
@@ -5133,11 +5162,13 @@ public class ModItems {
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 3)
 				.addAbility(IToolAreaAbility.HAMMER, 3)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 3)
 				.addAbility(IToolAreaAbility.RECURSION, 5).setUnlocalizedName("drax_mk3").setTextureName(RefStrings.MODID + ":drax_mk3");
 
 		ToolMaterial matBismuth = EnumHelper.addToolMaterial("HBM_BISMUTH", 4, 0, 50F, 0.0F, 200).setRepairItem(new ItemStack(ModItems.ingot_bismuth));
 		bismuth_pickaxe = new ItemToolAbility(15F, 0, matBismuth, EnumToolType.MINER)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.SHREDDER, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1)
@@ -5148,6 +5179,7 @@ public class ModItems {
 				.setDepthRockBreaker().setUnlocalizedName("bismuth_pickaxe").setTextureName(RefStrings.MODID + ":bismuth_pickaxe");
 		bismuth_axe = new ItemToolAbility(25F, 0, matBismuth, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.SHREDDER, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 1)
@@ -5160,6 +5192,7 @@ public class ModItems {
 		ToolMaterial matVolcano = EnumHelper.addToolMaterial("HBM_VOLCANIC", 4, 0, 50F, 0.0F, 200).setRepairItem(new ItemStack(ModItems.ingot_bismuth));
 		volcanic_pickaxe = new ItemToolAbility(15F, 0, matVolcano, EnumToolType.MINER)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.SMELTER, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2)
@@ -5170,6 +5203,7 @@ public class ModItems {
 				.setDepthRockBreaker().setUnlocalizedName("volcanic_pickaxe").setTextureName(RefStrings.MODID + ":volcanic_pickaxe");
 		volcanic_axe = new ItemToolAbility(25F, 0, matVolcano, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.SMELTER, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 2)
@@ -5181,6 +5215,7 @@ public class ModItems {
 		ToolMaterial matChlorophyte = EnumHelper.addToolMaterial("HBM_CHLOROPHYTE", 4, 0, 75F, 0.0F, 200).setRepairItem(new ItemStack(ModItems.powder_chlorophyte));
 		chlorophyte_pickaxe = new ItemToolAbility(20F, 0, matChlorophyte, EnumToolType.MINER)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.LUCK, 3)
 				.addAbility(IToolHarvestAbility.CENTRIFUGE, 0)
@@ -5191,6 +5226,7 @@ public class ModItems {
 				.setDepthRockBreaker().setUnlocalizedName("chlorophyte_pickaxe").setTextureName(RefStrings.MODID + ":chlorophyte_pickaxe");
 		chlorophyte_axe = new ItemToolAbility(50F, 0, matChlorophyte, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.HAMMER, 1)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 1)
 				.addAbility(IToolAreaAbility.RECURSION, 1)
 				.addAbility(IToolHarvestAbility.LUCK, 3)
 				.addAbility(IWeaponAbility.STUN, 4)
@@ -5200,6 +5236,7 @@ public class ModItems {
 		ToolMaterial matMese = EnumHelper.addToolMaterial("HBM_MESE", 4, 0, 100F, 0.0F, 200).setRepairItem(new ItemStack(ModItems.plate_paa));
 		mese_pickaxe = new ItemToolAbility(35F, 0, matMese, EnumToolType.MINER)
 				.addAbility(IToolAreaAbility.HAMMER, 2)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 2)
 				.addAbility(IToolAreaAbility.RECURSION, 2)
 				.addAbility(IToolHarvestAbility.CRYSTALLIZER, 0)
 				.addAbility(IToolHarvestAbility.SILK, 0)
@@ -5211,6 +5248,7 @@ public class ModItems {
 				.setDepthRockBreaker().setUnlocalizedName("mese_pickaxe").setTextureName(RefStrings.MODID + ":mese_pickaxe");
 		mese_axe = new ItemToolAbility(75F, 0, matMese, EnumToolType.AXE)
 				.addAbility(IToolAreaAbility.HAMMER, 2)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 2)
 				.addAbility(IToolAreaAbility.RECURSION, 2)
 				.addAbility(IToolHarvestAbility.SILK, 0)
 				.addAbility(IToolHarvestAbility.LUCK, 5)
@@ -5223,7 +5261,8 @@ public class ModItems {
 
 		ToolMaterial matDwarf = EnumHelper.addToolMaterial("HBM_DWARVEN", 2, 0, 4F, 0.0F, 10).setRepairItem(new ItemStack(ModItems.ingot_copper));
 		dwarven_pickaxe = new ItemToolAbility(5F, -0.1, matDwarf, EnumToolType.MINER)
-				.addAbility(IToolAreaAbility.HAMMER, 0).setUnlocalizedName("dwarven_pickaxe").setMaxDamage(250).setTextureName(RefStrings.MODID + ":dwarven_pickaxe");
+				.addAbility(IToolAreaAbility.HAMMER, 0)
+				.addAbility(IToolAreaAbility.HAMMER_FLAT, 0).setUnlocalizedName("dwarven_pickaxe").setMaxDamage(250).setTextureName(RefStrings.MODID + ":dwarven_pickaxe");
 
 		ToolMaterial matMeteorite = EnumHelper.addToolMaterial("HBM_METEORITE", 4, 0, 50F, 0.0F, 200).setRepairItem(new ItemStack(ModItems.plate_paa));
 		meteorite_sword = new ItemSwordMeteorite(9F, 0, matMeteorite).setUnlocalizedName("meteorite_sword").setTextureName(RefStrings.MODID + ":meteorite_sword");
@@ -5337,6 +5376,7 @@ public class ModItems {
 		bucket_sulfuric_acid = new ItemModBucket(ModBlocks.sulfuric_acid_block).setUnlocalizedName("bucket_sulfuric_acid").setContainerItem(Items.bucket).setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":bucket_sulfuric_acid");
 		bucket_mercury = new ItemModBucket(ModBlocks.mercury_block).setUnlocalizedName("bucket_mercury").setContainerItem(Items.bucket).setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":bucket_mercury");
 		bucket_bromine = new ItemModBucket(ModBlocks.bromine_block).setUnlocalizedName("bucket_bromine").setContainerItem(Items.bucket).setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":bucket_bromine");
+		bucket_ccl = new ItemModBucket(ModBlocks.ccl_block).setUnlocalizedName("bucket_ccl").setContainerItem(Items.bucket).setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":bucket_ccl");
 
 		door_metal = new ItemModDoor().setUnlocalizedName("door_metal").setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":door_metal");
 		door_office = new ItemModDoor().setUnlocalizedName("door_office").setCreativeTab(MainRegistry.blockTab).setTextureName(RefStrings.MODID + ":door_office");
@@ -5363,7 +5403,6 @@ public class ModItems {
 
 		polaroid = new ItemPolaroid().setUnlocalizedName("polaroid").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":polaroid_" + MainRegistry.polaroidID);
 		glitch = new ItemGlitch().setUnlocalizedName("glitch").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":glitch_" + MainRegistry.polaroidID);
-		letter = new ItemStarterKit().setUnlocalizedName("letter").setCreativeTab(MainRegistry.consumableTab).setTextureName(RefStrings.MODID + ":letter");
 		book_secret = new ItemCustomLore().setUnlocalizedName("book_secret").setCreativeTab(MainRegistry.polaroidID == 11 ? MainRegistry.consumableTab : null).setTextureName(RefStrings.MODID + ":book_secret");
 		book_of_ = new ItemBook().setUnlocalizedName("book_of_").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":book_of_");
 		page_of_ = new ItemEnumMulti(ItemEnums.EnumPages.class, true, false).setUnlocalizedName("page_of_").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":page_of_");
@@ -5428,6 +5467,8 @@ public class ModItems {
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(ModBlocks.sulfuric_acid_fluid, 1000), new ItemStack(ModItems.bucket_sulfuric_acid), new ItemStack(Items.bucket));
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(ModBlocks.mercury_fluid, 1000), new ItemStack(ModItems.bucket_mercury), new ItemStack(Items.bucket));
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(ModBlocks.bromine_fluid, 1000), new ItemStack(ModItems.bucket_bromine), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(new FluidStack(ModBlocks.ccl_fluid, 1000), new ItemStack(ModItems.bucket_ccl), new ItemStack(Items.bucket));
+
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.mud_block, ModItems.bucket_mud);
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.acid_block, ModItems.bucket_acid);
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.toxic_block, ModItems.bucket_toxic);
@@ -5435,10 +5476,15 @@ public class ModItems {
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.sulfuric_acid_block, ModItems.bucket_sulfuric_acid);
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.mercury_block, ModItems.bucket_mercury);
 		BucketHandler.INSTANCE.buckets.put(ModBlocks.bromine_block, ModItems.bucket_bromine);
+		BucketHandler.INSTANCE.buckets.put(ModBlocks.ccl_block, ModItems.bucket_ccl);
+
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 	}
 
 	private static void registerItem() {
+
+		excludeNEI.add(item_secret);
+
 		//Weapons
 		GameRegistry.registerItem(redstone_sword, redstone_sword.getUnlocalizedName());
 		GameRegistry.registerItem(big_sword, big_sword.getUnlocalizedName());
@@ -5493,7 +5539,6 @@ public class ModItems {
 		GameRegistry.registerItem(ingot_gaas, ingot_gaas.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_tt, ingot_tt.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_ttas, ingot_ttas.getUnlocalizedName());
-		GameRegistry.registerItem(ingot_platnium, ingot_platnium.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_iridium, ingot_iridium.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_palladium, ingot_palladium.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_aluminium, ingot_aluminium.getUnlocalizedName());
@@ -5701,7 +5746,6 @@ public class ModItems {
 		GameRegistry.registerItem(powder_nickel, powder_nickel.getUnlocalizedName());
 		GameRegistry.registerItem(powder_copper, powder_copper.getUnlocalizedName());
 		GameRegistry.registerItem(powder_zinc, powder_zinc.getUnlocalizedName());
-		GameRegistry.registerItem(powder_platnium, powder_platnium.getUnlocalizedName());
 		GameRegistry.registerItem(powder_gallium_tiny, powder_gallium_tiny.getUnlocalizedName());
 		GameRegistry.registerItem(powder_gallium, powder_gallium.getUnlocalizedName());
 		GameRegistry.registerItem(powder_red_copper, powder_red_copper.getUnlocalizedName());
@@ -5730,6 +5774,8 @@ public class ModItems {
 		GameRegistry.registerItem(powder_dura_steel, powder_dura_steel.getUnlocalizedName());
 		GameRegistry.registerItem(powder_polymer, powder_polymer.getUnlocalizedName());
 		GameRegistry.registerItem(powder_bakelite, powder_bakelite.getUnlocalizedName());
+		GameRegistry.registerItem(powder_rubber, powder_rubber.getUnlocalizedName());
+		GameRegistry.registerItem(powder_pvc, powder_pvc.getUnlocalizedName());
 		GameRegistry.registerItem(powder_schrabidium, powder_schrabidium.getUnlocalizedName());
 		GameRegistry.registerItem(powder_schrabidate, powder_schrabidate.getUnlocalizedName());
 		GameRegistry.registerItem(powder_magnetized_tungsten, powder_magnetized_tungsten.getUnlocalizedName());
@@ -5788,7 +5834,7 @@ public class ModItems {
 		GameRegistry.registerItem(powder_cement, powder_cement.getUnlocalizedName());
 
 		GameRegistry.registerItem(nickel_salts, nickel_salts.getUnlocalizedName());
-		
+
 		//Powders
 		GameRegistry.registerItem(powder_fire, powder_fire.getUnlocalizedName());
 		GameRegistry.registerItem(powder_ice, powder_ice.getUnlocalizedName());
@@ -5886,6 +5932,8 @@ public class ModItems {
 		GameRegistry.registerItem(flesh_wafer, flesh_wafer.getUnlocalizedName());
 		GameRegistry.registerItem(grilled_flesh, grilled_flesh.getUnlocalizedName());
 		GameRegistry.registerItem(flesh_burger, flesh_burger.getUnlocalizedName());
+		GameRegistry.registerItem(stick_pvc, stick_pvc.getUnlocalizedName());
+		GameRegistry.registerItem(stick_vinyl, stick_vinyl.getUnlocalizedName());
 
 		//Nuggets
 		GameRegistry.registerItem(nugget_uranium, nugget_uranium.getUnlocalizedName());
@@ -5946,7 +5994,6 @@ public class ModItems {
 		GameRegistry.registerItem(nugget_les, nugget_les.getUnlocalizedName());
 		GameRegistry.registerItem(nugget_zirconium, nugget_zirconium.getUnlocalizedName());
 		GameRegistry.registerItem(nugget_nickel, nugget_nickel.getUnlocalizedName());
-		GameRegistry.registerItem(nugget_platnium, nugget_platnium.getUnlocalizedName());
 		GameRegistry.registerItem(nugget_gaas, nugget_gaas.getUnlocalizedName());
 		GameRegistry.registerItem(nugget_zinc, nugget_zinc.getUnlocalizedName());
 		GameRegistry.registerItem(nugget_gallium, nugget_gallium.getUnlocalizedName());
@@ -6002,7 +6049,6 @@ public class ModItems {
 		GameRegistry.registerItem(plate_welded, plate_welded.getUnlocalizedName());
 		GameRegistry.registerItem(shell, shell.getUnlocalizedName());
 		GameRegistry.registerItem(pipe, pipe.getUnlocalizedName());
-		GameRegistry.registerItem(heavy_component, heavy_component.getUnlocalizedName());
 
 		//Bolts
 		GameRegistry.registerItem(bolt, bolt.getUnlocalizedName());
@@ -6040,7 +6086,6 @@ public class ModItems {
 		GameRegistry.registerItem(centrifuge_element, centrifuge_element.getUnlocalizedName());
 		GameRegistry.registerItem(reactor_core, reactor_core.getUnlocalizedName());
 		GameRegistry.registerItem(rtg_unit, rtg_unit.getUnlocalizedName());
-		GameRegistry.registerItem(levitation_unit, levitation_unit.getUnlocalizedName());
 		GameRegistry.registerItem(pipes_steel, pipes_steel.getUnlocalizedName());
 		GameRegistry.registerItem(drill_titanium, drill_titanium.getUnlocalizedName());
 		GameRegistry.registerItem(photo_panel, photo_panel.getUnlocalizedName());
@@ -6052,6 +6097,7 @@ public class ModItems {
 		GameRegistry.registerItem(chemical_dye, chemical_dye.getUnlocalizedName());
 		GameRegistry.registerItem(crayon, crayon.getUnlocalizedName());
 		GameRegistry.registerItem(part_generic, part_generic.getUnlocalizedName());
+		GameRegistry.registerItem(item_expensive, item_expensive.getUnlocalizedName());
 		GameRegistry.registerItem(item_secret, item_secret.getUnlocalizedName());
 		GameRegistry.registerItem(ingot_metal, ingot_metal.getUnlocalizedName());
 		GameRegistry.registerItem(parts_legendary, parts_legendary.getUnlocalizedName());
@@ -6066,19 +6112,17 @@ public class ModItems {
 		GameRegistry.registerItem(part_grip, part_grip.getUnlocalizedName());
 		GameRegistry.registerItem(hard_drive, hard_drive.getUnlocalizedName());
 		GameRegistry.registerItem(full_drive, full_drive.getUnlocalizedName());
+		GameRegistry.registerItem(divine_shard, divine_shard.getUnlocalizedName());
 
 		//Plant Products
 		GameRegistry.registerItem(plant_item, plant_item.getUnlocalizedName());
 		GameRegistry.registerItem(scuttertail, scuttertail.getUnlocalizedName());
 		GameRegistry.registerItem(saltleaf, saltleaf.getUnlocalizedName());
-
+		GameRegistry.registerItem(leaf_rubber, leaf_rubber.getUnlocalizedName());
+		GameRegistry.registerItem(leaf_pet, leaf_pet.getUnlocalizedName());
 		//Teleporter Parts
 		//GameRegistry.registerItem(telepad, telepad.getUnlocalizedName());
 		GameRegistry.registerItem(entanglement_kit, entanglement_kit.getUnlocalizedName());
-
-		//AMS Parts
-		GameRegistry.registerItem(component_limiter, component_limiter.getUnlocalizedName());
-		GameRegistry.registerItem(component_emitter, component_emitter.getUnlocalizedName());
 
 		//Bomb Parts
 		GameRegistry.registerItem(fins_flat, fins_flat.getUnlocalizedName());
@@ -6133,12 +6177,6 @@ public class ModItems {
 		GameRegistry.registerItem(seg_20, seg_20.getUnlocalizedName());
 
 		//Chopper parts
-		GameRegistry.registerItem(chopper_head, chopper_head.getUnlocalizedName());
-		GameRegistry.registerItem(chopper_gun, chopper_gun.getUnlocalizedName());
-		GameRegistry.registerItem(chopper_torso, chopper_torso.getUnlocalizedName());
-		GameRegistry.registerItem(chopper_tail, chopper_tail.getUnlocalizedName());
-		GameRegistry.registerItem(chopper_wing, chopper_wing.getUnlocalizedName());
-		GameRegistry.registerItem(chopper_blades, chopper_blades.getUnlocalizedName());
 		GameRegistry.registerItem(combine_scrap, combine_scrap.getUnlocalizedName());
 
 		//Hammer Parts
@@ -6265,6 +6303,10 @@ public class ModItems {
 		GameRegistry.registerItem(fluid_barrel_full, fluid_barrel_full.getUnlocalizedName());
 		GameRegistry.registerItem(fluid_barrel_infinite, fluid_barrel_infinite.getUnlocalizedName());
 
+		//Packaged fluids
+		GameRegistry.registerItem(fluid_pack_empty, fluid_pack_empty.getUnlocalizedName());
+		GameRegistry.registerItem(fluid_pack_full, fluid_pack_full.getUnlocalizedName());
+
 		//Pipette
 		GameRegistry.registerItem(pipette, pipette.getUnlocalizedName());
 		GameRegistry.registerItem(pipette_boron, pipette_boron.getUnlocalizedName());
@@ -6313,13 +6355,11 @@ public class ModItems {
 		GameRegistry.registerItem(hev_battery, hev_battery.getUnlocalizedName());
 		GameRegistry.registerItem(fusion_core, fusion_core.getUnlocalizedName());
 		GameRegistry.registerItem(energy_core, energy_core.getUnlocalizedName());
-		GameRegistry.registerItem(fusion_core_infinite, fusion_core_infinite.getUnlocalizedName());
 
 		//Folders
+		GameRegistry.registerItem(blueprints, blueprints.getUnlocalizedName());
+		GameRegistry.registerItem(blueprint_folder, blueprint_folder.getUnlocalizedName());
 		GameRegistry.registerItem(template_folder, template_folder.getUnlocalizedName());
-		GameRegistry.registerItem(journal_pip, journal_pip.getUnlocalizedName());
-		GameRegistry.registerItem(journal_bj, journal_bj.getUnlocalizedName());
-		GameRegistry.registerItem(journal_silver, journal_silver.getUnlocalizedName());
 		GameRegistry.registerItem(bobmazon, bobmazon.getUnlocalizedName());
 		GameRegistry.registerItem(bobmazon_hidden, bobmazon_hidden.getUnlocalizedName());
 
@@ -6569,6 +6609,7 @@ public class ModItems {
 		GameRegistry.registerItem(pwr_fuel, pwr_fuel.getUnlocalizedName());
 		GameRegistry.registerItem(pwr_fuel_hot, pwr_fuel_hot.getUnlocalizedName());
 		GameRegistry.registerItem(pwr_fuel_depleted, pwr_fuel_depleted.getUnlocalizedName());
+		GameRegistry.registerItem(pwr_printer, pwr_printer.getUnlocalizedName());
 
 		//RBMK parts
 		GameRegistry.registerItem(rbmk_lid, rbmk_lid.getUnlocalizedName());
@@ -6688,6 +6729,7 @@ public class ModItems {
 		GameRegistry.registerItem(spawn_duck, spawn_duck.getUnlocalizedName());
 
 		//Computer Tools
+		GameRegistry.registerItem(rangefinder, rangefinder.getUnlocalizedName());
 		GameRegistry.registerItem(designator, designator.getUnlocalizedName());
 		GameRegistry.registerItem(designator_range, designator_range.getUnlocalizedName());
 		GameRegistry.registerItem(designator_manual, designator_manual.getUnlocalizedName());
@@ -6777,12 +6819,10 @@ public class ModItems {
 
 		//Missile Parts
 		GameRegistry.registerItem(mp_thruster_10_kerosene, mp_thruster_10_kerosene.getUnlocalizedName());
-		GameRegistry.registerItem(mp_thruster_10_kerosene_tec, mp_thruster_10_kerosene_tec.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_10_solid, mp_thruster_10_solid.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_10_hydrazine, mp_thruster_10_hydrazine.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_10_xenon, mp_thruster_10_xenon.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_15_kerosene, mp_thruster_15_kerosene.getUnlocalizedName());
-		GameRegistry.registerItem(mp_thruster_15_kerosene_tec, mp_thruster_15_kerosene_tec.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_15_kerosene_dual, mp_thruster_15_kerosene_dual.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_15_kerosene_triple, mp_thruster_15_kerosene_triple.getUnlocalizedName());
 		GameRegistry.registerItem(mp_thruster_15_solid, mp_thruster_15_solid.getUnlocalizedName());
@@ -6889,7 +6929,6 @@ public class ModItems {
 		GameRegistry.registerItem(mp_fuselage_15_20_kerosene, mp_fuselage_15_20_kerosene.getUnlocalizedName());
 		GameRegistry.registerItem(mp_fuselage_15_20_kerosene_magnusson, mp_fuselage_15_20_kerosene_magnusson.getUnlocalizedName());
 		GameRegistry.registerItem(mp_fuselage_15_20_solid, mp_fuselage_15_20_solid.getUnlocalizedName());
-
 		GameRegistry.registerItem(mp_warhead_10_he, mp_warhead_10_he.getUnlocalizedName());
 		GameRegistry.registerItem(mp_warhead_10_incendiary, mp_warhead_10_incendiary.getUnlocalizedName());
 		GameRegistry.registerItem(mp_warhead_10_buster, mp_warhead_10_buster.getUnlocalizedName());
@@ -6906,8 +6945,6 @@ public class ModItems {
 		GameRegistry.registerItem(mp_warhead_15_n2, mp_warhead_15_n2.getUnlocalizedName());
 		GameRegistry.registerItem(mp_warhead_15_balefire, mp_warhead_15_balefire.getUnlocalizedName());
 		GameRegistry.registerItem(mp_warhead_15_turbine, mp_warhead_15_turbine.getUnlocalizedName());
-		GameRegistry.registerItem(mp_warhead_20_he, mp_warhead_20_he.getUnlocalizedName());
-
 		GameRegistry.registerItem(mp_chip_1, mp_chip_1.getUnlocalizedName());
 		GameRegistry.registerItem(mp_chip_2, mp_chip_2.getUnlocalizedName());
 		GameRegistry.registerItem(mp_chip_3, mp_chip_3.getUnlocalizedName());
@@ -6941,6 +6978,7 @@ public class ModItems {
 		GameRegistry.registerItem(sat_coord, sat_coord.getUnlocalizedName());
 		GameRegistry.registerItem(sat_designator, sat_designator.getUnlocalizedName());
 		GameRegistry.registerItem(sat_relay, sat_relay.getUnlocalizedName());
+		GameRegistry.registerItem(sat_war, sat_war.getUnlocalizedName());
 
 		//Guns
 		GameRegistry.registerItem(gun_b92, gun_b92.getUnlocalizedName());
@@ -6985,6 +7023,7 @@ public class ModItems {
 		GameRegistry.registerItem(gun_autoshotgun, gun_autoshotgun.getUnlocalizedName());
 		GameRegistry.registerItem(gun_autoshotgun_shredder, gun_autoshotgun_shredder.getUnlocalizedName());
 		GameRegistry.registerItem(gun_autoshotgun_sexy, gun_autoshotgun_sexy.getUnlocalizedName());
+		GameRegistry.registerItem(gun_autoshotgun_heretic, gun_autoshotgun_heretic.getUnlocalizedName());
 		GameRegistry.registerItem(gun_quadro, gun_quadro.getUnlocalizedName());
 		GameRegistry.registerItem(gun_lag, gun_lag.getUnlocalizedName());
 		GameRegistry.registerItem(gun_minigun, gun_minigun.getUnlocalizedName());
@@ -7008,6 +7047,7 @@ public class ModItems {
 		GameRegistry.registerItem(gun_aberrator_eott, gun_aberrator_eott.getUnlocalizedName());
 		GameRegistry.registerItem(gun_double_barrel, gun_double_barrel.getUnlocalizedName());
 		GameRegistry.registerItem(gun_double_barrel_sacred_dragon, gun_double_barrel_sacred_dragon.getUnlocalizedName());
+		GameRegistry.registerItem(gun_n_i_4_n_i, gun_n_i_4_n_i.getUnlocalizedName());
 
 		GameRegistry.registerItem(gun_fireext, gun_fireext.getUnlocalizedName());
 		GameRegistry.registerItem(gun_charge_thrower, gun_charge_thrower.getUnlocalizedName());
@@ -7316,8 +7356,6 @@ public class ModItems {
 		GameRegistry.registerItem(bottle2_empty, bottle2_empty.getUnlocalizedName());
 		GameRegistry.registerItem(bottle2_korl, bottle2_korl.getUnlocalizedName());
 		GameRegistry.registerItem(bottle2_fritz, bottle2_fritz.getUnlocalizedName());
-		GameRegistry.registerItem(bottle2_korl_special, bottle2_korl_special.getUnlocalizedName());
-		GameRegistry.registerItem(bottle2_fritz_special, bottle2_fritz_special.getUnlocalizedName());
 		GameRegistry.registerItem(bottle_opener, bottle_opener.getUnlocalizedName());
 
 		//Flasks
@@ -7357,6 +7395,7 @@ public class ModItems {
 		GameRegistry.registerItem(armor_battery_mk2, armor_battery_mk2.getUnlocalizedName());
 		GameRegistry.registerItem(armor_battery_mk3, armor_battery_mk3.getUnlocalizedName());
 		GameRegistry.registerItem(flippers, flippers.getUnlocalizedName());
+		GameRegistry.registerItem(heavy_boots, heavy_boots.getUnlocalizedName());
 
 		//Chaos
 		GameRegistry.registerItem(chocolate_milk, chocolate_milk.getUnlocalizedName());
@@ -7378,6 +7417,7 @@ public class ModItems {
 		GameRegistry.registerItem(teacup_empty, teacup_empty.getUnlocalizedName());
 		GameRegistry.registerItem(teacup, teacup.getUnlocalizedName());
 		GameRegistry.registerItem(bottle_honey, bottle_honey.getUnlocalizedName());
+		GameRegistry.registerItem(paraffin_seeds, paraffin_seeds.getUnlocalizedName());
 
 
 		//Armor mods
@@ -7535,6 +7575,10 @@ public class ModItems {
 		GameRegistry.registerItem(t45_plate, t45_plate.getUnlocalizedName());
 		GameRegistry.registerItem(t45_legs, t45_legs.getUnlocalizedName());
 		GameRegistry.registerItem(t45_boots, t45_boots.getUnlocalizedName());
+		GameRegistry.registerItem(t51_helmet, t51_helmet.getUnlocalizedName());
+		GameRegistry.registerItem(t51_plate, t51_plate.getUnlocalizedName());
+		GameRegistry.registerItem(t51_legs, t51_legs.getUnlocalizedName());
+		GameRegistry.registerItem(t51_boots, t51_boots.getUnlocalizedName());
 		GameRegistry.registerItem(ajr_helmet, ajr_helmet.getUnlocalizedName());
 		GameRegistry.registerItem(ajr_plate, ajr_plate.getUnlocalizedName());
 		GameRegistry.registerItem(ajr_legs, ajr_legs.getUnlocalizedName());
@@ -7676,10 +7720,12 @@ public class ModItems {
 		GameRegistry.registerItem(crystal_horn, crystal_horn.getUnlocalizedName());
 		GameRegistry.registerItem(crystal_charred, crystal_charred.getUnlocalizedName());
 
-		//OP Tools
+		//Wands, Tools, Other Crap
+		GameRegistry.registerItem(rebar_placer, rebar_placer.getUnlocalizedName());
 		GameRegistry.registerItem(wand, wand.getUnlocalizedName());
 		GameRegistry.registerItem(wand_s, wand_s.getUnlocalizedName());
 		GameRegistry.registerItem(wand_d, wand_d.getUnlocalizedName());
+		GameRegistry.registerItem(wand_time, wand_time.getUnlocalizedName());
 		GameRegistry.registerItem(structure_single, structure_single.getUnlocalizedName());
 		GameRegistry.registerItem(structure_solid, structure_solid.getUnlocalizedName());
 		GameRegistry.registerItem(structure_pattern, structure_pattern.getUnlocalizedName());
@@ -7714,7 +7760,6 @@ public class ModItems {
 		GameRegistry.registerItem(custom_kit, custom_kit.getUnlocalizedName());
 		GameRegistry.registerItem(missile_kit, missile_kit.getUnlocalizedName());
 		GameRegistry.registerItem(grenade_kit, grenade_kit.getUnlocalizedName());
-		GameRegistry.registerItem(t45_kit, t45_kit.getUnlocalizedName());
 		GameRegistry.registerItem(hazmat_kit, hazmat_kit.getUnlocalizedName());
 		GameRegistry.registerItem(hazmat_red_kit, hazmat_red_kit.getUnlocalizedName());
 		GameRegistry.registerItem(hazmat_grey_kit, hazmat_grey_kit.getUnlocalizedName());
@@ -7722,7 +7767,6 @@ public class ModItems {
 		GameRegistry.registerItem(euphemium_kit, euphemium_kit.getUnlocalizedName());
 		GameRegistry.registerItem(legacy_toolbox, legacy_toolbox.getUnlocalizedName());
 		GameRegistry.registerItem(toolbox, toolbox.getUnlocalizedName());
-		GameRegistry.registerItem(letter, letter.getUnlocalizedName());
 
 		//Misile Loot Boxes
 		GameRegistry.registerItem(loot_10, loot_10.getUnlocalizedName());
@@ -7737,6 +7781,7 @@ public class ModItems {
 		GameRegistry.registerItem(bucket_sulfuric_acid, bucket_sulfuric_acid.getUnlocalizedName());
 		GameRegistry.registerItem(bucket_mercury, bucket_mercury.getUnlocalizedName());
 		GameRegistry.registerItem(bucket_bromine, bucket_bromine.getUnlocalizedName());
+		GameRegistry.registerItem(bucket_ccl, bucket_ccl.getUnlocalizedName());
 
 		//Door Items
 		GameRegistry.registerItem(door_metal, door_metal.getUnlocalizedName());

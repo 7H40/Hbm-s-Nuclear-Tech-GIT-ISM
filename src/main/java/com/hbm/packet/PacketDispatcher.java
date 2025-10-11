@@ -44,7 +44,7 @@ public class PacketDispatcher {
 		//Signals server to do coord based satellite stuff
 		wrapper.registerMessage(SatCoordPacket.Handler.class, SatCoordPacket.class, i++, Side.SERVER);
 		//Triggers gun animations of the client
-		wrapper.registerMessage(GunAnimationPacket.Handler.class, GunAnimationPacket.class, i++, Side.CLIENT);
+		wrapper.registerMessage(HbmAnimationPacket.Handler.class, HbmAnimationPacket.class, i++, Side.CLIENT);
 		//Sends a funi text to display like a music disc announcement
 		wrapper.registerMessage(PlayerInformPacket.Handler.class, PlayerInformPacket.class, i++, Side.CLIENT);
 		//Universal keybind packet
@@ -53,8 +53,6 @@ public class PacketDispatcher {
 		wrapper.registerMessage(NBTControlPacket.Handler.class, NBTControlPacket.class, i++, Side.SERVER);
 		//Packet to send for anvil recipes to be crafted
 		wrapper.registerMessage(AnvilCraftPacket.Handler.class, AnvilCraftPacket.class, i++, Side.SERVER);
-		//Sends a funi text to display like a music disc announcement
-		wrapper.registerMessage(TEDoorAnimationPacket.Handler.class, TEDoorAnimationPacket.class, i++, Side.CLIENT);
 		//Does ExVNT standard player knockback
 		wrapper.registerMessage(ExplosionKnockbackPacket.Handler.class, ExplosionKnockbackPacket.class, i++, Side.CLIENT);
 		//just go fuck yourself already
@@ -69,12 +67,17 @@ public class PacketDispatcher {
 		wrapper.registerMessage(BufPacket.Handler.class, BufPacket.class, i++, Side.CLIENT);
 		//Syncs server recipe configs to the client
 		wrapper.registerMessage(SerializableRecipePacket.Handler.class, SerializableRecipePacket.class, i++, Side.CLIENT);
+		//Syncing of NBT for guns
+		wrapper.registerMessage(HeldItemNBTPacket.Handler.class, HeldItemNBTPacket.class, i++, Side.CLIENT);
 
 		// Sends info about currently linked transporters to player
 		wrapper.registerMessage(TransporterLinkerPacket.Handler.class, TransporterLinkerPacket.class, i++, Side.CLIENT);
 
 		// Sync current GUI layer to server
 		wrapper.registerMessage(GuiLayerPacket.Handler.class, GuiLayerPacket.class, i++, Side.SERVER);
+		
+		wrapper.registerMessage(SatActivatePacket.Handler.class, SatActivatePacket.class, i++, Side.SERVER);
+
 	}
 
 }

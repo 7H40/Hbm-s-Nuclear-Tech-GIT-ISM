@@ -19,6 +19,7 @@ import com.hbm.entity.missile.EntityRideableRocket.EntityRideableRocketDummy;
 import com.hbm.entity.mob.*;
 import com.hbm.entity.mob.botprime.*;
 import com.hbm.entity.mob.glyphid.*;
+import com.hbm.entity.mob.siege.EntitySiegeCraft;
 import com.hbm.entity.particle.*;
 import com.hbm.entity.projectile.*;
 import com.hbm.entity.train.EntityRailCarBase.BoundingBoxDummyEntity;
@@ -27,12 +28,12 @@ import com.hbm.entity.train.*;
 import com.hbm.main.MainRegistry;
 import com.hbm.util.Tuple.Quartet;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.BiomeGenMushroomIsland;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
@@ -208,6 +209,7 @@ public class EntityMappings {
 		addEntity(EntityFallingBlockNT.class, "entity_falling_block_nt", 1000);
 		addEntity(EntityBoatRubber.class, "entity_rubber_boat", 250, false);
 		addEntity(EntityMissileStealth.class, "entity_missile_stealth", 1000);
+		addEntity(EntityCoin.class, "entity_coin", 1000);
 
 		addEntity(EntityItemWaste.class, "entity_item_waste", 100);
 		addEntity(EntityItemBuoyant.class, "entity_item_buoyant", 100);
@@ -219,7 +221,11 @@ public class EntityMappings {
 
 		addEntity(EntityDisperserCanister.class, "entity_disperser", 250);
 		addEntity(EntityWaypoint.class, "entity_waypoint", 250, false);
+
+		addEntity(EntityDepress.class, "entity_depress", 250, false);
+
 		addMob(EntityWarBehemoth.class, "entity_war_behemoth", 0x204131, 0x75CE00);
+		addMob(EntityTankbot.class, "entity_tankbot", 0x204131, 0x75CE00);
 
 		addMob(EntityCreeperNuclear.class, "entity_mob_nuclear_creeper", 0x204131, 0x75CE00);
 		addMob(EntityCreeperTainted.class, "entity_mob_tainted_creeper", 0x813b9b, 0xd71fdd);
@@ -242,6 +248,7 @@ public class EntityMappings {
 		addMob(EntityDepthSquid.class, "entity_depthsquid", 0x00B4Df, 0x016085);
 		addMob(EntityScrapFish.class, "entity_scrapfish", 0xDF9835, 0x510E13);
 		addMob(EntitySifterEel.class, "entity_siftereel", 0x5B963E, 0xC0B286);
+		addMob(EntitySiegeCraft.class, "entity_micro_ufo", 0x5B963E, 0xC0B286);
 
 		addMob(EntityFBI.class, "entity_ntm_fbi", 0x008000, 0x404040);
 		addMob(EntityFBIDrone.class, "entity_ntm_fbi_drone", 0x008000, 0x404040);
@@ -268,11 +275,11 @@ public class EntityMappings {
 
 		int id = 0;
 		for(Quartet<Class<? extends Entity>, String, Integer, Boolean> entry : entityMappings) {
-			EntityRegistry.registerModEntity(entry.getW(), entry.getX(), id++, MainRegistry.instance, entry.getY(), 1, entry.getZ());
+			ModEntityList.registerEntity(entry.getW(), entry.getX(), id++, MainRegistry.instance, entry.getY(), 1, entry.getZ());
 		}
 
 		for(Quartet<Class<? extends Entity>, String, Integer, Integer> entry : mobMappings) {
-			EntityRegistry.registerGlobalEntityID(entry.getW(), entry.getX(), EntityRegistry.findGlobalUniqueEntityId(), entry.getY(), entry.getZ());
+			ModEntityList.registerEntity(entry.getW(), entry.getX(), id++, MainRegistry.instance, entry.getY(), entry.getZ());
 		}
 	}
 
@@ -294,6 +301,7 @@ public class EntityMappings {
 
 			if(biome == null) continue;
 			if(biome instanceof BiomeGenBaseCelestial) continue;
+			if(biome instanceof BiomeGenMushroomIsland) continue;
 
 			List<SpawnListEntry> spawns = biome.getSpawnableList(typeOfCreature);
 

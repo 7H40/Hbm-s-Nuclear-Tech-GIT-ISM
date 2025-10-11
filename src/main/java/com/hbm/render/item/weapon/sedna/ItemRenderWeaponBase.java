@@ -33,8 +33,9 @@ public abstract class ItemRenderWeaponBase implements IItemRenderer {
 	public static final ResourceLocation laser_flash = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/laser_flash.png");
 	
 	public static float interp;
-	
+
 	public boolean isAkimbo() { return false; }
+	public boolean isLeftHanded() { return false; }
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -53,7 +54,8 @@ public abstract class ItemRenderWeaponBase implements IItemRenderer {
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		switch(type) {
 		case EQUIPPED_FIRST_PERSON:	setupFirstPerson(item);	renderFirstPerson(item); break;
-		case EQUIPPED:				setupThirdPerson(item);	renderEquipped(item); break;
+		case EQUIPPED:
+		if(isLeftHanded()) break;	setupThirdPerson(item);	renderEquipped(item); break;
 		case INVENTORY:				setupInv(item);			renderInv(item); break;
 		case ENTITY:				setupEntity(item);		renderEntity(item); break;
 		}
@@ -344,6 +346,7 @@ public abstract class ItemRenderWeaponBase implements IItemRenderer {
 		if(System.currentTimeMillis() - lastShot < flash) {
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+			GL11.glDepthMask(false);
 			GL11.glPushMatrix();
 			
 			double fire = (System.currentTimeMillis() - lastShot) / (double) flash;
@@ -379,6 +382,7 @@ public abstract class ItemRenderWeaponBase implements IItemRenderer {
 			
 			tess.draw();
 			GL11.glPopMatrix();
+			GL11.glDepthMask(true);
 			GL11.glDisable(GL11.GL_BLEND);
 		}
 	}

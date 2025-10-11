@@ -64,7 +64,8 @@ public class ItemPoolsLegacy {
 					weighted(ModItems.canister_full, Fluids.DIESEL.getID(), 1, 2, 2),
 					weighted(ModItems.canister_full, Fluids.BIOFUEL.getID(), 1, 2, 3),
 					weighted(ModItems.gas_mask_m65, 60, 1, 1, 2),
-					weighted(ModItems.gas_mask_filter, 0, 1, 1, 3)
+					weighted(ModItems.gas_mask_filter, 0, 1, 1, 3),
+					weighted(ModItems.blueprint_folder, 0, 1, 1, 1)
 			};
 		}};
 
@@ -130,10 +131,9 @@ public class ItemPoolsLegacy {
 					weighted(ModItems.bomb_caller, 1, 1, 1, 1),
 					weighted(ModItems.bomb_caller, 2, 1, 1, 1),
 					weighted(ModItems.gas_mask_filter, 0, 1, 1, 4),
-					weighted(ModItems.journal_pip, 0, 1, 1, 1),
-					weighted(ModItems.journal_bj, 0, 1, 1, 1),
 					weighted(ModItems.launch_code_piece, 0, 1, 1, 1),
 					weighted(ModItems.gun_double_barrel, 0, 1, 1, 1),
+					weighted(ModItems.blueprint_folder, 1, 1, 1, 1)
 			};
 		}};
 		
@@ -187,11 +187,10 @@ public class ItemPoolsLegacy {
 		//loot found in vertibirds
 		new ItemPool(POOL_VERTIBIRD) {{
 			this.pool = new WeightedRandomChestContent[] {
-					weighted(ModItems.t45_helmet, 0, 1, 1, 15),
-					weighted(ModItems.t45_plate, 0, 1, 1, 15),
-					weighted(ModItems.t45_legs, 0, 1, 1, 15),
-					weighted(ModItems.t45_boots, 0, 1, 1, 15),
-					weighted(ModItems.t45_kit, 0, 1, 1, 3),
+					weighted(ModItems.t51_helmet, 0, 1, 1, 15),
+					weighted(ModItems.t51_plate, 0, 1, 1, 15),
+					weighted(ModItems.t51_legs, 0, 1, 1, 15),
+					weighted(ModItems.t51_boots, 0, 1, 1, 15),
 					weighted(ModItems.fusion_core, 0, 1, 1, 10),
 					weighted(ModItems.gun_light_revolver, 0, 1, 1, 4),
 					weighted(ModItems.gun_kit_1, 0, 2, 3, 4),

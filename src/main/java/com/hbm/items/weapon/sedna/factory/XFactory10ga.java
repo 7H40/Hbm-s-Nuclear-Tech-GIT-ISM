@@ -17,10 +17,10 @@ import com.hbm.items.weapon.sedna.factory.GunFactory.EnumAmmo;
 import com.hbm.items.weapon.sedna.mags.MagazineFullReload;
 import com.hbm.particle.SpentCasing;
 import com.hbm.particle.SpentCasing.CasingType;
+import com.hbm.render.anim.AnimationEnums.GunAnimation;
 import com.hbm.render.anim.BusAnimation;
 import com.hbm.render.anim.BusAnimationSequence;
 import com.hbm.render.anim.BusAnimationKeyframe.IType;
-import com.hbm.render.anim.HbmAnimations.AnimType;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
@@ -32,7 +32,7 @@ public class XFactory10ga {
 	public static BulletConfig g10_du;
 	public static BulletConfig g10_slug;
 	public static BulletConfig g10_explosive;
-	
+
 	public static BiConsumer<EntityBulletBaseMK4, MovingObjectPosition> LAMBDA_TINY_EXPLODE = (bullet, mop) -> {
 		if(mop.typeOfHit == mop.typeOfHit.ENTITY && bullet.ticksExisted < 3 && mop.entityHit == bullet.getThrower()) return;
 		Lego.tinyExplode(bullet, mop, 1.5F); bullet.setDead();
@@ -67,13 +67,24 @@ public class XFactory10ga {
 				.setupStandardConfiguration()
 				.anim(LAMBDA_DOUBLE_BARREL_ANIMS).orchestra(Orchestras.ORCHESTRA_DOUBLE_BARREL)
 				).setUnlocalizedName("gun_double_barrel_sacred_dragon");
+
+		ModItems.gun_autoshotgun_heretic = new ItemGunBaseNT(WeaponQuality.DEBUG, new GunConfig()
+				.draw(20).inspect(65).reloadSequential(true).inspectCancel(false).crosshair(Crosshair.L_CIRCLE).hideCrosshair(false).smoke(Lego.LAMBDA_STANDARD_SMOKE)
+				.rec(new Receiver(0)
+						.dmg(100F).delay(3).auto(true).dryfireAfterAuto(true).reload(110).jam(19).sound("hbm:weapon.fire.shotgunAuto", 1.0F, 1.0F)
+						.mag(new MagazineFullReload(0, 250).addConfigs(g10, g10_shrapnel, g10_du, g10_slug, g10_explosive))
+						.offset(0.75, -0.125, -0.25)
+						.canFire(Lego.LAMBDA_STANDARD_CAN_FIRE).fire(Lego.LAMBDA_NOWEAR_FIRE).recoil(XFactory12ga.LAMBDA_RECOIL_SEXY))
+				.setupStandardConfiguration()
+				.anim(XFactory12ga.LAMBDA_SEXY_ANIMS).orchestra(Orchestras.ORCHESTRA_SHREDDER_SEXY)
+				).setUnlocalizedName("gun_autoshotgun_heretic");
 	}
-	
+
 	public static BiConsumer<ItemStack, LambdaContext> LAMBDA_RECOIL_DOUBLE_BARREL = (stack, ctx) -> {
 		ItemGunBaseNT.setupRecoil(10, (float) (ctx.getPlayer().getRNG().nextGaussian() * 1.5));
 	};
 
-	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, AnimType, BusAnimation> LAMBDA_DOUBLE_BARREL_ANIMS = (stack, type) -> {
+	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, GunAnimation, BusAnimation> LAMBDA_DOUBLE_BARREL_ANIMS = (stack, type) -> {
 		switch(type) {
 		case EQUIP: return new BusAnimation()
 				.addBus("EQUIP", new BusAnimationSequence().addPos(-60, 0, 0, 0).addPos(0, 0, -3, 500, IType.SIN_DOWN));
@@ -137,7 +148,7 @@ public class XFactory10ga {
 						.addPos(-5, 0, 0, 150, IType.SIN_DOWN)
 						.addPos(0, 0, 0, 100, IType.SIN_FULL));
 		}
-		
+
 		return null;
 	};
 }

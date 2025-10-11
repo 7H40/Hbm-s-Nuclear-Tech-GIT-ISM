@@ -10,6 +10,7 @@ import java.util.Map;
 import com.hbm.config.SpaceConfig;
 import com.hbm.dim.orbit.OrbitalStation;
 import com.hbm.dim.trait.CBT_Atmosphere;
+import com.hbm.dim.trait.CBT_War;
 import com.hbm.dim.trait.CBT_Dyson;
 import com.hbm.dim.trait.CBT_Atmosphere.FluidEntry;
 import com.hbm.dim.trait.CBT_Water;
@@ -26,6 +27,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -49,7 +51,7 @@ public class CelestialBody {
 	public float massKg = 0;
 	public float radiusKm = 0;
 	public float semiMajorAxisKm = 0; // Distance to the parent body
-	public float semiMinorAxisKm = 0;
+	public float semiMinorAxisFactor = 0; // has a sqrt so done ahead of time
 	public float eccentricity = 0;
 	public float inclination = 0;
 	public float ascendingNode = 0;
@@ -67,6 +69,13 @@ public class CelestialBody {
 	public float[] color = new float[] {0.4F, 0.4F, 0.4F}; // When too small to render the texture
 
 	public String tidallyLockedTo = null;
+
+	public boolean hasRings = false; // put a ring on it
+	public float ringTilt = 0;
+	public float[] ringColor = new float[] {0.5F, 0.5F, 0.5F};
+	public float ringSize = 2;
+
+	public FluidType gas;
 
 	public List<CelestialBody> satellites = new ArrayList<CelestialBody>(); // moon boyes
 	public CelestialBody parent = null;
@@ -108,7 +117,7 @@ public class CelestialBody {
 
 	public CelestialBody withOrbitalParameters(float semiMajorAxisKm, float eccentricity, float argumentPeriapsisDegrees, float inclinationDegrees, float ascendingNodeDegrees) {
 		this.semiMajorAxisKm = semiMajorAxisKm;
-		this.semiMinorAxisKm = semiMajorAxisKm * (float)Math.sqrt(1 - eccentricity * eccentricity);
+		this.semiMinorAxisFactor = (float)Math.sqrt(1 - eccentricity * eccentricity);
 		this.eccentricity = eccentricity;
 		this.argumentPeriapsis = (float)Math.toRadians(argumentPeriapsisDegrees);
 		this.inclination = (float)Math.toRadians(inclinationDegrees);
@@ -161,6 +170,19 @@ public class CelestialBody {
 		return this;
 	}
 
+	public CelestialBody withRings(float tilt, float size, float... color) {
+		this.hasRings = true;
+		this.ringTilt = tilt;
+		this.ringSize = size;
+		this.ringColor = color;
+		return this;
+	}
+
+	public CelestialBody withGas(FluidType gas) {
+		this.gas = gas;
+		return this;
+	}
+
 	public CelestialBody withSatellites(CelestialBody... bodies) {
 		Collections.addAll(satellites, bodies);
 		for(CelestialBody body : bodies) {
@@ -177,7 +199,6 @@ public class CelestialBody {
 	public CelestialBody withShader(ResourceLocation fragmentShader) {
 		return withShader(fragmentShader, 1);
 	}
-
 
 	public CelestialBody withShader(ResourceLocation fragmentShader, float scale) {
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) return this;
@@ -349,7 +370,6 @@ public class CelestialBody {
 		setTraits(world, currentTraits);
 	}
 
-	// Checks if we need to update any traits based on the current atmospheric constituents
 	public static void updateChemistry(World world) {
 		boolean hasUpdated = false;
 		HashMap<Class<? extends CelestialBodyTrait>, CelestialBodyTrait> currentTraits = getTraits(world);
@@ -393,6 +413,25 @@ public class CelestialBody {
 
 	// /Terraforming
 
+
+
+	public static void damage(int dmg, World world) {
+		HashMap<Class<? extends CelestialBodyTrait>, CelestialBodyTrait> currentTraits = getTraits(world);
+
+		CBT_War war = (CBT_War) currentTraits.get(CBT_War.class);
+		if(war == null) {
+			war = new CBT_War();
+			currentTraits.put(CBT_War.class, war);
+		}
+
+		if(war.shield > 0) {
+			war.shield -= dmg;
+		} else {
+			war.health -= dmg;
+		}
+
+		setTraits(world, currentTraits);
+	}
 
 
 	// Static getters
@@ -446,7 +485,10 @@ public class CelestialBody {
 		return getBody(world).getPlanet();
 	}
 
+
 	public static float getGravity(EntityLivingBase entity) {
+		if(entity instanceof EntityWaterMob) return AstronomyUtil.STANDARD_GRAVITY;
+
 		if(inOrbit(entity.worldObj)) {
 			if(HbmLivingProps.hasGravity(entity)) {
 				OrbitalStation station = entity.worldObj.isRemote
@@ -479,6 +521,10 @@ public class CelestialBody {
 
 	public static double getRotationalPeriod(World world) {
 		return getBody(world).getRotationalPeriod();
+	}
+
+	public static float getSemiMajorAxis(World world) {
+		return getBody(world).semiMajorAxisKm;
 	}
 
 	public static boolean hasTrait(World world, Class<? extends CelestialBodyTrait> trait) {

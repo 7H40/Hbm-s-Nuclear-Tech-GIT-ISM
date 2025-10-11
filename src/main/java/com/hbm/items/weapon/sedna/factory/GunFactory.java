@@ -139,7 +139,7 @@ public class GunFactory {
 	public static enum EnumAmmoSecret {
 		FOLLY_SM, FOLLY_NUKE,
 		M44_EQUESTRIAN, G12_EQUESTRIAN, BMG50_EQUESTRIAN,
-		P35_800, BMG50_BLACK
+		P35_800, BMG50_BLACK, P35_800_BL
 	}
 	
 	public static enum EnumModTest {
@@ -164,7 +164,8 @@ public class GunFactory {
 		SPEEDUP, CHOKE, SPEEDLOADER,
 		FURNITURE_GREEN, FURNITURE_BLACK, BAYONET,
 		STACK_MAG, SKIN_SATURNITE, LAS_SHOTGUN,
-		LAS_CAPACITOR, LAS_AUTO
+		LAS_CAPACITOR, LAS_AUTO,
+		NICKEL, DOUBLOONS
 	}
 	
 	public static enum EnumModCaliber {

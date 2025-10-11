@@ -1,5 +1,18 @@
 package com.hbm.main;
 
+import java.io.File;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.logging.log4j.Level;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.hbm.blocks.IStepTickReceiver;
@@ -12,7 +25,7 @@ import com.hbm.config.RadiationConfig;
 import com.hbm.config.ServerConfig;
 import com.hbm.config.SpaceConfig;
 import com.hbm.dim.CelestialBody;
-import com.hbm.dim.DebugTeleporter;
+import com.hbm.dim.CelestialTeleporter;
 import com.hbm.dim.WorldGeneratorCelestial;
 import com.hbm.dim.WorldProviderCelestial;
 import com.hbm.dim.WorldProviderEarth;
@@ -21,11 +34,11 @@ import com.hbm.dim.orbit.OrbitalStation;
 import com.hbm.dim.orbit.WorldProviderOrbit;
 import com.hbm.dim.trait.CBT_Atmosphere;
 import com.hbm.dim.trait.CBT_Lights;
-import com.hbm.entity.mob.EntityCreeperTainted;
-import com.hbm.entity.mob.EntityCyberCrab;
+import com.hbm.dim.trait.CelestialBodyTrait;
 import com.hbm.entity.missile.EntityRideableRocket;
 import com.hbm.entity.missile.EntityRideableRocket.RocketState;
-import com.hbm.entity.mob.ai.EntityAIFireGun;
+import com.hbm.entity.mob.EntityCreeperTainted;
+import com.hbm.entity.mob.EntityCyberCrab;
 import com.hbm.entity.projectile.EntityBulletBaseMK4;
 import com.hbm.entity.projectile.EntityBurningFOEQ;
 import com.hbm.entity.train.EntityRailCarBase;
@@ -35,12 +48,6 @@ import com.hbm.handler.ArmorModHandler;
 import com.hbm.handler.BobmazonOfferFactory;
 import com.hbm.handler.BossSpawnHandler;
 import com.hbm.handler.EntityEffectHandler;
-import com.hbm.hazard.HazardRegistry;
-import com.hbm.hazard.HazardSystem;
-import com.hbm.hazard.type.HazardTypeNeutron;
-import com.hbm.interfaces.IBomb;
-import com.hbm.interfaces.Spaghetti;
-import com.hbm.inventory.recipes.loader.SerializableRecipe;
 import com.hbm.handler.HTTPHandler;
 import com.hbm.handler.HbmKeybinds.EnumKeybind;
 import com.hbm.handler.atmosphere.ChunkAtmosphereManager;
@@ -48,9 +55,20 @@ import com.hbm.handler.neutron.NeutronNodeWorld;
 import com.hbm.handler.pollution.PollutionHandler;
 import com.hbm.handler.pollution.PollutionHandler.PollutionType;
 import com.hbm.handler.threading.PacketThreading;
+import com.hbm.hazard.HazardRegistry;
+import com.hbm.hazard.HazardSystem;
+import com.hbm.hazard.type.HazardTypeNeutron;
+import com.hbm.interfaces.IBomb;
+import com.hbm.interfaces.Spaghetti;
+import com.hbm.inventory.recipes.loader.SerializableRecipe;
 import com.hbm.items.IEquipReceiver;
 import com.hbm.items.ModItems;
-import com.hbm.items.armor.*;
+import com.hbm.items.armor.ArmorFSB;
+import com.hbm.items.armor.IAttackHandler;
+import com.hbm.items.armor.IDamageHandler;
+import com.hbm.items.armor.ItemArmorMod;
+import com.hbm.items.armor.ItemModRevive;
+import com.hbm.items.armor.ItemModShackles;
 import com.hbm.items.food.ItemConserve.EnumFoodType;
 import com.hbm.items.tool.ItemGuideBook.BookType;
 import com.hbm.items.weapon.sedna.BulletConfig;
@@ -58,8 +76,8 @@ import com.hbm.items.weapon.sedna.ItemGunBaseNT;
 import com.hbm.items.weapon.sedna.factory.XFactory12ga;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.lib.RefStrings;
-import com.hbm.packet.toclient.AuxParticlePacketNT;
 import com.hbm.packet.PacketDispatcher;
+import com.hbm.packet.toclient.AuxParticlePacketNT;
 import com.hbm.packet.toclient.PermaSyncPacket;
 import com.hbm.packet.toclient.PlayerInformPacket;
 import com.hbm.packet.toclient.SerializableRecipePacket;
@@ -78,16 +96,17 @@ import com.hbm.world.PlanetGen;
 import com.hbm.world.generator.TimedGenerator;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
@@ -103,7 +122,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.*;
@@ -138,28 +156,28 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityEvent.EnteringChunk;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.logging.log4j.Level;
-
-import java.io.File;
-import java.lang.reflect.Field;
-import java.util.*;
 
 @Spaghetti("fuck")
 public class ModEventHandler {
@@ -351,6 +369,10 @@ public class ModEventHandler {
 			event.entity.dropItem(ModItems.book_of_, 1);
 		}
 
+		if(event.entity.getUniqueID().toString().equals(ShadyUtil.MellowRPG8)) {
+			event.entity.entityDropItem(new ItemStack(ModBlocks.block_meteor, 1 + rand.nextInt(10)), 0.0F);
+		}
+
 		if(event.entity instanceof EntityCreeperTainted && event.source == ModDamageSource.boxcar) {
 
 			for(Object o : event.entity.worldObj.getEntitiesWithinAABB(EntityPlayer.class, event.entity.boundingBox.expand(50, 50, 50))) {
@@ -475,74 +497,18 @@ public class ModEventHandler {
 
 		if(entity instanceof EntityZombie) {
 			if(world.rand.nextFloat() < 0.005F && soot > 2) { // full hazmat zombine
-				equipFullSet(entity, ModItems.hazmat_helmet, ModItems.hazmat_plate, ModItems.hazmat_legs, ModItems.hazmat_boots);
+				MobUtil.equipFullSet(entity, ModItems.hazmat_helmet, ModItems.hazmat_plate, ModItems.hazmat_legs, ModItems.hazmat_boots);
 				return;
 			}
-
-			if(world.rand.nextFloat() < 0.005F && soot > 20) { // full security zombine
-				equipFullSet(entity, ModItems.security_helmet, ModItems.security_plate, ModItems.security_legs, ModItems.security_boots);
-				return;
-			}
-
-			slotPools.put(4, createSlotPool(8000, new Object[][]{ //new slots, smooth, brushed, no wrinkles // old slots, wrinkled, rusty, not smooth
-				{ModItems.gas_mask_m65, 16}, {ModItems.gas_mask_olde, 12}, {ModItems.mask_of_infamy, 8},
-				{ModItems.gas_mask_mono, 8}, {ModItems.robes_helmet, 32}, {ModItems.no9, 16},
-				{ModItems.cobalt_helmet, 2}, {ModItems.rag_piss, 1}, {ModItems.hat, 1}, {ModItems.alloy_helmet, 2},
-				{ModItems.titanium_helmet, 4}, {ModItems.steel_helmet, 8}
-			}));
-			slotPools.put(3, createSlotPool(7000, new Object[][]{
-				{ModItems.starmetal_plate, 1}, {ModItems.cobalt_plate, 2}, {ModItems.robes_plate, 32},
-				{ModItems.jackt, 32}, {ModItems.jackt2, 32}, {ModItems.alloy_plate, 2},
-				{ModItems.steel_plate, 2}
-			}));
-			slotPools.put(2, createSlotPool(7000, new Object[][]{
-				{ModItems.zirconium_legs, 1}, {ModItems.cobalt_legs, 2}, {ModItems.steel_legs, 16},
-				{ModItems.titanium_legs, 8}, {ModItems.robes_legs, 32}, {ModItems.alloy_legs, 2}
-			}));
-			slotPools.put(1, createSlotPool(7000, new Object[][]{
-				{ModItems.robes_boots, 32}, {ModItems.steel_boots, 16}, {ModItems.cobalt_boots, 2}, {ModItems.alloy_boots, 2}
-			}));
-			slotPools.put(0, createSlotPool(10000, new Object[][]{
-				{ModItems.pipe_lead, 30}, {ModItems.crowbar, 25}, {ModItems.geiger_counter, 20},
-				{ModItems.reer_graar, 16}, {ModItems.steel_pickaxe, 12}, {ModItems.stopsign, 10},
-				{ModItems.sopsign, 8}, {ModItems.chernobylsign, 6}, {ModItems.steel_sword, 15},
-				{ModItems.alloy_axe, 5}, {ModItems.titanium_sword, 8}, {ModItems.lead_gavel, 4},
-				{ModItems.wrench, 20}, {ModItems.cobalt_decorated_sword, 2}, {ModItems.detonator_de, 1}
-			}));
+			slotPools = MobUtil.slotPoolCommon;
 
 		} else if(entity instanceof EntitySkeleton) {
-
-			slotPools.put(4, createSlotPool(12000, new Object[][]{
-				{ModItems.gas_mask_m65, 16}, {ModItems.gas_mask_olde, 12}, {ModItems.mask_of_infamy, 8},
-				{ModItems.gas_mask_mono, 8}, {ModItems.robes_helmet, 32}, {ModItems.no9, 16},
-				{ModItems.cobalt_helmet, 2}, {ModItems.rag_piss, 1}, {ModItems.hat, 1}, {ModItems.alloy_helmet, 2},
-				{ModItems.titanium_helmet, 4}, {ModItems.steel_helmet, 8}
-			}));
-			slotPools.put(3, createSlotPool(10000, new Object[][]{
-				{ModItems.starmetal_plate, 1}, {ModItems.cobalt_plate, 2}, {ModItems.alloy_plate, 2}, //sadly they cant wear jackets bc it breaks it
-				{ModItems.steel_plate, 8}, {ModItems.titanium_plate, 4}
-			}));
-			slotPools.put(2, createSlotPool(10000, new Object[][]{
-				{ModItems.zirconium_legs, 1}, {ModItems.cobalt_legs, 2}, {ModItems.steel_legs, 16},
-				{ModItems.titanium_legs, 8}, {ModItems.robes_legs, 32}, {ModItems.alloy_legs, 2},
-			}));
-			slotPools.put(1, createSlotPool(10000, new Object[][]{
-				{ModItems.robes_boots, 32}, {ModItems.steel_boots, 16}, {ModItems.cobalt_boots, 2}, {ModItems.alloy_boots, 2},
-				{ModItems.titanium_boots, 6}
-			}));
-
+			slotPools = MobUtil.slotPoolRanged;
 			ItemStack bowReplacement = getSkelegun(soot, world.rand);
 			slotPools.put(0, createSlotPool(50, bowReplacement != null ? new Object[][]{{bowReplacement, 1}} : new Object[][]{}));
 		}
 
-		assignItemsToEntity(entity, slotPools);
-	}
-
-	private void equipFullSet(EntityLivingBase entity, Item helmet, Item chest, Item legs, Item boots) { //for brainlets (me) to add more armorsets later when i forget about how this works
-		entity.setCurrentItemOrArmor(4, new ItemStack(helmet)); //p_70062_1_ is the slot number
-		entity.setCurrentItemOrArmor(3, new ItemStack(chest));
-		entity.setCurrentItemOrArmor(2, new ItemStack(legs));
-		entity.setCurrentItemOrArmor(1, new ItemStack(boots));
+		MobUtil.assignItemsToEntity(entity, slotPools, rand);
 	}
 
 	private List<WeightedRandomObject> createSlotPool(int nullWeight, Object[][] items) {
@@ -561,72 +527,28 @@ public class ModEventHandler {
 		return pool;
 	}
 
-
-	public void assignItemsToEntity(EntityLivingBase entity, Map<Integer, List<WeightedRandomObject>> slotPools) {
-		for (Map.Entry<Integer, List<WeightedRandomObject>> entry : slotPools.entrySet()) {
-			int slot = entry.getKey();
-			List<WeightedRandomObject> pool = entry.getValue();
-
-			WeightedRandomObject choice = (WeightedRandomObject) WeightedRandom.getRandomItem(rand, pool); //NullPointerException sludge fix
-			if (choice == null) {
-				continue;
-			}
-
-			ItemStack stack = choice.asStack();
-			if (stack == null || stack.getItem() == null) {
-				continue;
-			}
-
-			if (stack.getItem() == ModItems.gas_mask_m65 //eyesore
-				|| stack.getItem() == ModItems.gas_mask_olde
-				|| stack.getItem() == ModItems.gas_mask_mono) {
-				ArmorUtil.installGasMaskFilter(stack, new ItemStack(ModItems.gas_mask_filter));
-			}
-
-			entity.setCurrentItemOrArmor(slot, stack);
-
-			//Give skeleton AI if it has a gun
-			if (slot == 0 && entity instanceof EntitySkeleton && pool == slotPools.get(0)) {
-				addFireTask((EntityLiving) entity);
-			}
-		}
-	}
-
 	private static ItemStack getSkelegun(float soot, Random rand) {
-		if(!MobConfig.enableMobWeapons) return null;
-		if(rand.nextDouble() > Math.log(soot) * 0.25) return null;
+		if (!MobConfig.enableMobWeapons) return null;
+		if (rand.nextDouble() > Math.log(soot) * 0.25) return null;
 
-		ArrayList<WeightedRandomObject> pool = new ArrayList<WeightedRandomObject>();
-		pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_light_revolver), 12));
-		pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_heavy_revolver), 8));
+		ArrayList<WeightedRandomObject> pool = new ArrayList<>();
 
-		if(soot > 2) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_pepperbox), 10));
-		if(soot > 2) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_henry), 8));
-		if(soot > 2) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_greasegun), 6));
-
-		if(soot > 4) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_maresleg), 4));
-		if(soot > 4) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_uzi), 6));
-
-		if(soot > 8) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_spas12), 3));
-		if(soot > 8) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_am180), 4));
-
-		if(soot > 12) pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_congolake), 1));
+		if(soot < 0.3){
+			pool.add(new WeightedRandomObject(new ItemStack(ModItems.gun_pepperbox), 5));
+			pool.add(new WeightedRandomObject(null, 20));
+		} else if(soot > 0.3 && soot < 1) {
+			pool.addAll(MobUtil.slotPoolGuns.get(0.3));
+		} else if (soot < 3) {
+			pool.addAll(MobUtil.slotPoolGuns.get(1D));
+		} else if (soot < 5) {
+			pool.addAll(MobUtil.slotPoolGuns.get(3D));
+		} else {
+			pool.addAll(MobUtil.slotPoolGuns.get(5D));
+		}
 
 		WeightedRandomObject selected = (WeightedRandomObject) WeightedRandom.getRandomItem(rand, pool);
 
 		return selected.asStack();
-	}
-
-	// these fucking tasks keep stacking on top of themselves
-	private static void addFireTask(EntityLiving entity) {
-		entity.setEquipmentDropChance(0, 0); // Prevent dropping guns
-
-		for(Object entry : entity.tasks.taskEntries) {
-			EntityAITasks.EntityAITaskEntry task = (EntityAITasks.EntityAITaskEntry) entry;
-			if(task.action instanceof EntityAIFireGun) return;
-		}
-
-		entity.tasks.addTask(3, new EntityAIFireGun(entity));
 	}
 
 	@SubscribeEvent
@@ -637,7 +559,7 @@ public class ModEventHandler {
 		ItemStack held = living.getHeldItem();
 
 		if(held != null && held.getItem() instanceof ItemGunBaseNT) {
-			addFireTask(living);
+			MobUtil.addFireTask(living);
 		}
 	}
 
@@ -703,8 +625,16 @@ public class ModEventHandler {
 		if(event.current != null && event.current.getItem() == Items.water_bucket) {
 			ForgeDirection dir = ForgeDirection.getOrientation(event.target.sideHit);
 			CBT_Atmosphere atmosphere = ChunkAtmosphereManager.proxy.getAtmosphere(event.world, event.target.blockX + dir.offsetX, event.target.blockY + dir.offsetY, event.target.blockZ + dir.offsetZ);
-			if(ChunkAtmosphereManager.proxy.hasLiquidPressure(atmosphere)) {
-				event.world.provider.isHellWorld = false;
+			boolean hasLiquidPressure = ChunkAtmosphereManager.proxy.hasLiquidPressure(atmosphere);
+
+			if(Loader.isModLoaded(Compat.MOD_COFH)) {
+				if(!hasLiquidPressure) {
+					event.setCanceled(true);
+				}
+			} else {
+				if(hasLiquidPressure) {
+					event.world.provider.isHellWorld = false;
+				}
 			}
 		}
 	}
@@ -935,7 +865,7 @@ public class ModEventHandler {
 			if(event.phase == Phase.END) {
 				EntityRailCarBase.updateMotion(event.world);
 
-				DebugTeleporter.runQueuedTeleport();
+				CelestialTeleporter.runQueuedTeleport();
 
 				// Once per second, run atmospheric chemistry
 				if(event.world.getTotalWorldTime() % 20 == 0) {
@@ -1168,6 +1098,23 @@ public class ModEventHandler {
 			((ArmorFSB)((EntityPlayer)e).inventory.armorInventory[2].getItem()).handleFall((EntityPlayer)e, event.distance);
 	}
 
+	//this exists!?
+	@SubscribeEvent
+	public void onUseHoe(UseHoeEvent event) {
+		World world = event.world;
+		int x = event.x;
+		int y = event.y;
+		int z = event.z;
+
+		Block block = world.getBlock(x, y, z);
+
+		if(block == ModBlocks.rubber_grass || block == ModBlocks.rubber_silt) {
+			world.setBlock(x, y, z, ModBlocks.rubber_farmland);
+			event.current.damageItem(1, event.entityPlayer);
+			event.setResult(Result.ALLOW);
+		}
+	}
+
 	private static final UUID fopSpeed = UUID.fromString("e5a8c95d-c7a0-4ecf-8126-76fb8c949389");
 
 	@SubscribeEvent
@@ -1383,7 +1330,7 @@ public class ModEventHandler {
 
 				if(rx < minBuffer || rx > maxBuffer || rz < minBuffer || rz > maxBuffer) {
 					OrbitalStation station = OrbitalStation.getStationFromPosition((int)player.posX, (int)player.posZ);
-					DebugTeleporter.teleport(player, station.orbiting.dimensionId, rand.nextInt(SpaceConfig.maxProbeDistance * 2) - SpaceConfig.maxProbeDistance, 800, rand.nextInt(SpaceConfig.maxProbeDistance * 2) - SpaceConfig.maxProbeDistance, false);
+					CelestialTeleporter.teleport(player, station.orbiting.dimensionId, rand.nextInt(SpaceConfig.maxProbeDistance * 2) - SpaceConfig.maxProbeDistance, 800, rand.nextInt(SpaceConfig.maxProbeDistance * 2) - SpaceConfig.maxProbeDistance, false);
 				}
 			}
 
@@ -1498,6 +1445,11 @@ public class ModEventHandler {
 			}
 
 		}
+
+		/*if(!player.worldObj.isRemote && event.phase == TickEvent.Phase.END && player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemGunBaseNT && player instanceof EntityPlayerMP) {
+			HeldItemNBTPacket packet = new HeldItemNBTPacket(player.getHeldItem());
+			PacketDispatcher.wrapper.sendTo(packet, (EntityPlayerMP) player);
+		}*/
 	}
 
 	@SubscribeEvent
@@ -1528,8 +1480,14 @@ public class ModEventHandler {
 	public void onServerTick(TickEvent.ServerTickEvent event) {
 
 		if(event.phase == Phase.START) {
+				for(CelestialBody body : CelestialBody.getAllBodies()) {
+					List<CelestialBodyTrait> traits = new ArrayList<>(body.getTraits().values());
+					for (CelestialBodyTrait trait : traits) {
+						trait.update(false);
+					}
+				}
 
-			// Redstone over Radio
+			// do other shit I guess?
 			RTTYSystem.updateBroadcastQueue();
 			// Logistics drone network
 			RequestNetwork.updateEntries();
@@ -1540,6 +1498,7 @@ public class ModEventHandler {
 			// Dyson Swarms
 			CelestialBody.updateSwarms();
 		}
+
 
 		// There is an issue here somewhere...
 		// I cannot, for the life of me, figure out why a single certain bug happens.

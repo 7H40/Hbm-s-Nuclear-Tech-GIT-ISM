@@ -26,10 +26,10 @@ import com.hbm.items.weapon.sedna.mags.MagazineFullReload;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.packet.toclient.AuxParticlePacketNT;
+import com.hbm.render.anim.AnimationEnums.GunAnimation;
 import com.hbm.render.anim.BusAnimation;
 import com.hbm.render.anim.BusAnimationSequence;
 import com.hbm.render.anim.BusAnimationKeyframe.IType;
-import com.hbm.render.anim.HbmAnimations.AnimType;
 import com.hbm.util.DamageResistanceHandler.DamageClass;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
@@ -49,7 +49,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class XFactoryEnergy {
 
-	public static final ResourceLocation scope_luna = new ResourceLocation(RefStrings.MODID, "textures/misc/scope_luna.png");
+	public static final ResourceLocation scope_luna = new ResourceLocation(RefStrings.MODID, "textures/misc/scope_amat.png");
 
 	public static BulletConfig energy_tesla;
 	public static BulletConfig energy_tesla_overcharge;
@@ -104,15 +104,15 @@ public class XFactoryEnergy {
 	public static BiConsumer<EntityBulletBeamBase, MovingObjectPosition> LAMBDA_LIGHTNING_SPLIT = (beam, mop) -> {
 		LAMBDA_LIGHTNING_HIT.accept(beam, mop);
 		if(mop.typeOfHit != mop.typeOfHit.ENTITY) return;
-		
+
 		double range = 20;
 		List<EntityLivingBase> potentialTargets = beam.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, AxisAlignedBB.getBoundingBox(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord, mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord).expand(range, range, range));
 		Collections.shuffle(potentialTargets);
-		
+
 		for(EntityLivingBase target : potentialTargets) {
 			if(target == beam.thrower) continue;
 			if(target == mop.entityHit) continue;
-			
+
 			Vec3 delta = Vec3.createVectorHelper(target.posX - mop.hitVec.xCoord, target.posY + target.height / 2 - mop.hitVec.yCoord, target.posZ - mop.hitVec.zCoord);
 			if(delta.lengthVector() > 20) continue;
 			EntityBulletBeamBase sub = new EntityBulletBeamBase(beam.thrower, energy_tesla_ir_sub, beam.damage);
@@ -166,10 +166,10 @@ public class XFactoryEnergy {
 		energy_las_overcharge = new BulletConfig().setItem(EnumAmmo.CAPACITOR_OVERCHARGE).setCasing(new ItemStack(ModItems.ingot_polymer, 2), 4).setupDamageClass(DamageClass.LASER).setBeam().setSpread(0.0F).setLife(5).setRenderRotations(false).setDoesPenetrate(true).setOnBeamImpact(BulletConfig.LAMBDA_STANDARD_BEAM_HIT);
 		energy_las_ir = new BulletConfig().setItem(EnumAmmo.CAPACITOR_IR).setCasing(new ItemStack(ModItems.ingot_polymer, 2), 4).setupDamageClass(DamageClass.FIRE).setBeam().setSpread(0.0F).setLife(5).setRenderRotations(false).setOnBeamImpact(LAMBDA_IR_HIT);
 
-		energy_emerald = energy_las.clone().setArmorPiercing(0.5F).setThresholdNegation(5F);
-		energy_emerald_overcharge = energy_las_overcharge.clone().setArmorPiercing(0.5F).setThresholdNegation(5F);
-		energy_emerald_ir = energy_las_ir.clone().setArmorPiercing(0.5F).setThresholdNegation(5F);
-		
+		energy_emerald = energy_las.clone().setArmorPiercing(0.5F).setThresholdNegation(10F);
+		energy_emerald_overcharge = energy_las_overcharge.clone().setArmorPiercing(0.5F).setThresholdNegation(15F);
+		energy_emerald_ir = energy_las_ir.clone().setArmorPiercing(0.5F).setThresholdNegation(10F);
+
 		ModItems.gun_tesla_cannon = new ItemGunBaseNT(WeaponQuality.A_SIDE, new GunConfig()
 				.dura(1_000).draw(10).inspect(33).crosshair(Crosshair.CIRCLE)
 				.rec(new Receiver(0)
@@ -194,7 +194,7 @@ public class XFactoryEnergy {
 		ModItems.gun_laser_pistol_pew_pew = new ItemGunBaseNT(WeaponQuality.B_SIDE, new GunConfig()
 				.dura(500).draw(10).inspect(26).crosshair(Crosshair.CIRCLE)
 				.rec(new Receiver(0)
-						.dmg(20F).rounds(5).delay(10).spread(0.25F).spreadHipfire(1F).reload(45).jam(37).sound("hbm:weapon.fire.laserPistol", 1.0F, 0.8F)
+						.dmg(30F).rounds(5).delay(10).spread(0.25F).spreadHipfire(1F).reload(45).jam(37).sound("hbm:weapon.fire.laserPistol", 1.0F, 0.8F)
 						.mag(new MagazineFullReload(0, 10).addConfigs(energy_las, energy_las_overcharge, energy_las_ir))
 						.offset(0.75, -0.0625 * 1.5, -0.1875)
 						.setupStandardFire().recoil(LAMBDA_RECOIL_ENERGY))
@@ -226,7 +226,7 @@ public class XFactoryEnergy {
 
 	public static BiConsumer<ItemStack, LambdaContext> LAMBDA_RECOIL_ENERGY = (stack, ctx) -> { };
 
-	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, AnimType, BusAnimation> LAMBDA_TESLA_ANIMS = (stack, type) -> {
+	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, GunAnimation, BusAnimation> LAMBDA_TESLA_ANIMS = (stack, type) -> {
 		int amount = ((ItemGunBaseNT) stack.getItem()).getConfig(stack, 0).getReceivers(stack)[0].getMagazine(stack).getAmount(stack, MainRegistry.proxy.me().inventory);
 		switch(type) {
 		case EQUIP: return new BusAnimation()
@@ -245,7 +245,7 @@ public class XFactoryEnergy {
 		return null;
 	};
 
-	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, AnimType, BusAnimation> LAMBDA_LASER_PISTOL = (stack, type) -> {
+	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, GunAnimation, BusAnimation> LAMBDA_LASER_PISTOL = (stack, type) -> {
 		switch(type) {
 		case EQUIP: return new BusAnimation()
 				.addBus("EQUIP", new BusAnimationSequence().addPos(60, 0, 0, 0).addPos(0, 0, 0, 500, IType.SIN_DOWN));
@@ -266,7 +266,7 @@ public class XFactoryEnergy {
 		return null;
 	};
 
-	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, AnimType, BusAnimation> LAMBDA_LASRIFLE = (stack, type) -> {
+	@SuppressWarnings("incomplete-switch") public static BiFunction<ItemStack, GunAnimation, BusAnimation> LAMBDA_LASRIFLE = (stack, type) -> {
 		switch(type) {
 		case EQUIP: return new BusAnimation()
 				.addBus("EQUIP", new BusAnimationSequence().addPos(60, 0, 0, 0).addPos(0, 0, 0, 500, IType.SIN_DOWN));

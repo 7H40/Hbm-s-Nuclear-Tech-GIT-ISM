@@ -1,8 +1,12 @@
 package com.hbm.tileentity.machine;
 
 import com.hbm.blocks.ModBlocks;
-import com.hbm.blocks.generic.BlockPlushie;
+import com.hbm.blocks.generic.BlockPlushie.PlushieType;
 import com.hbm.blocks.generic.BlockPlushie.TileEntityPlushie;
+import com.hbm.explosion.vanillant.ExplosionVNT;
+import com.hbm.explosion.vanillant.standard.EntityProcessorCrossSmooth;
+import com.hbm.explosion.vanillant.standard.ExplosionEffectWeapon;
+import com.hbm.explosion.vanillant.standard.PlayerProcessorStandard;
 import com.hbm.inventory.container.ContainerMachinePress;
 import com.hbm.inventory.gui.GUIMachinePress;
 import com.hbm.inventory.recipes.PressRecipes;
@@ -57,6 +61,11 @@ public class TileEntityMachinePress extends TileEntityMachineBase implements IGU
 
 		if(!worldObj.isRemote) {
 
+			// Triggers the legacy monoblock fix
+			if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) < 12) {
+				worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord), 1);
+			}
+
 			boolean preheated = false;
 
 			for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
@@ -96,7 +105,21 @@ public class TileEntityMachinePress extends TileEntityMachineBase implements IGU
 					this.press += stampSpeed;
 
 					if(this.press >= this.maxPress) {
-						String squish = worldObj.getBlock(xCoord, yCoord + 1, zCoord) instanceof BlockPlushie ? "hbm:block.squeakyPain" : "hbm:block.pressOperate";
+						String squish = "hbm:block.pressOperate";
+						TileEntity tile = worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+						if(tile instanceof TileEntityPlushie) {
+							TileEntityPlushie plushie = (TileEntityPlushie) tile;
+							squish = "hbm:block.squeakyPain";
+
+							if(plushie.type == PlushieType.HUNDUN) {
+								worldObj.func_147480_a(xCoord, yCoord, zCoord, false);
+								ExplosionVNT vnt = new ExplosionVNT(worldObj, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 5);
+								vnt.setEntityProcessor(new EntityProcessorCrossSmooth(1, 50));
+								vnt.setPlayerProcessor(new PlayerProcessorStandard());
+								vnt.setSFX(new ExplosionEffectWeapon(10, 2.5F, 1F));
+								vnt.explode();
+							}
+						}
 						this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, squish, getVolume(1.5F), 1.0F);
 						ItemStack output = PressRecipes.getOutput(slots[2], slots[1]);
 						if(slots[3] == null) {

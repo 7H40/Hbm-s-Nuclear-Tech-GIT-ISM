@@ -11,6 +11,7 @@ import com.hbm.blocks.IBlockMulti;
 import com.hbm.blocks.IBlockMultiPass;
 import com.hbm.blocks.ITooltipProvider;
 import com.hbm.blocks.ModBlocks;
+import com.hbm.config.SpaceConfig;
 import com.hbm.dim.SolarSystem;
 import com.hbm.items.ItemEnums.EnumChunkType;
 import com.hbm.items.ModItems;
@@ -221,20 +222,7 @@ public class BlockOre extends Block implements IBlockMultiPass, IBlockMulti, ITo
 		return rectify(meta);
 	}
 
-	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-		int meta = world.getBlockMetadata(x, y, z);
-
-		if(world.getBlock(x, y - 1, z) == ModBlocks.ore_oil_empty) {
-			world.setBlock(x, y, z, ModBlocks.ore_oil_empty, meta, 3);
-			world.setBlock(x, y - 1, z, ModBlocks.ore_oil, meta, 3);
-		}
-		if(world.getBlock(x, y - 1, z) == ModBlocks.ore_gas_empty) {
-			world.setBlock(x, y, z, ModBlocks.ore_gas_empty, meta, 3);
-			world.setBlock(x, y - 1, z, ModBlocks.ore_gas, meta, 3);
-		}
-	}
-
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
@@ -242,8 +230,10 @@ public class BlockOre extends Block implements IBlockMultiPass, IBlockMulti, ITo
 			list.add(new ItemStack(item, 1, i));
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean ext) {
+		if(!SpaceConfig.showOreLocations) return;
 		if(spawnsOn.isEmpty()) return;
 
 		if(spawnsOn.size() == SolarSystem.Body.values().length) {
