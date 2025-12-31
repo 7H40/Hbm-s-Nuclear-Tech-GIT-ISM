@@ -75,6 +75,8 @@ public class CelestialBody {
 	public float[] ringColor = new float[] {0.5F, 0.5F, 0.5F};
 	public float ringSize = 2;
 
+	public boolean hasIce = false; // has bedrock ice?
+
 	public FluidType gas;
 
 	public List<CelestialBody> satellites = new ArrayList<CelestialBody>(); // moon boyes
@@ -208,6 +210,11 @@ public class CelestialBody {
 		return this;
 	}
 
+	public CelestialBody withIce(boolean hasIce) {
+		this.hasIce = hasIce;
+		return this;
+	}
+
 
 	// /Chainables
 
@@ -311,17 +318,19 @@ public class CelestialBody {
 		setTraits(world, currentTraits);
 	}
 
-	public static void consumeGas(World world, FluidType fluid, double amount) {
+	public static boolean consumeGas(World world, FluidType fluid, double amount) {
 		HashMap<Class<? extends CelestialBodyTrait>, CelestialBodyTrait> currentTraits = getTraits(world);
 
 		CBT_Atmosphere atmosphere = (CBT_Atmosphere) currentTraits.get(CBT_Atmosphere.class);
-		if(atmosphere == null) return;
+		if(atmosphere == null) return false;
 
+		boolean didConsume = false;
 		int emptyIndex = -1;
 		for(int i = 0; i < atmosphere.fluids.size(); i++) {
 			FluidEntry entry = atmosphere.fluids.get(i);
 			if(entry.fluid == fluid) {
 				entry.pressure -= amount / AstronomyUtil.MB_PER_ATM;
+				didConsume = true;
 				emptyIndex = entry.pressure <= 0 ? i : -1;
 				break;
 			}
@@ -335,8 +344,9 @@ public class CelestialBody {
 			}
 		}
 
-
 		setTraits(world, currentTraits);
+
+		return didConsume;
 	}
 
 	public static void emitGas(World world, FluidType fluid, double amount) {

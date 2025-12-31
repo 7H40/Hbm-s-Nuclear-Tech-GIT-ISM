@@ -12,13 +12,12 @@ import net.minecraft.util.WeightedRandomChestContent;
 
 public class ItemPoolsSingle {
 
-	public static final String POOL_POWDER = "POOL_POWDER";
 	public static final String POOL_VAULT_RUSTY = "POOL_VAULT_RUSTY";
 	public static final String POOL_VAULT_STANDARD = "POOL_VAULT_STANDARD";
 	public static final String POOL_VAULT_REINFORCED = "POOL_VAULT_REINFORCED";
 	public static final String POOL_VAULT_UNBREAKABLE = "POOL_VAULT_UNBREAKABLE";
 	public static final String POOL_METEORITE_TREASURE = "POOL_METEORITE_TREASURE";
-
+	
 	public static void init() {
 
 		//powder boxes
@@ -38,7 +37,7 @@ public class ItemPoolsSingle {
 					weighted(ModItems.powder_cerium, 0, 1, 32, 1)
 			};
 		}};
-
+		
 		new ItemPool(POOL_VAULT_RUSTY) {{
 			this.pool = new WeightedRandomChestContent[] {
 					weighted(Items.gold_ingot, 0, 3, 14, 1),
@@ -125,6 +124,14 @@ public class ItemPoolsSingle {
 					weighted(ModItems.egg_glyphid, 0, 1, 1, 5),
 					weighted(ModItems.blueprint_folder, 1, 1, 1, 1)
 					//weighted(ModItems.gem_alexandrite, 0, 1, 1, 1),
+			};
+		}};
+		
+		new ItemPool(POOL_BLUEPRINTS) {{
+			this.pool = new WeightedRandomChestContent[] {
+					weighted(ModItems.blueprint_folder, 0, 1, 1, 10),
+					weighted(ModItems.blueprint_folder, 1, 1, 1, 5),
+					weighted(ModItems.blueprint_folder, 0, 1, 1, 1),
 			};
 		}};
 	}
