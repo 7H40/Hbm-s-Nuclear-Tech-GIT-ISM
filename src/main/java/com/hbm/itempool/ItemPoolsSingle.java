@@ -17,6 +17,8 @@ public class ItemPoolsSingle {
 	public static final String POOL_VAULT_REINFORCED = "POOL_VAULT_REINFORCED";
 	public static final String POOL_VAULT_UNBREAKABLE = "POOL_VAULT_UNBREAKABLE";
 	public static final String POOL_METEORITE_TREASURE = "POOL_METEORITE_TREASURE";
+	public static final String POOL_POWDER = "POOL_POWDER";
+	public static final String POOL_BLUEPRINTS = "POOL_BLUEPRINTS";
 	
 	public static void init() {
 
