@@ -71,8 +71,8 @@ public class ChunkProviderDuna extends ChunkProviderCelestial {
 		if(hasLowlands) caveGenV2.func_151539_a(this, worldObj, x, z, buffer.blocks);
 		if(hasNotLowlands) caveGenSmall.func_151539_a(this, worldObj, x, z, buffer.blocks);
 
-		oil.setMetas(buffer.metas);
-		oil.func_151539_a(this, worldObj, x, z, buffer.blocks);
+		// oil.setMetas(buffer.metas);
+		// oil.func_151539_a(this, worldObj, x, z, buffer.blocks);
 
 		return buffer;
 	}

@@ -209,31 +209,31 @@ public class HbmWorldGen implements IWorldGenerator {
 				}
 			}
 
-			if(GeneralConfig.enable528ColtanSpawn) {
-				DungeonToolbox.generateOre(world, rand, i, j, GeneralConfig.coltanRate, 4, 15, 40, ModBlocks.ore_coltan);
-			}
+			// if(GeneralConfig.enable528ColtanSpawn) {
+			// 	DungeonToolbox.generateOre(world, rand, i, j, GeneralConfig.coltanRate, 4, 15, 40, ModBlocks.ore_coltan);
+			// }
 
-			Random colRand = new Random(world.getSeed() + 5);
-			int colX = (int) (colRand.nextGaussian() * 1500);
-			int colZ = (int) (colRand.nextGaussian() * 1500);
-			int colRange = 750;
+			// Random colRand = new Random(world.getSeed() + 5);
+			// int colX = (int) (colRand.nextGaussian() * 1500);
+			// int colZ = (int) (colRand.nextGaussian() * 1500);
+			// int colRange = 750;
 
-			if(GeneralConfig.enable528ColtanDeposit) {
-				for(int k = 0; k < 2; k++) {
+			// if(GeneralConfig.enable528ColtanDeposit) {
+			// 	for(int k = 0; k < 2; k++) {
 
-					for(int r = 1; r <= 5; r++) {
-						int randPosX = i + rand.nextInt(16);
-						int randPosY = rand.nextInt(25) + 15;
-						int randPosZ = j + rand.nextInt(16);
+			// 		for(int r = 1; r <= 5; r++) {
+			// 			int randPosX = i + rand.nextInt(16);
+			// 			int randPosY = rand.nextInt(25) + 15;
+			// 			int randPosZ = j + rand.nextInt(16);
 
-						int range = colRange / r;
+			// 			int range = colRange / r;
 
-						if(randPosX <= colX + range && randPosX >= colX - range && randPosZ <= colZ + range && randPosZ >= colZ - range) {
-							(new WorldGenMinable(ModBlocks.ore_coltan, 4)).generate(world, rand, randPosX, randPosY, randPosZ);
-						}
-					}
-				}
-			}
+			// 			if(randPosX <= colX + range && randPosX >= colX - range && randPosZ <= colZ + range && randPosZ >= colZ - range) {
+			// 				(new WorldGenMinable(ModBlocks.ore_coltan, 4)).generate(world, rand, randPosX, randPosY, randPosZ);
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 
 		boolean enableDungeons = world.getWorldInfo().isMapFeaturesEnabled();
