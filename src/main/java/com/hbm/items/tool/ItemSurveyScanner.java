@@ -27,26 +27,24 @@ public class ItemSurveyScanner extends Item {
 			boolean hasOil = false;
 			boolean hasGas = false;
 			boolean hasBrine = false;
-			boolean hasColtan = false; //какое хуя тут вообще эта переменная которая бля используется только в этом ебучем месте
-			boolean hasBedrockOil = false;																					//
-			boolean hasDepth = false;																						//
-			boolean hasSchist = false;																						//
-			boolean hasAussie = false;																					    //
-																															//						
-			TileEntityBedrockOre tile = null;																		   	    //						
-																															//
-			for(int a = -5; a <= 5; a++) {          																		//					
-				for(int b = -5; b <= 5; b++) {																				//
-																															//						
-					for(int i =  y + 15; i > 1; i -= 2) {																	//								
-																															//
-						Block block = world.getBlock(x + a * 5, i, z + b * 5);												//
-																															//
-						//wow, this sucks!                                                                                  //
-						if(block == ModBlocks.ore_oil) hasOil = true;                                                       //
-						else if(block == ModBlocks.ore_gas) hasGas = true;                                                  //
-						else if(block == ModBlocks.ore_brine) hasBrine = true;                                              //
-						else if(block == ModBlocks.ore_coltan) hasColtan = false;   //<------------------------?????????????//
+			boolean hasColtan = false;
+			boolean hasBedrockOil = false;
+			boolean hasDepth = false;
+			boolean hasSchist = false;
+			boolean hasAussie = false;
+			TileEntityBedrockOre tile = null;
+
+			for(int a = -5; a <= 5; a++) {
+				for(int b = -5; b <= 5; b++) {
+					for(int i =  y + 15; i > 1; i -= 2) {
+
+						Block block = world.getBlock(x + a * 5, i, z + b * 5);
+
+						//wow, this sucks!
+						if(block == ModBlocks.ore_oil) hasOil = true;
+						else if(block == ModBlocks.ore_gas) hasGas = true;
+						else if(block == ModBlocks.ore_brine) hasBrine = true;
+						else if(block == ModBlocks.ore_coltan) hasColtan = true;
 						else if(block == ModBlocks.ore_bedrock_oil) hasBedrockOil = true;
 						else if(block == ModBlocks.stone_depth) hasDepth = true;
 						else if(block == ModBlocks.stone_depth_nether) hasDepth = true;

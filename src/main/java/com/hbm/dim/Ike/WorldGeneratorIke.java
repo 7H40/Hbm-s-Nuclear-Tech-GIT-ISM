@@ -33,7 +33,7 @@ public class WorldGeneratorIke implements IWorldGenerator {
 
 		BlockOre.addValidBody(ModBlocks.ore_mineral, SolarSystem.Body.IKE);
 		BlockOre.addValidBody(ModBlocks.ore_lithium, SolarSystem.Body.IKE);
-		//BlockOre.addValidBody(ModBlocks.ore_coltan, SolarSystem.Body.IKE);
+		BlockOre.addValidBody(ModBlocks.ore_coltan, SolarSystem.Body.IKE);
 		BlockOre.addValidBody(ModBlocks.ore_asbestos, SolarSystem.Body.IKE);
 
 		BlockOre.addValidBody(ModBlocks.ore_brine, SolarSystem.Body.IKE);

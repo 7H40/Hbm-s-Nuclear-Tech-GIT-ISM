@@ -66,7 +66,7 @@ public class BedrockOre {
 		BedrockOreDefinition zinc = new BedrockOreDefinition(EnumBedrockOre.ZINC,												2);
 		BedrockOreDefinition lithium = new BedrockOreDefinition(new ItemStack(ModItems.powder_lithium, 4), 1, 0xFFFFFF);
 		BedrockOreDefinition ice = new BedrockOreDefinition(new ItemStack(Blocks.packed_ice, 8), 1, 0xAAFFFF);
-		//BedrockOreDefinition coltan = new BedrockOreDefinition(new ItemStack(ModItems.fragment_coltan), 1, 0xA78D7A);
+		BedrockOreDefinition coltan = new BedrockOreDefinition(new ItemStack(ModItems.fragment_coltan), 1, 0xA78D7A);
 		BedrockOreDefinition lanthanium = new BedrockOreDefinition(new ItemStack(ModItems.powder_lanthanium), 2, 0xA1B9B9);
 		BedrockOreDefinition schrabidium = new BedrockOreDefinition(new ItemStack(ModItems.powder_schrabidium, 1), 4, 0x00FFFF, new FluidStack(Fluids.NITRIC_ACID, 500));
 		BedrockOreDefinition cinnabar = new BedrockOreDefinition(new ItemStack(ModItems.cinnebar, 4), 1, 0xFF0000);
@@ -126,7 +126,7 @@ public class BedrockOre {
 		registerBedrockOre(Body.DRES, iron, WorldConfig.bedrockIronSpawn);
 		registerBedrockOre(Body.DRES, copper, WorldConfig.bedrockCopperSpawn);
 		registerBedrockOre(Body.DRES, cadmium, 100);
-		//registerBedrockOre(Body.DRES, coltan, 100);
+		registerBedrockOre(Body.DRES, coltan, 100);
 		registerBedrockOre(Body.DRES, lanthanium, 50);
 		registerBedrockOre(Body.DRES, gold, WorldConfig.bedrockGoldSpawn);
 		registerBedrockOre(Body.DRES, redstone, WorldConfig.bedrockRedstoneSpawn);
