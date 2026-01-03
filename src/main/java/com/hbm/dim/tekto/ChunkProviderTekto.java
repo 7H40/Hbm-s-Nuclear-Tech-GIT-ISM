@@ -53,8 +53,8 @@ public class ChunkProviderTekto extends ChunkProviderCelestial {
 
 		caveGenV3.func_151539_a(this, worldObj, x, z, buffer.blocks);
 
-		tektonic.func_151539_a(this, worldObj, x, z, buffer.blocks);
-		bedtonic.func_151539_a(this, worldObj, x, z, buffer.blocks);
+	//	tektonic.func_151539_a(this, worldObj, x, z, buffer.blocks);
+	//	bedtonic.func_151539_a(this, worldObj, x, z, buffer.blocks);
 
 		// how many times do I gotta say BEEEEG
 		return buffer;

@@ -43,7 +43,7 @@ public class GeneralConfig {
 
 	public static boolean enable528 = false;
 	public static boolean enable528ReasimBoilers = true;
-	public static boolean enable528ColtanDeposit = true;
+	public static boolean enable528ColtanDeposit = false;
 	public static boolean enable528ColtanSpawn = false;
 	public static boolean enable528BosniaSimulator = true;
 	public static boolean enable528NetherBurn = true;
