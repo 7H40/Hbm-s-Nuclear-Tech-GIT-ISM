@@ -1,18 +1,26 @@
 package com.hbm.blocks.generic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
+import com.hbm.blocks.ILookOverlay;
 import com.hbm.config.WorldConfig;
 import com.hbm.dim.SolarSystem;
 import com.hbm.inventory.fluid.FluidType;
 import com.hbm.inventory.fluid.Fluids;
+import com.hbm.lib.ModDamageSource;
+import com.hbm.util.i18n.I18nUtil;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-public class BlockOreFluid extends BlockOre {
+public class BlockOreFluid extends BlockOre implements ILookOverlay {
 
 	private final Block empty;
 	private final ReserveType type;
@@ -141,6 +149,19 @@ public class BlockOreFluid extends BlockOre {
 
 	public static Block getFullBlock(Block block) {
 		return emptyToFull.get(block);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void printHook(RenderGameOverlayEvent.Pre event, World world, int x, int y, int z) {
+		List<String> text = new ArrayList();
+		if(this == com.hbm.blocks.ModBlocks.ore_oil) {
+			text.add("§4Этот блок нельзя сломать, так как он поставлен §2админом.");
+		} else {
+			text.add("You weren't supposed to mine that.");
+			text.add("Come on, get a derrick you doofus.");
+		}
+		ILookOverlay.printGeneric(event, I18nUtil.resolveKey(getUnlocalizedName() + ".name"), 0xffff00, 0x404000, text);
 	}
 
 }
