@@ -55,7 +55,7 @@ public class ChunkProviderLaythe extends ChunkProviderCelestial {
 	@Override
 	public BlockMetaBuffer getChunkPrimer(int x, int z) {
 		BlockMetaBuffer buffer = super.getChunkPrimer(x, z);
-		// oil.setMetas(buffer.metas);
+		oil.setMetas(buffer.metas);
 
 		if(biomesForGeneration[0] == BiomeGenBaseLaythe.laythePolar) {
 			snowires.func_151539_a(this, worldObj, x, z, buffer.blocks);
@@ -63,7 +63,7 @@ public class ChunkProviderLaythe extends ChunkProviderCelestial {
 			spires.func_151539_a(this, worldObj, x, z, buffer.blocks);
 		}
 		caveGenV3.func_151539_a(this, worldObj, x, z, buffer.blocks);
-		// oil.func_151539_a(this, worldObj, x, z, buffer.blocks);
+		oil.func_151539_a(this, worldObj, x, z, buffer.blocks);
 
 		return buffer;
 	}

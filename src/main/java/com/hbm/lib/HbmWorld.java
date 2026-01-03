@@ -67,30 +67,30 @@ public class HbmWorld {
 			MapGenChainloader.addOverworldGenerator(sellafieldCrater);
 		}
 
-		// if(WorldConfig.oilSpawn > 0) {
-		// 	MapGenBubble oilBubble = new MapGenBubble(WorldConfig.oilSpawn);
-		// 	oilBubble.block = ModBlocks.ore_oil;
-		// 	oilBubble.setSize(8, 16);
-		// 	MapGenChainloader.addOverworldGenerator(oilBubble);
-		// }
+		if(WorldConfig.oilSpawn > 0) {
+			MapGenBubble oilBubble = new MapGenBubble(WorldConfig.oilSpawn);
+			oilBubble.block = ModBlocks.ore_oil;
+			oilBubble.setSize(8, 16);
+			MapGenChainloader.addOverworldGenerator(oilBubble);
+		}
 
-		// if(WorldConfig.bedrockOilSpawn > 0) {
-		// 	MapGenBedrockOil bedrockBubble = new MapGenBedrockOil(WorldConfig.bedrockOilSpawn);
-		// 	MapGenChainloader.addOverworldGenerator(bedrockBubble);
-		// }
+		if(WorldConfig.bedrockOilSpawn > 0) {
+			MapGenBedrockOil bedrockBubble = new MapGenBedrockOil(WorldConfig.bedrockOilSpawn);
+			MapGenChainloader.addOverworldGenerator(bedrockBubble);
+		}
 
-		// int sandBubbleSpawn = 200;
-		// if(sandBubbleSpawn > 0) {
-		// 	MapGenBubble sandOilBubble = new MapGenBubble(sandBubbleSpawn);
-		// 	sandOilBubble.replace = Blocks.sand;
-		// 	sandOilBubble.block = ModBlocks.ore_oil_sand;
-		// 	sandOilBubble.canSpawn = biome -> !biome.canSpawnLightningBolt() && biome.temperature >= 1.5F;
-		// 	sandOilBubble.minY = 56;
-		// 	sandOilBubble.rangeY = 16;
-		// 	sandOilBubble.setSize(16, 48);
-		// 	sandOilBubble.fuzzy = true;
-		// 	MapGenChainloader.addOverworldGenerator(sandOilBubble);
-		// }
+		int sandBubbleSpawn = 200;
+		if(sandBubbleSpawn > 0) {
+			MapGenBubble sandOilBubble = new MapGenBubble(sandBubbleSpawn);
+			sandOilBubble.replace = Blocks.sand;
+			sandOilBubble.block = ModBlocks.ore_oil_sand;
+			sandOilBubble.canSpawn = biome -> !biome.canSpawnLightningBolt() && biome.temperature >= 1.5F;
+			sandOilBubble.minY = 56;
+			sandOilBubble.rangeY = 16;
+			sandOilBubble.setSize(16, 48);
+			sandOilBubble.fuzzy = true;
+			MapGenChainloader.addOverworldGenerator(sandOilBubble);
+		}
 	}
 
 }
