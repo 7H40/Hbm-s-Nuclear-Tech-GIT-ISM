@@ -47,6 +47,17 @@ public class ItemBlockLore extends ItemBlockBase {
 			list.add("Come on, get a derrick you doofus.");
 		}
 
+		if(this.field_150939_a == ModBlocks.rad_lava_block) {
+			list.add("You can't break this block.");
+		}
+
+		if(this.field_150939_a == ModBlocks.ore_uranium || this.field_150939_a == ModBlocks.ore_uranium_scorched ||
+			this.field_150939_a == ModBlocks.ore_nether_uranium || this.field_150939_a == ModBlocks.ore_nether_uranium_scorched ||
+			this.field_150939_a == ModBlocks.ore_gneiss_uranium || this.field_150939_a == ModBlocks.ore_gneiss_uranium_scorched ||
+			this.field_150939_a == ModBlocks.ore_sellafield_uranium_scorched) {
+			list.add("You won't get loot from this block.");
+		}
+
 		if(this.field_150939_a == ModBlocks.gravel_diamond) {
 			list.add("There is some kind of joke here,");
 			list.add("but I can't quite tell what it is.");

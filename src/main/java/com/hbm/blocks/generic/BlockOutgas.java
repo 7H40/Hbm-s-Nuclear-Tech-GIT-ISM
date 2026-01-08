@@ -1,18 +1,25 @@
 package com.hbm.blocks.generic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.hbm.blocks.ILookOverlay;
 import com.hbm.blocks.ModBlocks;
+import com.hbm.util.i18n.I18nUtil;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockOutgas extends Block {
+public class BlockOutgas extends Block implements ILookOverlay {
 	
 	boolean randomTick;
 	int rate;
@@ -82,6 +89,16 @@ public class BlockOutgas extends Block {
 	}
 
 	@Override
+	public int quantityDropped(Random rand) {
+		if(this == ModBlocks.ore_uranium_scorched ||
+				this == ModBlocks.ore_gneiss_uranium || this == ModBlocks.ore_gneiss_uranium_scorched ||
+				this == ModBlocks.ore_nether_uranium || this == ModBlocks.ore_nether_uranium_scorched) {
+			return 0;
+		}
+		return super.quantityDropped(rand);
+	}
+
+	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
 		
 		if(this.randomTick && getGas() == ModBlocks.gas_asbestos) {
@@ -147,5 +164,13 @@ public class BlockOutgas extends Block {
 				}
 			}
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void printHook(RenderGameOverlayEvent.Pre event, World world, int x, int y, int z) {
+		List<String> text = new ArrayList();
+		text.add("You won't get loot from this block.");
+		ILookOverlay.printGeneric(event, I18nUtil.resolveKey(getUnlocalizedName() + ".name"), 0xffff00, 0x404000, text);
 	}
 }

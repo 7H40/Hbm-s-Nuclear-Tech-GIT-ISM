@@ -220,9 +220,12 @@ public class CompatHandler {
             if(!floppyDisks.isEmpty()) { //check that floppy disks even exist in oredict.
 
                 // Recipes must be initialized here, since if they were initialized in `CraftingManager` then the disk item would not be created yet.
-                addShapelessAuto(disks.get("PWRangler").item, "oc:floppy", new ItemStack(ModBlocks.pwr_casing));
-
-                logger.info("OpenComputers disk recipe added for PWRangler.");
+                if(disks.get("PWRangler").item != null) {
+                    addShapelessAuto(disks.get("PWRangler").item, "oc:floppy", new ItemStack(ModBlocks.pwr_casing));
+                    logger.info("OpenComputers disk recipe added for PWRangler.");
+                } else {
+                    logger.info("PWRangler disk item is null, recipe cannot be loaded!");
+                }
             } else {
                 logger.info("OpenComputers floppy disk oredict not found, recipes cannot be loaded!");
             }

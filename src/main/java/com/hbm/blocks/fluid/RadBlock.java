@@ -1,12 +1,16 @@
 package com.hbm.blocks.fluid;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.hbm.blocks.ILookOverlay;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.lib.RefStrings;
 import com.hbm.util.ContaminationUtil;
 import com.hbm.util.ContaminationUtil.ContaminationType;
 import com.hbm.util.ContaminationUtil.HazardType;
+import com.hbm.util.i18n.I18nUtil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,9 +22,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fluids.Fluid;
 
-public class RadBlock extends VolcanicBlock {
+public class RadBlock extends VolcanicBlock implements ILookOverlay {
 
 	@SideOnly(Side.CLIENT) public static IIcon stillIconRad;
 	@SideOnly(Side.CLIENT) public static IIcon flowingIconRad;
@@ -77,5 +82,13 @@ public class RadBlock extends VolcanicBlock {
 		if(b == Blocks.diamond_ore) return ModBlocks.ore_sellafield_radgem;
 		if(b == ModBlocks.ore_uranium || b == ModBlocks.ore_gneiss_uranium) return world.rand.nextInt(5) == 0 ? ModBlocks.ore_sellafield_schrabidium : ModBlocks.ore_sellafield_uranium_scorched;
 		return null;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void printHook(RenderGameOverlayEvent.Pre event, World world, int x, int y, int z) {
+		List<String> text = new ArrayList();
+		text.add("Вы не получите лут с этого блока.");
+		ILookOverlay.printGeneric(event, I18nUtil.resolveKey(getUnlocalizedName() + ".name"), 0xffff00, 0x404000, text);
 	}
 }

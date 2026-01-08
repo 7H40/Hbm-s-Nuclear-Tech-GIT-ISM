@@ -1474,8 +1474,8 @@ public class ModBlocks {
 		ore_quartz = new BlockOre(Material.rock, Blocks.quartz_ore).setBlockName("ore_quartz").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_quartz");
 		ore_diamond = new BlockOre(Material.rock, Blocks.diamond_ore).setBlockName("ore_diamond").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_diamond");
 
-		ore_uranium = new BlockOreOutgas(Material.rock, true, 5, true).setBlockName("ore_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_uranium");
-		ore_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_uranium_scorched");
+		ore_uranium = new BlockOreOutgas(Material.rock, true, 5, true).setBlockName("ore_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_uranium");
+		ore_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_uranium_scorched");
 		ore_plutonium = new BlockOreOutgas(Material.rock, true, 5, true).setBlockName("ore_plutonium").setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_plutonium");
 		ore_titanium = new BlockOre(Material.rock).setBlockName("ore_titanium").setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_titanium");
 		ore_sulfur = new BlockOre(Material.rock).setBlockName("ore_sulfur").setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_sulfur");
@@ -1514,8 +1514,8 @@ public class ModBlocks {
 
 		ore_nether_coal = new BlockNetherCoal(Material.rock, false, 5, true).setBlockName("ore_nether_coal").setCreativeTab(MainRegistry.blockTab).setLightLevel(10F/15F).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_coal");
 		ore_nether_smoldering = new BlockSmolder(Material.rock).setBlockName("ore_nether_smoldering").setCreativeTab(MainRegistry.blockTab).setLightLevel(1F).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_smoldering");
-		ore_nether_uranium = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_nether_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_uranium");
-		ore_nether_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_nether_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_uranium_scorched");
+		ore_nether_uranium = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_nether_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_uranium");
+		ore_nether_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_nether_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_uranium_scorched");
 		ore_nether_plutonium = new BlockGeneric(Material.rock).setBlockName("ore_nether_plutonium").setCreativeTab(MainRegistry.blockTab).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_plutonium");
 		ore_nether_tungsten = new BlockGeneric(Material.rock).setBlockName("ore_nether_tungsten").setCreativeTab(MainRegistry.blockTab).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_tungsten");
 		ore_nether_sulfur = new BlockStepEffect(Material.rock).setBlockName("ore_nether_sulfur").setCreativeTab(MainRegistry.blockTab).setHardness(0.4F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_nether_sulfur");
@@ -1528,8 +1528,8 @@ public class ModBlocks {
 		stone_gneiss = new BlockGeneric(Material.rock).setBlockName("stone_gneiss").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":stone_gneiss_var");
 		ore_gneiss_iron = new BlockStepEffect(Material.rock).setBlockName("ore_gneiss_iron").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_iron");
 		ore_gneiss_gold = new BlockStepEffect(Material.rock).setBlockName("ore_gneiss_gold").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_gold");
-		ore_gneiss_uranium = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_gneiss_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_uranium");
-		ore_gneiss_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_gneiss_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_uranium_scorched");
+		ore_gneiss_uranium = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_gneiss_uranium").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_uranium");
+		ore_gneiss_uranium_scorched = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_gneiss_uranium_scorched").setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_uranium_scorched");
 		ore_gneiss_copper = new BlockStepEffect(Material.rock).setBlockName("ore_gneiss_copper").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_copper");
 		ore_gneiss_asbestos = new BlockOutgas(Material.rock, true, 5, true).setBlockName("ore_gneiss_asbestos").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_asbestos");
 		ore_gneiss_lithium = new BlockStepEffect(Material.rock).setBlockName("ore_gneiss_lithium").setCreativeTab(MainRegistry.blockTab).setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_gneiss_lithium");
@@ -2007,7 +2007,7 @@ public class ModBlocks {
 		sellafield = new BlockSellafield(Material.rock).setBlockName("sellafield").setStepSound(Block.soundTypeStone).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":sellafield_0");
 		ore_sellafield_diamond = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_diamond").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_diamond");
 		ore_sellafield_emerald = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_emerald").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_emerald");
-		ore_sellafield_uranium_scorched = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_uranium_scorched").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_uranium_scorched");
+		ore_sellafield_uranium_scorched = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_uranium_scorched").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(3.0F).setResistance(10.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_uranium_scorched");
 		ore_sellafield_schrabidium = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_schrabidium").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_schrabidium");
 		ore_sellafield_radgem = new BlockSellafieldOre(Material.rock).setBlockName("ore_sellafield_radgem").setStepSound(Block.soundTypeStone).setCreativeTab(MainRegistry.blockTab).setHardness(5.0F).setBlockTextureName(RefStrings.MODID + ":ore_overlay_radgem");
 
@@ -2715,7 +2715,7 @@ public class ModBlocks {
 
 		rad_lava_fluid = new RadFluid().setLuminosity(15).setDensity(3000).setViscosity(3000).setTemperature(1300).setUnlocalizedName("rad_lava_fluid");
 		FluidRegistry.registerFluid(rad_lava_fluid);
-		rad_lava_block = new RadBlock(rad_lava_fluid, Material.lava).setBlockName("rad_lava_block").setResistance(500F);
+		rad_lava_block = new RadBlock(rad_lava_fluid, Material.lava).setBlockName("rad_lava_block").setBlockUnbreakable().setResistance(6000000.0F);
 
 		sulfuric_acid_fluid = new GenericFluid("sulfuric_acid_fluid").setDensity(1840).setViscosity(1000).setTemperature(273);
 		FluidRegistry.registerFluid(sulfuric_acid_fluid);
@@ -2826,8 +2826,8 @@ public class ModBlocks {
 		GameRegistry.registerBlock(ore_diamond, ItemBlockBase.class, ore_diamond.getUnlocalizedName());
 
 		//Ores
-		GameRegistry.registerBlock(ore_uranium, ItemBlockBase.class, ore_uranium.getUnlocalizedName());
-		GameRegistry.registerBlock(ore_uranium_scorched, ItemBlockBase.class, ore_uranium_scorched.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_uranium, ItemBlockLore.class, ore_uranium.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_uranium_scorched, ItemBlockLore.class, ore_uranium_scorched.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_plutonium, ItemBlockBase.class, ore_plutonium.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_thorium, ItemBlockBase.class, ore_thorium.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_morkite, ItemBlockBase.class, ore_morkite.getUnlocalizedName());
@@ -2890,8 +2890,8 @@ public class ModBlocks {
 		//Nether Ores
 		GameRegistry.registerBlock(ore_nether_coal, ore_nether_coal.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_nether_smoldering, ore_nether_smoldering.getUnlocalizedName());
-		GameRegistry.registerBlock(ore_nether_uranium, ore_nether_uranium.getUnlocalizedName());
-		GameRegistry.registerBlock(ore_nether_uranium_scorched, ore_nether_uranium_scorched.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_nether_uranium, ItemBlockLore.class, ore_nether_uranium.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_nether_uranium_scorched, ItemBlockLore.class, ore_nether_uranium_scorched.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_nether_plutonium, ore_nether_plutonium.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_nether_tungsten, ore_nether_tungsten.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_nether_sulfur, ore_nether_sulfur.getUnlocalizedName());
@@ -2905,8 +2905,8 @@ public class ModBlocks {
 		//Gneiss Ores
 		GameRegistry.registerBlock(ore_gneiss_iron, ore_gneiss_iron.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_gneiss_gold, ore_gneiss_gold.getUnlocalizedName());
-		GameRegistry.registerBlock(ore_gneiss_uranium, ore_gneiss_uranium.getUnlocalizedName());
-		GameRegistry.registerBlock(ore_gneiss_uranium_scorched, ore_gneiss_uranium_scorched.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_gneiss_uranium, ItemBlockLore.class, ore_gneiss_uranium.getUnlocalizedName());
+		GameRegistry.registerBlock(ore_gneiss_uranium_scorched, ItemBlockLore.class, ore_gneiss_uranium_scorched.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_gneiss_copper, ore_gneiss_copper.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_gneiss_asbestos, ore_gneiss_asbestos.getUnlocalizedName());
 		GameRegistry.registerBlock(ore_gneiss_lithium, ore_gneiss_lithium.getUnlocalizedName());
@@ -3394,7 +3394,7 @@ public class ModBlocks {
 		register(ore_sellafield_diamond);
 		register(sellafield_bedrock);
 		register(ore_sellafield_emerald);
-		register(ore_sellafield_uranium_scorched);
+		register(ore_sellafield_uranium_scorched, ItemBlockLore.class);
 		register(ore_sellafield_schrabidium);
 		register(ore_sellafield_radgem);
 		GameRegistry.registerBlock(sellafield, ItemBlockNamedMeta.class, sellafield.getUnlocalizedName());
@@ -4051,7 +4051,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(schrabidic_block, schrabidic_block.getUnlocalizedName());
 		GameRegistry.registerBlock(corium_block, corium_block.getUnlocalizedName());
 		GameRegistry.registerBlock(volcanic_lava_block, volcanic_lava_block.getUnlocalizedName());
-		GameRegistry.registerBlock(rad_lava_block, rad_lava_block.getUnlocalizedName());
+		GameRegistry.registerBlock(rad_lava_block, ItemBlockLore.class, rad_lava_block.getUnlocalizedName());
 		GameRegistry.registerBlock(sulfuric_acid_block, sulfuric_acid_block.getUnlocalizedName());
 		GameRegistry.registerBlock(mercury_block, mercury_block.getUnlocalizedName());
 		GameRegistry.registerBlock(bromine_block, bromine_block.getUnlocalizedName());

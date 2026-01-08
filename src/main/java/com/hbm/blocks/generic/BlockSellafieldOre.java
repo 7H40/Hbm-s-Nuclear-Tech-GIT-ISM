@@ -1,11 +1,15 @@
 package com.hbm.blocks.generic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.hbm.blocks.IBlockMultiPass;
+import com.hbm.blocks.ILookOverlay;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.items.ModItems;
 import com.hbm.render.block.RenderBlockMultipass;
+import com.hbm.util.i18n.I18nUtil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,8 +20,10 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-public class BlockSellafieldOre extends BlockSellafieldSlaked implements IBlockMultiPass {
+public class BlockSellafieldOre extends BlockSellafieldSlaked implements IBlockMultiPass, ILookOverlay {
 
 	public BlockSellafieldOre(Material mat) {
 		super(mat);
@@ -76,6 +82,9 @@ public class BlockSellafieldOre extends BlockSellafieldSlaked implements IBlockM
 
 	@Override
 	public int quantityDropped(Random rand) {
+		if(this == ModBlocks.ore_sellafield_uranium_scorched) {
+			return 0;
+		}
 		return 1;
 	}
 
@@ -104,5 +113,13 @@ public class BlockSellafieldOre extends BlockSellafieldSlaked implements IBlockM
 			return j1;
 		}
 		return 0;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void printHook(RenderGameOverlayEvent.Pre event, World world, int x, int y, int z) {
+		List<String> text = new ArrayList();
+		text.add("You won't get loot from this block.");
+		ILookOverlay.printGeneric(event, I18nUtil.resolveKey(getUnlocalizedName() + ".name"), 0xffff00, 0x404000, text);
 	}
 }

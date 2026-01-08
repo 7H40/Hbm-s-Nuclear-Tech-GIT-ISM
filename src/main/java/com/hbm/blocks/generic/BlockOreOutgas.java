@@ -1,17 +1,24 @@
 package com.hbm.blocks.generic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.hbm.blocks.ILookOverlay;
 import com.hbm.blocks.ModBlocks;
+import com.hbm.util.i18n.I18nUtil;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockOreOutgas extends BlockOre {
+public class BlockOreOutgas extends BlockOre implements ILookOverlay {
 
 	boolean randomTick;
 	int rate;
@@ -98,4 +105,16 @@ public class BlockOreOutgas extends BlockOre {
 		}
 	}
 	
+	@Override
+	public int quantityDropped(Random rand) {
+		return 0;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void printHook(RenderGameOverlayEvent.Pre event, World world, int x, int y, int z) {
+		List<String> text = new ArrayList();
+		text.add("You won't get loot from this block.");
+		ILookOverlay.printGeneric(event, I18nUtil.resolveKey(getUnlocalizedName() + ".name"), 0xffff00, 0x404000, text);
+	}
 }
