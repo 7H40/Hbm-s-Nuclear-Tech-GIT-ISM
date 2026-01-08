@@ -137,7 +137,7 @@ public class BedrockOre {
 		registerBedrockOre(Body.LAYTHE, rare, WorldConfig.bedrockRareEarthSpawn);
 		registerBedrockOre(Body.LAYTHE, asbestos, WorldConfig.bedrockAsbestosSpawn);
 		registerBedrockOre(Body.LAYTHE, emerald, WorldConfig.bedrockEmeraldSpawn);
-		registerBedrockOre(Body.LAYTHE, uranium, WorldConfig.bedrockUraniumSpawn);
+		//registerBedrockOre(Body.LAYTHE, uranium, WorldConfig.bedrockUraniumSpawn);
 
 		// Moho ores
 		registerBedrockOre(Body.MOHO, iron, WorldConfig.bedrockIronSpawn);
@@ -148,7 +148,7 @@ public class BedrockOre {
 		registerBedrockOre(Body.MOHO, cinnabar, 100);
 
 		// Eve ores
-		registerBedrockOre(Body.EVE, uranium, WorldConfig.bedrockUraniumSpawn);
+		//registerBedrockOre(Body.EVE, uranium, WorldConfig.bedrockUraniumSpawn);
 		registerBedrockOre(Body.EVE, thorium, WorldConfig.bedrockThoriumSpawn);
 		registerBedrockOre(Body.EVE, niobium, WorldConfig.bedrockNiobiumSpawn);
 		registerBedrockOre(Body.EVE, rare, WorldConfig.bedrockRareEarthSpawn);
