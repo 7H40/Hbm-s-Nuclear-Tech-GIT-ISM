@@ -126,7 +126,7 @@ public class BedrockOre {
 		registerBedrockOre(Body.DRES, iron, WorldConfig.bedrockIronSpawn);
 		registerBedrockOre(Body.DRES, copper, WorldConfig.bedrockCopperSpawn);
 		registerBedrockOre(Body.DRES, cadmium, 100);
-		//registerBedrockOre(Body.DRES, coltan, 100);
+		registerBedrockOre(Body.DRES, coltan, 100);
 		registerBedrockOre(Body.DRES, lanthanium, 50);
 		registerBedrockOre(Body.DRES, gold, WorldConfig.bedrockGoldSpawn);
 		registerBedrockOre(Body.DRES, redstone, WorldConfig.bedrockRedstoneSpawn);
