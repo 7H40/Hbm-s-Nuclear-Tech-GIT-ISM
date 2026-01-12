@@ -58,7 +58,7 @@ public class BlockOutgas extends Block implements ILookOverlay {
 		if(this == ModBlocks.ancient_scrap)
 			return ModBlocks.gas_radon_tomb;
 		
-		if(this == ModBlocks.ore_coal_oil_burning || this == ModBlocks.ore_nether_coal) {
+		if(this == ModBlocks.ore_nether_coal) {
 			return ModBlocks.gas_monoxide;
 		}
 		
