@@ -42,17 +42,17 @@ public class ItemConserve extends ItemEnumMulti {
 		player.inventory.addItemStackToInventory(new ItemStack(ModItems.can_key));
 		EnumFoodType num = EnumUtil.grabEnumSafely(theEnum, stack.getItemDamage());
 
-		if(num == EnumFoodType.BHOLE && !world.isRemote) {
-			EntityVortex vortex = (EntityVortex) new EntityVortex(world, 0.5F).setShrinkRate(0.01F).noBreak();
-			vortex.posX = player.posX;
-			vortex.posY = player.posY;
-			vortex.posZ = player.posZ;
-			world.spawnEntityInWorld(vortex);
-
-		} else if(num == EnumFoodType.RECURSION && world.rand.nextInt(10) > 0) {
-			
-			player.inventory.addItemStackToInventory(stackFromEnum(EnumFoodType.RECURSION));
-		}
+//		if(num == EnumFoodType.BHOLE && !world.isRemote) {
+//			EntityVortex vortex = (EntityVortex) new EntityVortex(world, 0.5F).setShrinkRate(0.01F).noBreak();
+//			vortex.posX = player.posX;
+//			vortex.posY = player.posY;
+//			vortex.posZ = player.posZ;
+//			world.spawnEntityInWorld(vortex);
+//
+	//	} else if(num == EnumFoodType.RECURSION && world.rand.nextInt(10) > 0) {
+	//		
+	//		player.inventory.addItemStackToInventory(stackFromEnum(EnumFoodType.RECURSION));
+	//	}
 	}
 
 	@Override
